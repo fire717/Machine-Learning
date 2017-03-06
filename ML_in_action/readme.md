@@ -7,3 +7,8 @@
 
 * [k-近邻算法/kNN](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/kNN)
 * [决策树](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/DecisionTree)
+* [朴素贝叶斯](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Bayes)
+
+### 第二部分 回归
+
+### 第三部分 无监督学习
