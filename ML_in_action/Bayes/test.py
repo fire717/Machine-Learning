@@ -2,6 +2,7 @@
 
 import bayes
 
+'''
 listOPosts,listClasses = bayes.loadDataSet()
 myVocabList = bayes.createVocabList(listOPosts)  #构建一个包含所有词的词汇表
 #print myVocabList
@@ -16,3 +17,11 @@ for postinDoc in listOPosts:            #循环使用词向量来填充trainMat�
 p0V,p1V,pAb = bayes.trainNB0(trainMat,listClasses)   #概率向量
 
 #print p0V,p1V
+'''
+#全部封装到测试函数里面去了
+
+#print bayes.testingNB()
+
+#垃圾邮件测试
+print bayes.spamTest()
+
