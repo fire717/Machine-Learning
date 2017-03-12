@@ -13,4 +13,6 @@
 
 ### 第二部分 回归
 
+* [K-均值聚类算法/kMeans](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/kMeans)
+
 ### 第三部分 无监督学习
