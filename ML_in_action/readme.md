@@ -10,6 +10,7 @@
 * [朴素贝叶斯](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Bayes)
 * [Logistic回归](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Logisitc)
 * [支持向量机SVM](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/SVM)
+* [AdaBoost元算法](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/AdaBoost)
 
 ### 第二部分 回归
 
