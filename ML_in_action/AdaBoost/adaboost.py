@@ -49,3 +49,30 @@ def buildStump(dataArr,classLabels,D):
                     bestStump['thresh'] = threshVal
                     bestStump['ineq'] = inequal
     return bestStump,minError,bestClasEst
+
+
+#完整AdaBoost算法
+#基于单层决策树的AdaBoost训练过程
+def adaBoostTrainDS(dataArr,classLabels,numIt=40):
+    #numIt迭代次数
+    weakClassArr = []
+    m = shape(dataArr)[0]
+    D = mat(ones((m,1))/m)
+    aggClassEst = mat(zeros((m,1)))
+    for i in range(numIt):
+        bestStump,error,classEst = buildStump(dataArr,classLabels,D)
+        print "D:",D.T
+        alpha = float(0.5*log((1.0-error)/max(error,1e-16)))
+        bestStump['alpha'] = alpha
+        weakClassArr.append(bestStump)
+        print "classEst:",classEst.T
+        expon = multiply(-1*alpha*mat(classLabels).T,classEst) #为下一次迭代计算D
+        D = multiply(D,exp(expon))
+        D = D/D.sum()    #D包含了每个数据点的权重
+        aggClassEst += alpha*classEst     #错误率累加计算
+        print "aggClassEst: ",aggClassEst
+        aggErrors = multiply(sign(aggClassEst) != mat(classLabels).T,ones((m,1)))
+        errorRate = aggErrors.sum() / m
+        print "total error:",errorRate,'\n'
+        if errorRate == 0.0:break
+    return weakClassArr
