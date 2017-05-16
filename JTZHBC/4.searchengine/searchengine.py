@@ -81,7 +81,7 @@ class crawler:
     u = self.con.execute \
         ("select rowid from urllist where url='%s'" % url).fetchone()
     if u!=None:#检查是否已经被检索过了
-    v=self.con.execute('select * from wordlocation where urlid=%d' % u[0]).fetchone()
+      v=self.con.execute('select * from wordlocation where urlid=%d' % u[0]).fetchone()
     if v!=None:return True
     return False
   
