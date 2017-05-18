@@ -11,7 +11,7 @@
 * [神经网络](/JTZHBC/4.searchengine/nn.py)
 
 ### 第5章 优化
-* [优化](/JTZHBC/5.optimization/optimization.py) (爬山法，模拟退火算法，遗传算法)
+* [优化](/JTZHBC/5.optimization/optimization.py)  `(爬山法，模拟退火算法，遗传算法)`
 * [宿舍分配问题](/JTZHBC/5.optimization/dorm.py)
 * [关系网络可视化](/JTZHBC/5.optimization/socialnetwork.py)
 
