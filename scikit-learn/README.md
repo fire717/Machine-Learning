@@ -2,7 +2,7 @@
 
 ### Choosing the right estimator
 
-![Choosing the right estimator](/choose.png)
+![Choosing the right estimator](./choose.png)
 
 
 
