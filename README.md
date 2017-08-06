@@ -1,7 +1,7 @@
 # Machine-Learning
 
 ## My Own
-* [python实现线性回归](/mine/ex1_py.ipynb)
+* [python实现线性回归](/mine/ex1_py.py)
 
 ## 机器学习
 * [Kaggle](/kaggle)
