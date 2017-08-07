@@ -8,7 +8,7 @@
 * [k-近邻算法/kNN](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/kNN)
 * [决策树](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/DecisionTree)
 * [朴素贝叶斯](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Bayes)
-* [Logistic回归](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Logisitc)
+* [Logistic回归](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/Logistic)
 * [支持向量机SVM](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/SVM)
 * [AdaBoost元算法](https://github.com/fire717/Machine-Learning/tree/master/ML_in_action/AdaBoost)
 
