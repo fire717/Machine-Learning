@@ -2,6 +2,7 @@
 
 ## My Own
 * [python实现线性回归](/mine/ex1_py.py)
+* [python实现感知机](/mine/perceptron.py)
 
 ## 机器学习
 * [Kaggle](/kaggle)
