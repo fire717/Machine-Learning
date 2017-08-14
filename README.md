@@ -4,6 +4,7 @@
 * [python实现线性回归](/mine/ex1_py.py)
 * [python实现logistic回归](/mine/LR_skdata.py)
 * [python实现感知机](/mine/perceptron.py)
+* [python实现神经网络(还有问题)](/mine/NN.ipynb)
 
 ## 机器学习
 * [Kaggle](/kaggle)
