@@ -7,7 +7,7 @@
 
 * [线性回归](/mine/ex1_py.py) - [logistic回归](/mine/LR_skdata.py) - [感知机](/mine/perceptron.py) - SVM - [神经网络(?)](/mine/NN.ipynb)
 * 决策树 - 随机森林 - Adaboost - XGBoost
-* kNN - 朴素贝叶斯
+* kNN - [朴素贝叶斯](/mine/NaiveBayes.py)
 * 随机向量场 - HMM
 * kMeans
 
