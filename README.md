@@ -11,7 +11,7 @@ No free lunch.
 
 ## 1.机器学习
 * 比赛： [Kaggle](/kaggle) - 天池
-* 书籍： [《机器学习实战》](/ML_in_action) - [《集体智慧编程》](/JTZHBC)
+* 书籍： [机器学习实战](/ML_in_action) - [集体智慧编程](/JTZHBC)
 * 课程： [机器学习/Andrew Ng](/coursera_ML) - CS231n/Feifei Li
 * 工具： [scikit-learn库](/scikit-learn)
 
