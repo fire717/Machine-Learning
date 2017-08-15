@@ -1,17 +1,21 @@
 # Machine-Learning
 
-## 0.My Own
-* [python实现线性回归](/mine/ex1_py.py)
-* [python实现logistic回归](/mine/LR_skdata.py)
-* [python实现感知机](/mine/perceptron.py)
-* [python实现神经网络(还有问题)](/mine/NN.ipynb)
+## 0.不调库系列 
+No free lunch.
+
+* [线性回归](/mine/ex1_py.py) - [logistic回归](/mine/LR_skdata.py) - [感知机](/mine/perceptron.py) - SVM - [神经网络(还有问题)](/mine/NN.ipynb)
+* 决策树 - 随机森林 - Adaboost - XGBoost
+* 朴素贝叶斯 - kMeans
+* 随机向量场 - HMM
+* kNN
 
 ## 1.机器学习
 * [Kaggle](/kaggle)
 * [《机器学习实战》](/ML_in_action)
 * [《集体智慧编程》](/JTZHBC)
 * [Coursera机器学习-Andrew Ng](/coursera_ML)
-* [scikit-learn](/scikit-learn)
+* [scikit-learn库](/scikit-learn)
+* CS231n-Feifei Li
 
 ## 2.深度学习
 * [Tensorflow框架](/tensorflow)
