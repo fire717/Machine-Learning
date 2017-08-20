@@ -9,7 +9,7 @@
 * 决策树 - 随机森林 - Adaboost - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * HMM - 条件随机场
-* kMeans - PCA
+* [kMeans ?](/mine/kMeans.ipynb) - PCA
 
 ## 1.机器学习
 
