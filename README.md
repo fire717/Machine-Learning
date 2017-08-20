@@ -9,7 +9,7 @@
 * 决策树 - 随机森林 - Adaboost - XGBoost
 * [kNN](/mine/kNN.py) - [朴素贝叶斯](/mine/NaiveBayes.py)
 * 随机向量场 - HMM
-* kMeans
+* kMeans - PCA
 
 ## 1.机器学习
 
