@@ -27,7 +27,7 @@ def clipAlpha(aj,H,L):   #调整大于H或者小于L的alpha的值
 
 #简化版SMO算法
 def smoSimple(dataMatIn,classLabels,C,toler,maxIter):
-    #参数：数据集、类别标签、常熟C。容错率、退出前最大循环次数。
+    #参数：数据集、类别标签、常数C、容错率、退出前最大循环次数。
     dataMatrix = mat(dataMatIn); labelMat = mat(classLabels).transpose()#转置为列向量
     b = 0; m,n = shape(dataMatrix)
     alphas = mat(zeros((m,1)))
