@@ -10,6 +10,7 @@
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * HMM - 条件随机场
 * [kMeans ?](/mine/kMeans.ipynb) - PCA
+* EM
 
 ## 1.机器学习
 
