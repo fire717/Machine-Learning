@@ -1,3 +1,6 @@
+
+[![Python](https://img.shields.io/badge/python-3.5-green.svg)](https://github.com/fire717/Machine-Learning/tree/master/cs231n)
+
 ### 作业
 * [assignment1](./assignment1)
 
