@@ -12,23 +12,21 @@
 * [kMeans](/mine/kMeans.ipynb) - PCA
 * EM
 
-## 1.机器学习
+## 1.机器学习&深度学习
 
 比赛 | 书籍 | 课程 | 工具
 ----|------|-----|----
 [Kaggle](/kaggle) | [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML) | [scikit-learn库](/scikit-learn)
-天池 | [集体智慧编程](/JTZHBC)  | CS229/Andrew Ng |
-||| [CS231n/Feifei Li](/cs231n) |
+天池 | [集体智慧编程](/JTZHBC)  | CS229/Andrew Ng | [Tensorflow](/tensorflow)
+||| [CS231n/Feifei Li](/cs231n) | PyTorch
+
+||| Deep Learning Specialization|
 
 
-## 2.深度学习
-* [Tensorflow](/tensorflow)
-* PyTorch
-
-## 3.自然语言处理
+## 2.自然语言处理
 * CS224n
 
-## 4.其他
+## 3.其他
 * [论文整理记录](/papers)
 
 
