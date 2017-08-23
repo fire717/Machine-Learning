@@ -19,7 +19,6 @@
 [Kaggle](/kaggle) | [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML) | [scikit-learn库](/scikit-learn)
 天池 | [集体智慧编程](/JTZHBC)  | CS229/Andrew Ng | [Tensorflow](/tensorflow)
 ||| [CS231n/Feifei Li](/cs231n) | PyTorch
-
 ||| Deep Learning Specialization|
 
 
