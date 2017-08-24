@@ -17,9 +17,8 @@
 比赛 | 书籍 | 课程 | 工具
 ----|------|-----|----
 [Kaggle](/kaggle) | [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML) | [scikit-learn库](/scikit-learn)
-天池 | [集体智慧编程](/JTZHBC)  | CS229/Andrew Ng | [Tensorflow](/tensorflow)
+天池 | [集体智慧编程](/JTZHBC)  | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [Tensorflow](/tensorflow)
 ||| [CS231n/Feifei Li](/cs231n) | PyTorch
-||| Deep Learning Specialization|
 
 
 ## 2.自然语言处理
