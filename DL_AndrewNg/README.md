@@ -8,3 +8,6 @@
 
 ### Course 2:Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 * [Initialization](./course2/Initialization.ipynb)
+* [Regularization](./course2/Regularization.ipynb)
+* [Gradient Checking](./course2/GradientChecking.ipynb)
+
