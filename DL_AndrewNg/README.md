@@ -11,4 +11,6 @@
 * [Regularization](./course2/Regularization.ipynb)
 * [Gradient Checking](./course2/GradientChecking.ipynb)
 * [Optimization](./course2/OptimizationMethods.ipynb)
+* [Tensorflow Tutorial](./course2/TensorflowTutorial.ipynb)
 
+### Course 3:
