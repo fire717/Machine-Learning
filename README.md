@@ -9,7 +9,7 @@
 * [决策树?](/mine/DecisionTree.ipynb) - Adaboost - GBDT - 随机森林 - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * HMM - 条件随机场
-* [kMeans](/mine/kMeans.ipynb) - PCA
+* [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
 * EM
 
 ## 1.机器学习&深度学习
