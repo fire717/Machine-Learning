@@ -13,4 +13,9 @@
 * [Optimization](./course2/OptimizationMethods.ipynb)
 * [Tensorflow Tutorial](./course2/TensorflowTutorial.ipynb)
 
-### Course 3:
+### Course 3:Structuring Machine Learning Projects
+* No homework
+
+### Course 4:Convolutional Neural Networks
+
+### Course 5:Sequence Models
