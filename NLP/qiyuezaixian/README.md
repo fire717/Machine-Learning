@@ -1,8 +1,8 @@
-## ×ÔÈ»ÓïÑÔ´¦Àí°à - ÆßÔÂÔÚÏß
+## è‡ªç„¶è¯­è¨€å¤„ç†ç­ - ä¸ƒæœˆåœ¨çº¿
 
-### 1.NLP»ù´¡¼¼ÄÜ
-* [Python×Ö·û´®²Ù×÷](./course1/string_operation.ipynb)
-* [ÕıÔò±í´ïÊ½](./course1/PythonRegEx.html)
-* [jiebaÖĞÎÄ´¦Àí](./course1/jieba.html)
+### 1.NLPåŸºç¡€æŠ€èƒ½
+* [Pythonå­—ç¬¦ä¸²æ“ä½œ](./course1/string_operation.ipynb)
+* [æ­£åˆ™è¡¨è¾¾å¼](./course1/PythonRegEx.html)   ã€€( [åœ¨çº¿éªŒè¯å·¥å…·](http://regexr.com/) [åœ¨çº¿ç»ƒä¹ ](https://alf.nu/RegexGolf))
+* [jiebaä¸­æ–‡å¤„ç†](./course1/jieba.html)
 
 ### 2.
