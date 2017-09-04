@@ -1,8 +1,12 @@
-## è‡ªç„¶è¯­è¨€å¤„ç†ç­ - ä¸ƒæœˆåœ¨çº¿
+## ×ÔÈ»ÓïÑÔ´¦Àí°à - ÆßÔÂÔÚÏß
 
-### 1.NLPåŸºç¡€æŠ€èƒ½
-* [Pythonå­—ç¬¦ä¸²æ“ä½œ](./course1/string_operation.ipynb)
-* [æ­£åˆ™è¡¨è¾¾å¼](./course1/PythonRegEx.html)   ã€€( [åœ¨çº¿éªŒè¯å·¥å…·](http://regexr.com/) [åœ¨çº¿ç»ƒä¹ ](https://alf.nu/RegexGolf))
-* [jiebaä¸­æ–‡å¤„ç†](./course1/jieba.html)
+### 1.NLP»ù´¡¼¼ÄÜ
+* [Python×Ö·û´®²Ù×÷](./course1/string_operation.ipynb)
+* [ÕıÔò±í´ïÊ½](./course1/PythonRegEx.html)   ¡¡( [ÔÚÏßÑéÖ¤¹¤¾ß](http://regexr.com/) [ÔÚÏßÁ·Ï°](https://alf.nu/RegexGolf))
+* [jiebaÖĞÎÄ´¦Àí](./course1/jieba.html)
 
 ### 2.
+* [ÆÓËØ±´Ò¶Ë¹](./course2/bayes.html)
+* [ÆÓËØ±´Ò¶Ë¹ĞÂÎÅ·ÖÀà](./course2/bayesClassfierNews.html)
+* [ÓÃÆÓËØ±´Ò¶Ë¹Íê³ÉÓïÖÖ¼ì²â](./course2/bayesDetector.html)
+* [´ÓNBµ½N-gramÓïÑÔÄ£ĞÍ](./course2/Ngram.html)
