@@ -6,7 +6,7 @@
 > No free lunch.
 
 * [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb)
-* [决策树?](/mine/DecisionTree.ipynb) - Adaboost - GBDT - 随机森林 - XGBoost
+* [决策树](/mine/DecisionTree.ipynb) - Adaboost - GBDT - 随机森林 - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * HMM - 条件随机场
 * [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
