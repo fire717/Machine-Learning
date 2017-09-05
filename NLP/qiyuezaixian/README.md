@@ -11,3 +11,6 @@
 * [用朴素贝叶斯完成语种检测](./course2/bayesDetector.html)
 * [从NB到N-gram语言模型](./course2/Ngram.html)
 * [语言模型训练工具KenLM](http://kheafield.com/code/kenlm/)
+
+### 3.LDA主题模型
+* [LDA模型应用：一眼看穿希拉里的邮件](./course3/HillaryEmail.ipynb)
