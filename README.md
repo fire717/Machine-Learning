@@ -11,6 +11,7 @@
 * HMM - 条件随机场
 * [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
 * [EM?](/mine/EM.ipynb)
+* [ROC曲线&AUC值](/mine/ROC_AUC.ipynb)
 
 ## 1.机器学习&深度学习
 
