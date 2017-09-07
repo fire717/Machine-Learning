@@ -8,9 +8,8 @@
 * [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb)
 * [决策树](/mine/DecisionTree.ipynb) - [Adaboost](/mine/Adaboost.ipynb) - 随机森林 - GBDT - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
-* [HMM?](/mine/HMM.ipynb) - 条件随机场
+* [EM?](/mine/EM.ipynb) - [HMM](/mine/HMM.ipynb) - 条件随机场
 * [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
-* [EM?](/mine/EM.ipynb)
 * [ROC曲线&AUC值](/mine/ROC_AUC.ipynb)
 
 ## 1.机器学习&深度学习
