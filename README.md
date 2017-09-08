@@ -19,7 +19,7 @@
 [Kaggle](/kaggle)  | [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [scikit-learn](/scikit-learn)
 天池  | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [Tensorflow](/tensorflow)
 [biendata](/biendata) |      | [CS231n/Feifei Li](/cs231n)      | [keras](/keras) 
-  |  |  |  PyTorch
+  |  | | |  PyTorch
 
 
 ## 2.自然语言处理
