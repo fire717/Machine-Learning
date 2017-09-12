@@ -20,7 +20,7 @@
 天池  | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [Tensorflow](/tensorflow)
 [biendata](/biendata) |      | [CS231n/Feifei Li](/cs231n)      | [keras](/keras) 
   |  | | |  PyTorch
-
+  |  | | |  XGBoost
 
 ## 2.自然语言处理
 * [自然语言处理班 - 七月在线](/NLP/qiyuezaixian)
