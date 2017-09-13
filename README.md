@@ -16,11 +16,11 @@
 
   工具   |     书籍      |    课程     |    比赛
 ---------|---------------|-------------|--------
- [scikit-learn](/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/kaggle) 
- [Tensorflow](/tensorflow) | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | 天池
-[keras](/keras)  |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/biendata)
- PyTorch |  | | |  
- [XGBoost](/xgboost) |  | | |  
+ [scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/kaggle) 
+ [Tensorflow](/tools/tensorflow) | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | 天池
+[keras](/tools/keras)  |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/biendata)
+ [PyTorch](/tools/pytorch) |  | | |  
+ [XGBoost](/tools/xgboost) |  | | |  
 
 ## 2.自然语言处理
 * [自然语言处理班 - 七月在线](/NLP/qiyuezaixian)
