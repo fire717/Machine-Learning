@@ -23,8 +23,8 @@
  [XGBoost](/tools/xgboost) |  | | |  
 
 ## 2.自然语言处理
-* [自然语言处理班 - 七月在线](/NLP/qiyuezaixian)
-* CS224n
+* 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
+* 工具：[jieba](/NLP/jieba) | gensim | NLTK | word2vector
 
 ## 3.其他
 * [论文整理记录](/papers)
