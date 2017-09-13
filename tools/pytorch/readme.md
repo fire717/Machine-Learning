@@ -1,6 +1,6 @@
-### 资料
-* [官网](http://pytorch.org/)
-* [官网教程](http://pytorch.org/tutorials/)
+### 璧勬枡
+* [瀹樼綉](http://pytorch.org/)
+* [瀹樼綉鏁欑▼](http://pytorch.org/tutorials/)
 
-### 实践
+### 瀹炶返
 * [NN example](./pytorch_example.ipynb)
