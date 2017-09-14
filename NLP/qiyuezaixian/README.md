@@ -16,4 +16,4 @@
 * [LDA模型应用：一眼看穿希拉里的邮件](./course3/HillaryEmail.ipynb)
 
 ### 5.隐马尔科夫模型及其应用
-# [使用HMM进行词性标注](./course5/HMM_POS_TAG.html)
+* [使用HMM进行词性标注](./course5/HMM_POS_TAG.html)
