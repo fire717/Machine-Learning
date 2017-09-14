@@ -2,7 +2,8 @@
 
 [Keras Example](./keras_example.ipynb)
 
-># 把数值类标签转为10维向量，标签对应位为1其余为0
+>把数值类标签转为10维向量，标签对应位为1其余为0:
+
 >y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 
 ### Demo
