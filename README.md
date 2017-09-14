@@ -5,7 +5,7 @@
 ## 0.不调库系列 
 > No free lunch.
 
-* [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb) - CNN -RNN
+* [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb) - [CNN?](/mine/CNN.ipynb) -RNN
 * [决策树](/mine/DecisionTree.ipynb) - [Adaboost](/mine/Adaboost.ipynb) - 随机森林 - GBDT - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * [EM](/mine/EM.ipynb) - [HMM](/mine/HMM.ipynb) - [条件随机场](/mine/CRF.ipynb)
@@ -24,7 +24,7 @@
 
 ## 2.自然语言处理
 * 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
-* 工具：[jieba](/NLP/jieba) | gensim | [NLTK](/NLP/nltk) | word2vector
+* 工具：[jieba](/NLP/jieba) | [gensim](/NLP/gensim) | [NLTK](/NLP/nltk) | word2vector
 
 ### 代码
 [社交网络语言re](/NLP/code/re.ipynb) |
