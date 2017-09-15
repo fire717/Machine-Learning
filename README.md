@@ -16,10 +16,10 @@
 
   工具   |     书籍      |    课程     |    比赛
 ---------|---------------|-------------|--------
- [scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/kaggle) 
+ [scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/challenge/kaggle) 
  [Tensorflow](/tools/tensorflow) | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | 天池
-[keras](/tools/keras)  |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/biendata)
- [PyTorch](/tools/pytorch) |  | | |  
+[keras](/tools/keras)  |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/challenge/biendata)
+ [PyTorch](/tools/pytorch) |  | | [AI challenge](/challenge/AIchallenge)
  [XGBoost](/tools/xgboost) |  | | |  
 
 ## 2.自然语言处理
