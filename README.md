@@ -5,7 +5,7 @@
 ## 0.不调库系列 
 > No free lunch.
 
-* [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb) - [CNN?](/mine/CNN.ipynb) -RNN
+* [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb) 
 * [决策树](/mine/DecisionTree.ipynb) - [Adaboost](/mine/Adaboost.ipynb) - 随机森林 - GBDT - XGBoost
 * [kNN](/mine/kNN.ipynb) - [朴素贝叶斯](/mine/NaiveBayes.ipynb)
 * [EM](/mine/EM.ipynb) - [HMM](/mine/HMM.ipynb) - [条件随机场](/mine/CRF.ipynb)
