@@ -8,6 +8,7 @@
 
 ### Demo
 
-* [单独下载的mnist数据集](keras_mnist.ipynb)
+* [单独下载的mnist数据集_CNN](keras_mnist.ipynb)
+* [RNN分类示例](RNN_classify.ipynb)
 
 
