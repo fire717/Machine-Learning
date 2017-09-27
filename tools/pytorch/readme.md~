@@ -5,4 +5,3 @@
 ### 实践
 * [NN example](./pytorch_example.ipynb)
 * [LSTM词性标注简单示例](./pytorch_lstm.ipynb)
-* [GAN示例？](./gan_pytorch.py)
