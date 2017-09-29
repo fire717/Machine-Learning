@@ -8,8 +8,8 @@
 
 ### Demo
 
-* [单独下载的mnist数据集_CNN](keras_mnist.ipynb)
-* [RNN分类示例](RNN_classify.ipynb)
-* [Keras实现LSTM](lstm_word_embedding.ipynb)
+* [使用自己下载的mnist数据集训练CNN](keras_mnist.ipynb)
+* [RNN实现分类示例](RNN_classify.ipynb)
+* [Keras实现LSTM 文档分类](lstm_word_embedding.ipynb)
 
 
