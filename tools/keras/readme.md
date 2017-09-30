@@ -8,8 +8,10 @@
 
 ### Demo
 
+
 * [单独下载的mnist数据集_CNN](keras_mnist.ipynb)
 * [RNN分类示例](RNN_classify.ipynb)
 * [Keras实现LSTM](lstm_word_embedding.ipynb)
 * [LSTM文本生成](Word_Language_Modelling_LSTM)
+
 
