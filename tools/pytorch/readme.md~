@@ -4,4 +4,3 @@
 
 ### 实践
 * [NN example](./pytorch_example.ipynb)
-* [LSTM词性标注简单示例](./pytorch_lstm.ipynb)
