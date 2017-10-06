@@ -13,5 +13,5 @@
 * [RNN分类示例](RNN_classify.ipynb)
 * [Keras实现LSTM](lstm_word_embedding.ipynb)
 * [LSTM文本生成](Word_Language_Modelling_LSTM.ipynb)
-
+* [GAN实现mnist图片生成](Keras_GAN.ipynb)
 
