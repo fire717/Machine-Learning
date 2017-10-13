@@ -29,7 +29,8 @@
 * 代码：[社交网络语言re](/NLP/code/re.ipynb) |
 
 ## 3.其他
-* [论文整理记录](/papers)
+* [资源索引](/other/infos)
+* [论文整理记录](/other/papers)
 
 
 
