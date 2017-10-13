@@ -26,8 +26,7 @@
 * 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
 * 工具：[jieba](/NLP/jieba) | [gensim](/NLP/gensim) | [NLTK](/NLP/nltk) | word2vector
 
-### 代码
-[社交网络语言re](/NLP/code/re.ipynb) |
+* 代码：[社交网络语言re](/NLP/code/re.ipynb) |
 
 ## 3.其他
 * [论文整理记录](/papers)
