@@ -20,7 +20,7 @@
  [Tensorflow](/tools/tensorflow) | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [天池](/challenge/tianchi)
 [keras](/tools/keras)  |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/challenge/biendata)
  [PyTorch](/tools/pytorch) |  | | [AI challenge](/challenge/AIchallenge)
- [XGBoost](/tools/xgboost) |  | | |  [DataFountain](/challenge/DataFountain)
+ [XGBoost](/tools/xgboost) |  | | [DataFountain](/challenge/DataFountain)
 
 ## 2.自然语言处理
 * 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
