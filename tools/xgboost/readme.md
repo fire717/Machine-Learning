@@ -5,3 +5,4 @@
 
 ### 应用
 * [demo](./xgboost.ipynb)
+* [多分类](./xgboost_multi.ipynb)
