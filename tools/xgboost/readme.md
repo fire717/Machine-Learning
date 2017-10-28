@@ -17,7 +17,7 @@ Xgboost 的调参。通常认为对它性能影响较大的参数有：
 * max_depth：每棵树的最大深度限制。与 Random Forest 不同，Gradient Boosting 如果不对深度加以限制，最终是会 Overfit 的。
 * early_stopping_rounds：用于控制在 Out Of Sample 的验证集上连续多少个迭代的分数都没有提高后就提前终止训练。用于防止 Overfitting。
 
-####一般的调参步骤是：
+#### 一般的调参步骤是：
 1. 将训练数据的一部分划出来作为验证集。
 2. 先将 eta 设得比较高（比如 0.1），num_round 设为 300 ~ 500。
 3. 用 Grid Search 对其他参数进行搜索
