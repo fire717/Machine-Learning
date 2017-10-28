@@ -6,6 +6,7 @@ y_pre = lr.predict(val_x)
 
 
 ### 2.RF
+#Random Forest 一般在 max_features 设为 Feature 数量的平方根附近得到最佳结果。
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
 
