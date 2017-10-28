@@ -25,3 +25,9 @@ gbdt.fit(train_x, train_y)
 y_pre=gbdt.predict(val_x)
 y_pre[y_pre>0.5] = 1
 y_pre[y_pre<0.5] = 0
+
+### 4.knn
+from sklearn import neighbors 
+
+knn = neighbors.KNeighborsClassifier(n_neighbors=8,leaf_size=30,p=3)
+knn.fit(x,y)  
