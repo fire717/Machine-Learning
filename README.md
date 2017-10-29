@@ -20,8 +20,8 @@
  [scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/challenge/kaggle) | [Tensorflow](/tools/tensorflow)
   [XGBoost](/tools/xgboost)  | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [天池](/challenge/tianchi) | [keras](/tools/keras)
  [LightGBM](/tools/lightgbm) |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/challenge/biendata) |  [PyTorch](/tools/pytorch)
- |  | | [AI challenge](/challenge/AIchallenge)|
- |  | |  [DataFountain](/challenge/DataFountain)  |
+  |  |  | [AI challenge](/challenge/AIchallenge) |
+  |  |  |  [DataFountain](/challenge/DataFountain)  |
 
 ## 2.自然语言处理
 * 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
