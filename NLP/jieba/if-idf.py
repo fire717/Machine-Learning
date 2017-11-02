@@ -50,7 +50,9 @@ print(optParser.print_help())
 
 
 # In[14]:
-
+################################
+#######      main     ##########
+###############################
 import jieba.analyse as anl
 f = open("C:\\Users\\Fire\\Desktop\\p.txt", "r").read()
 seg = anl.extract_tags(f, topK = 20, withWeight = True)
@@ -62,6 +64,7 @@ for tag, weight in seg:
 # jieba.analyse.set_idf_path(file_name) #file_name为自定义语料库的路径
 # 如：jieba.analyse.set_idf_path("../extra_dict/idf.txt.big")
 # .big文件一般是游戏中的文件，比较常见的用途是装载游戏的音乐、声音等文件。
+# 测试可以使用txt，每一行为一段话
 # 
 # 关键词提取所使用停用词（Stop Words）文本语料库可以切换成自定义语料库的路径。
 # jieba.analyse.set_stop_words(file_name) #file_name为自定义语料库的路径。
