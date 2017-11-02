@@ -11,7 +11,7 @@
 * [EM](/mine/EM.ipynb) - [HMM](/mine/HMM.ipynb) - [条件随机场](/mine/CRF.ipynb)
 * [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
 * [ROC曲线&AUC值](/mine/ROC_AUC.ipynb)
-* [Stacking](./mine/Stacking.py)
+* [Stacking](./mine/Stacking.py)（[demo](/mine/tryStacking.ipynb)）
 
 ## 1.机器学习&深度学习
 
