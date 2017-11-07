@@ -25,7 +25,7 @@
 
 ## 2.自然语言处理
 * 课程：[自然语言处理班 - 七月在线](/NLP/qiyuezaixian) | CS224n
-* 工具：[jieba](/NLP/jieba) | [gensim](/NLP/gensim) | [NLTK](/NLP/nltk) |[NLPIR](/NLP/NLPIR) | [word2vec](/NLP/word2vec)
+* 工具：[NLTK](/NLP/nltk) | [jieba](/NLP/jieba) | [gensim](/NLP/gensim) | [NLPIR](/NLP/NLPIR) | [word2vec](/NLP/word2vec) | [LDA](./NLP/lda)
 
 * 代码：[社交网络语言re](/NLP/code/re.ipynb) |
 
