@@ -19,6 +19,7 @@ le = LabelEncoder()
 le.fit([1,5,67,100])
 le.transform([1,1,100,67,5])
 #输出： array([0,0,3,2,1])
+#可通过le.inverse_transform(x)转换回去
 ```
 
 
