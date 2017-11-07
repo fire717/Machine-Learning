@@ -12,6 +12,14 @@ param_grid = {'n_estimators': [300, 500], 'max_features': [10, 12, 14]}
 model = grid_search.GridSearchCV(estimator=rfr, param_grid=param_grid, n_jobs=1, cv=10, verbose=20, scoring=RMSE)
 model.fit(X_train, y_train)
 ```
+* LabelEncoder
+```
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+le.fit([1,5,67,100])
+le.transform([1,1,100,67,5])
+#输出： array([0,0,3,2,1])
+```
 
 
 ### 实现
