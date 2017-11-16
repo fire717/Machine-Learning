@@ -24,7 +24,7 @@ le.transform([1,1,100,67,5])
 
 
 ### 实现
-* [常用算法调用(LR/RF/GBDT/knn)](./useful.py)
+* [常用算法调用(LR/ RF/ GBDT/ knn/ SVM)](./useful.py)
 * [logistic回归](./sklearn_LR.py)
 
 ### Choosing the right estimator
