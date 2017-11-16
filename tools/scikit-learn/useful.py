@@ -32,3 +32,13 @@ from sklearn import neighbors
 
 knn = neighbors.KNeighborsClassifier(n_neighbors=8,leaf_size=30,p=3)
 knn.fit(x,y)  
+
+
+### 5.svm
+#http://blog.csdn.net/u013709270/article/details/53365744 (d多分类)
+from sklearn import svm
+X = [[0, 0], [1, 1]]
+y = [0, 1]
+clf = svm.SVC()
+clf.fit(X, y)  
+clf.predict([[2., 2.]])
