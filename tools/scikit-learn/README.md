@@ -1,4 +1,8 @@
 # scikit-learn
+
+### 算法
+* [GBDT（MART）迭代决策树入门教程 | 简介](http://blog.csdn.net/suranxu007/article/details/49910323)
+
 ### 常用
 * 划分验证集
 
