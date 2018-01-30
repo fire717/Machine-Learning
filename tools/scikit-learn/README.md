@@ -1,8 +1,5 @@
 # scikit-learn
 
-### 算法
-* [GBDT（MART）迭代决策树入门教程 | 简介](http://blog.csdn.net/suranxu007/article/details/49910323)
-
 ### 常用
 * 划分验证集
 
@@ -26,6 +23,8 @@ le.transform([1,1,100,67,5])
 #可通过le.inverse_transform(x)转换回去
 ```
 
+### 算法
+* [GBDT（MART）迭代决策树入门教程 | 简介](http://blog.csdn.net/suranxu007/article/details/49910323)
 
 ### 实现
 * [常用算法调用(LR/ RF/ GBDT/ knn/ SVM)](./useful.py)
