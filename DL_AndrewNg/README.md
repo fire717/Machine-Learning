@@ -17,5 +17,5 @@
 * No homework
 
 ### Course 4:Convolutional Neural Networks
-
+* [Convolutional Model: step by step](./course4/ConvolutionmodelStepbyStepv2.ipynb)
 ### Course 5:Sequence Models
