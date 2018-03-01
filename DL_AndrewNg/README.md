@@ -19,5 +19,7 @@
 ### Course 4:Convolutional Neural Networks
 * [Convolutional Model: step by step](./course4/ConvolutionmodelStepbyStepv2.ipynb)
 * [Convolutional Model: application (tensorflow)](./course4/ConvolutionmodelApplicationv1.ipynb)
+* [Keras Tutorial - The Happy House](./course4/KerasTutorialHappyHousev2.ipynb)
+* [Residual Networks](./course4/ResidualNetworksv2.ipynb)
 
 ### Course 5:Sequence Models
