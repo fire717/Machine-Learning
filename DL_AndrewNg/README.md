@@ -21,5 +21,6 @@
 * [Convolutional Model: application (tensorflow)](./course4/ConvolutionmodelApplicationv1.ipynb)
 * [Keras Tutorial - The Happy House](./course4/KerasTutorialHappyHousev2.ipynb)
 * [Residual Networks](./course4/ResidualNetworksv2.ipynb)
+* [Car detection with YOLOv2](./course4/AutonomousdrivingapplicationCardetectionv3.ipynb)
 
 ### Course 5:Sequence Models
