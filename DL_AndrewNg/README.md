@@ -22,5 +22,7 @@
 * [Keras Tutorial - The Happy House](./course4/KerasTutorialHappyHousev2.ipynb)
 * [Residual Networks](./course4/ResidualNetworksv2.ipynb)
 * [Car detection with YOLOv2](./course4/AutonomousdrivingapplicationCardetectionv3.ipynb)
+* [Art generation with Neural Style Transfer](./course4/ArtGenerationwithNeuralStyleTransfer2.ipynb)
+* [Face Recognition for the Happy House](./course4/FaceRecognitionfortheHappyHousev3.ipynb)
 
 ### Course 5:Sequence Models
