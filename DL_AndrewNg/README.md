@@ -24,3 +24,5 @@
 * [Car detection with YOLOv2](./course4/AutonomousdrivingapplicationCardetectionv3.ipynb)
 
 ### Course 5:Sequence Models
+* [rnn_utils](./course5/rnn_utils.py)
+* [Building a recurrent neural network - step by step](./course5/BuildingaRecurrentNeuralNetworkStepbyStepv3.ipynb)
