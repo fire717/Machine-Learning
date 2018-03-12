@@ -30,3 +30,5 @@
 * [Building a recurrent neural network - step by step](./course5/BuildingaRecurrentNeuralNetworkStepbyStepv3.ipynb)
 * [Dinosaur Island - Character-Level Language Modeling](./course5/DinosaurusIslandCharacterlevellanguagemodelfinalv3.ipynb)
 * [Jazz improvisation with LSTM](./course5/ImproviseaJazzSolowithanLSTMNetworkv3.ipynb)
+* [Operations on word vectors - Debiasing](./course5/Operationsonwordvectorsv2.ipynb)
+* [Emojify](./course5/Emojifyv2.ipynb)
