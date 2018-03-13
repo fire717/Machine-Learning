@@ -32,3 +32,5 @@
 * [Jazz improvisation with LSTM](./course5/ImproviseaJazzSolowithanLSTMNetworkv3.ipynb)
 * [Operations on word vectors - Debiasing](./course5/Operationsonwordvectorsv2.ipynb)
 * [Emojify](./course5/Emojifyv2.ipynb)
+* [Neural Machine Translation with Attention](./course5/Neuralmachinetranslationwithattentionv3.ipynb)
+* [Trigger word detection](./course5/Triggerworddetectionv1.ipynb)
