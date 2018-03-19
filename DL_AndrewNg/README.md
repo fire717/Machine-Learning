@@ -28,3 +28,9 @@
 ### Course 5:Sequence Models
 * [rnn_utils](./course5/rnn_utils.py)
 * [Building a recurrent neural network - step by step](./course5/BuildingaRecurrentNeuralNetworkStepbyStepv3.ipynb)
+* [Dinosaur Island - Character-Level Language Modeling](./course5/DinosaurusIslandCharacterlevellanguagemodelfinalv3.ipynb)
+* [Jazz improvisation with LSTM](./course5/ImproviseaJazzSolowithanLSTMNetworkv3.ipynb)
+* [Operations on word vectors - Debiasing](./course5/Operationsonwordvectorsv2.ipynb)
+* [Emojify](./course5/Emojifyv2.ipynb)
+* [Neural Machine Translation with Attention](./course5/Neuralmachinetranslationwithattentionv3.ipynb)
+* [Trigger word detection](./course5/Triggerworddetectionv1.ipynb)
