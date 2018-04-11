@@ -32,7 +32,7 @@
 ## 3.其他
 * [资源索引](/other/infos)
 * [论文整理记录](/other/papers)
-* [题目、知识点收集](/other/mlanswer.md)
+* [★知识点整理](/other/mlthings.md)
 
 
 
