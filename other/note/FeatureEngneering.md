@@ -2,7 +2,7 @@
 ## 特征工程学习笔记
 > Fire 2018.5
 
-![fe](https://github.com/fire717/Machine-Learning/note/img/fe.jpg)
+![fe](./img/fe.jpg)
 
 ### 1.探索性数据分析（EDA，Exploratory Data Analysis）
 
