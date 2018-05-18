@@ -234,3 +234,5 @@
 #### 参考资料
 * 知乎live机器学习入门之特征工程——王晋东
 * 知乎特征工程话题下部分答案
+* [使用sklearn做单机特征工程 ](http://www.cnblogs.com/jasonfreak/p/5448385.html)
+* [使用sklearn优雅地进行数据挖掘 ](http://www.cnblogs.com/jasonfreak/p/5448462.html#3955242)
