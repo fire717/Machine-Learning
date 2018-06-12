@@ -1,6 +1,7 @@
 ## 基于TF的一些东西
 
-[TensorFlow Example](TensorFlowExample.ipynb)
+* [TensorFlow Example](TensorFlowExample.ipynb)
+* [graph/ placeholder/ tensorboard](Learn_tf.ipynb)
 
 ### Demo
 

@@ -29,6 +29,7 @@ le.transform([1,1,100,67,5])
 ### 实现
 * [常用算法调用(LR/ RF/ GBDT/ knn/ SVM)](./useful.py)
 * [logistic回归](./sklearn_LR.py)
+* [皮尔逊相关度](./pearsonr.ipynb)
 
 ### Choosing the right estimator
 
