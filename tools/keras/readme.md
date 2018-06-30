@@ -9,9 +9,13 @@
 ### Demo
 
 
-* [读取本地mnist数据集_CNN](keras_mnist.ipynb)
-* [RNN分类示例](RNN_classify.ipynb)
-* [Keras实现LSTM](lstm_word_embedding.ipynb)
-* [LSTM文本生成](Word_Language_Modelling_LSTM.ipynb)
-* [GAN实现mnist图片生成](Keras_GAN.ipynb)
-* [读取本地cifar10数据集_CNN](keras_cifar10.ipynb)
+* [读取本地mnist数据集_CNN](./demo/keras_mnist.ipynb)
+* [RNN分类示例](./demo/RNN_classify.ipynb)
+* [Keras实现LSTM](./demo/lstm_word_embedding.ipynb)
+* [LSTM文本生成](./demo/Word_Language_Modelling_LSTM.ipynb)
+* [GAN实现mnist图片生成](./demo/Keras_GAN.ipynb)
+* [读取本地cifar10数据集_CNN](./demo/keras_cifar10.ipynb)
+ 
+ 
+### Project
+* [双色球预测](./project/Caipiao_nn.ipynb)
