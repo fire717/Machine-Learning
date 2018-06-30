@@ -19,3 +19,4 @@
  
 ### Project
 * [双色球预测](./project/Caipiao_nn.ipynb)
+* [3D预测（自动获取本地没有的号码）](./project/3D_predict.py)
