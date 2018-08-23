@@ -6,6 +6,24 @@
 
 >y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 
+#### 生成pb
+https://www.e-learn.cn/content/wangluowenzhang/193206
+First, add after your Keras code model.fit(...) and train your model:
+
+from keras import backend as K
+import tensorflow as tf
+print(model.output.op.name)
+saver = tf.train.Saver()
+saver.save(K.get_session(), '/tmp/keras_model.ckpt')
+
+Then cd to your TensorFlow root directory, run:
+
+python freeze_graph.py --input_meta_graph=./tmp/model0.ckpt.meta --input_checkpoint=./tmp/model0.ckpt --output_graph=./tmp/model0.pb --output_node_names="act_6/truediv" --input_binary=true
+
+路径：D:\anaconda\Lib\site-packages\tensorflow\python\tools
+test_tf : tensorflow读取keras转的ckpt测试
+testPb : 直接读取pb测试
+
 ### Demo
 
 
