@@ -1,5 +1,13 @@
 ## 基于TF的一些东西
 
+#### 使用inspect_checkpoint来查看ckpt里的内容 打印节点信息
+~~~
+from tensorflow.python.tools import inspect_checkpoint as chkp
+from tensorflow.python.framework import meta_graph
+input_graph_def = meta_graph.read_meta_graph_file("model2.ckpt.meta").graph_def
+for node in input_graph_def.node:
+    print(node.name)
+~~~
 ### 基础
 
 * [TensorFlow Example](./basic/TensorFlowExample.ipynb)
