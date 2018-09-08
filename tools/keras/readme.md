@@ -21,6 +21,11 @@ python freeze_graph.py --input_meta_graph=./tmp/model0.ckpt.meta --input_checkpo
 
 >路径：~\anaconda\Lib\site-packages\tensorflow\python\tools
 
+指定GPU
+~~~
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+~~~
 
 ### Demo
 
