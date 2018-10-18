@@ -30,7 +30,7 @@
 * 代码：[社交网络语言re](/NLP/code/re.ipynb) |
 
 ## 3.计算机视觉
-* 笔记: [chinese-ocr](/cv/chineseocr-ctpn-densenet.md)
+* 笔记: [chinese-ocr](/cv/note/chineseocr-ctpn-densenet.md)
 
 ## 4.其他
 * 笔记：[特征工程](/other/note/FeatureEngneering.md)
