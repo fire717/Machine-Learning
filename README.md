@@ -19,7 +19,7 @@
 ---------|---------------|-------------|-------- |---------
  [scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/challenge/kaggle) | [Tensorflow](/tools/tensorflow)
   [XGBoost](/tools/xgboost)  | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [天池](/challenge/tianchi) | [keras](/tools/keras)
- [LightGBM](/tools/lightgbm) |      | [CS231n/Feifei Li](/cs231n)      | [biendata](/challenge/biendata) |  [PyTorch](/tools/pytorch)
+ [LightGBM](/tools/lightgbm) |      |      | [biendata](/challenge/biendata) |  [PyTorch](/tools/pytorch)
 [Spark](/tools/spark)|  |  | [AI challenge](/challenge/AIchallenge) |
 |  |  |  |  [DataFountain](/challenge/DataFountain)  |
 
@@ -30,6 +30,7 @@
 * 代码：[社交网络语言re](/NLP/code/re.ipynb) |
 
 ## 3.计算机视觉
+* 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr](/cv/note/chineseocr-ctpn-densenet.md)
 
 ## 4.其他
