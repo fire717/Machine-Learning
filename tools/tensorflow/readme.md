@@ -8,6 +8,10 @@ input_graph_def = meta_graph.read_meta_graph_file("model2.ckpt.meta").graph_def
 for node in input_graph_def.node:
     print(node.name)
 ~~~
+
+#### tensorboard
+> tensorboard --logdir=/Users/fire/A
+
 ### 基础
 
 * [TensorFlow Example](./basic/TensorFlowExample.ipynb)
