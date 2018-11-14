@@ -1,4 +1,4 @@
-## [chinese-ocr模型说明文档](https://github.com/YCG09/chinese_ocr)
+## [chinese-ocr模型](https://github.com/YCG09/chinese_ocr)说明文档
 > Fire 2018.10.18
 
 ### 基本架构
