@@ -33,8 +33,10 @@
 * 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr](/cv/note/chineseocr-ctpn-densenet.md)
 
-## 4.其他
+## 4.数据挖掘
 * 笔记：[特征工程](/other/note/FeatureEngneering.md)
+
+## 5.其他
 * [资源索引](/other/infos)
 * [★知识点整理](/other/mlthings.md)
 
