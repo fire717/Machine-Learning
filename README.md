@@ -4,6 +4,7 @@
 
 ## 0.不调库系列 
 > No free lunch.
+> 参考：《机器学习》周志华  《统计学习方法》李航
 
 * [线性回归](/mine/ex1_py_liner.ipynb) - [logistic回归](/mine/LR.ipynb) - [感知机](/mine/perceptron.ipynb) - [SVM(SMO)](/mine/SVM.ipynb) - [神经网络](/mine/NN.ipynb) 
 * [决策树](/mine/DecisionTree.ipynb) - [Adaboost](/mine/Adaboost.ipynb) 
