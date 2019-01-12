@@ -33,7 +33,7 @@
 
 ## 3.计算机视觉
 * 课程: [CS231n/Feifei Li](/cs231n) 
-* 笔记: [chinese-ocr](/cv/note/chineseocr-ctpn-densenet.md)
+* 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md)
 
 ## 4.数据挖掘
 * 笔记：[特征工程](/other/note/FeatureEngneering.md)

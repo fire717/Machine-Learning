@@ -27,8 +27,10 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 ~~~
 
-### Demo
+### Note
+* [keras多GPU训练](./note/keras_multiGPU.md)
 
+### Demo
 
 * [读取本地mnist数据集_CNN](./demo/keras_mnist.ipynb)
 * [RNN分类示例](./demo/RNN_classify.ipynb)
