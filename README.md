@@ -30,10 +30,12 @@
 * 工具：[NLTK](/NLP/nltk) | [jieba](/NLP/jieba) | [gensim](/NLP/gensim) | [NLPIR](/NLP/NLPIR) | [word2vec](/NLP/word2vec) | [LDA](./NLP/lda) | BLEU([介绍](https://blog.csdn.net/qq_31584157/article/details/77709454)、[使用](https://cloud.tencent.com/developer/article/1042161))
 
 * 代码：[社交网络语言re](/NLP/code/re.ipynb) |
+* 开源代码: [AI写诗](https://github.com/jinfagang/tensorflow_poems) | 
 
 ## 3.计算机视觉
 * 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md)
+* 开源代码: [HyperLPR车牌识别](https://github.com/zeusees/HyperLPR) | [中文OCR（定位+识别）](https://github.com/chineseocr/chineseocr) | [RFBNet(ECCV2018快速目标检测)](https://github.com/ruinmessi/RFBNet) | [AlphaPose(人体姿态估计)](https://github.com/MVIG-SJTU/AlphaPose)
 
 ## 4.数据挖掘
 * 笔记：[特征工程](/other/note/FeatureEngneering.md)
