@@ -35,7 +35,7 @@
 ## 3.计算机视觉
 * 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md)
-* 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | VGGNet | GoogleNet | ResNet | DenseNet 
+* 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | [VGGNet](/cv/nets/vgg/) | GoogleNet | ResNet | DenseNet 
 * 经典定位网络： SSD | FasterRCNN | Yolo | 
 * 经典项目： [HyperLPR车牌识别](https://github.com/zeusees/HyperLPR) | [中文OCR（定位+识别）](https://github.com/chineseocr/chineseocr) | [RFBNet(ECCV2018快速目标检测)](https://github.com/ruinmessi/RFBNet) | [AlphaPose(人体姿态估计)](https://github.com/MVIG-SJTU/AlphaPose)
 
