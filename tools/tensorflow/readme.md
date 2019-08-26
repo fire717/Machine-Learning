@@ -18,6 +18,9 @@ for node in input_graph_def.node:
 * [graph/ placeholder/ TensorBoard](./basic/Learn_tf.ipynb)
 * [模型保存读取](./basic/tf_save_load.ipynb)
 * [tf加载pb模型](./basic/read_pb.py)
+* [pb转tflite](./basic/pb2tflite.py)
+* [pb模型测试](./basic/tf_pb_pre.py)
+* [tflite模型测试](./basic/tflite_pre.py)
 
 ### Demo
 
