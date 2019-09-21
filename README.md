@@ -37,6 +37,7 @@
 * 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md)
 * 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | [VGGNet](/cv/nets/vgg/) | GoogleNet | ResNet | DenseNet 
 * 经典定位网络： SSD | FasterRCNN | Yolo | 
+* 代码：[NMS](/cv/code/nms.py) |
 * 经典项目： [HyperLPR车牌识别](https://github.com/zeusees/HyperLPR) | [中文OCR1（YOLOv3+CRNN）](https://github.com/chineseocr/chineseocr)、 [中文OCR2（CTPN + DenseNet）](https://github.com/YCG09/chinese_ocr) | [RFBNet(ECCV2018快速目标检测)](https://github.com/ruinmessi/RFBNet) | [AlphaPose(人体姿态估计)](https://github.com/MVIG-SJTU/AlphaPose) | [libface快速人脸检测](https://github.com/ShiqiYu/libfacedetection) | [轻量级性别年龄分类模型](https://github.com/deepinsight/insightface/tree/master/gender-age)
 
 
