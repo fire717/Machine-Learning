@@ -2,12 +2,6 @@
 import mxnet as mx
 import numpy as np
 import cv2
-# define test data
-# batch_size = 1
-# num_batch = 5
-# eval_data = np.array([[3, 5], [6,10], [13, 7]])
-# eval_label = np.zeros(len(eval_data)) # just need to be the same length, empty is ok
-# eval_iter = mx.io.NDArrayIter(eval_data, eval_label, batch_size, shuffle=False)
 from collections import namedtuple
 Batch = namedtuple('Batch', ['data'])
 
