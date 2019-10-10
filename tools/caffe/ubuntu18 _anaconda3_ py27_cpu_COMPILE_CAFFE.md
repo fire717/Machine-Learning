@@ -53,3 +53,6 @@ pip install scikit-image
 ```
 pip install -U protobuf
 ```
+
+
+最后需要加入环境变量export PYTHONPATH=~/caffe-ssd/python:$PYTHONPATH
