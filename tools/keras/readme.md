@@ -38,6 +38,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 * [LSTM文本生成](./demo/Word_Language_Modelling_LSTM.ipynb)
 * [GAN实现mnist图片生成](./demo/Keras_GAN.ipynb)
 * [读取本地cifar10数据集_CNN](./demo/keras_cifar10.ipynb)
+* [数据增强](./demo/data_aug.py)
+* [迭代器读取数据](./demo/data_generator.py)
  
  
 ### Project
