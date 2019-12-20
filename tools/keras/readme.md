@@ -28,6 +28,22 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 ~~~
 
+* 转tflite
+
+```
+from keras.models import load_model,save_model
+my_model = load_model('model.h5', compile=False)
+my_model.save('model2.h5')
+```
+then
+
+```
+converter =  tf.lite.TocoConverter.from_keras_model_file("model2.h5")
+tflite_quantized_model=converter.convert()
+open("quantized_model.tflite", "wb").write(tflite_quantized_model)
+```
+
+
 ### Note
 * [keras多GPU训练](./note/keras_multiGPU.md)
 
