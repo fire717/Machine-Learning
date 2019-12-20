@@ -1,5 +1,6 @@
 ## 基于keras的一些东西
 
+* [分类baseline](./baseline/)
 * [Keras Example](./keras_example.ipynb)
 
 >把数值类标签转为10维向量，标签对应位为1其余为0:
