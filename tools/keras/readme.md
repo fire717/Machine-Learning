@@ -1,9 +1,8 @@
 ## 基于keras的一些东西
 
 
-
+* #### one-hot
 >把数值类标签转为10维向量，标签对应位为1其余为0:
-
 >y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 
 * #### [生成pb](https://www.e-learn.cn/content/wangluowenzhang/193206)
@@ -21,13 +20,13 @@ python freeze_graph.py --input_meta_graph=./tmp/model0.ckpt.meta --input_checkpo
 
 >路径：~\anaconda\Lib\site-packages\tensorflow\python\tools
 
-* 指定GPU
+* #### 指定GPU
 ~~~
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 ~~~
 
-* 转tflite
+* #### 转tflite
 
 ```
 from keras.models import load_model,save_model
