@@ -1,7 +1,6 @@
 ## 基于keras的一些东西
 
-* [分类baseline](./baseline/)
-* [Keras Example](./keras_example.ipynb)
+
 
 >把数值类标签转为10维向量，标签对应位为1其余为0:
 
@@ -49,6 +48,7 @@ open("quantized_model.tflite", "wb").write(tflite_quantized_model)
 
 ### Demo
 
+* [Keras Example](./keras_example.ipynb)
 * [读取本地mnist数据集_CNN](./demo/keras_mnist.ipynb)
 * [RNN分类示例](./demo/RNN_classify.ipynb)
 * [Keras实现LSTM](./demo/lstm_word_embedding.ipynb)
@@ -57,6 +57,8 @@ open("quantized_model.tflite", "wb").write(tflite_quantized_model)
 * [读取本地cifar10数据集_CNN](./demo/keras_cifar10.ipynb)
 * [数据增强](./demo/data_aug.py)
 * [迭代器读取数据](./demo/data_generator.py)
+* [分类baseline](./baseline/)
+* [cnn热力图可视化](./demo/cam_heatmap.py)
  
  
 ### Project
