@@ -57,6 +57,7 @@ open("quantized_model.tflite", "wb").write(tflite_quantized_model)
 * [数据增强](./demo/data_aug.py)
 * [迭代器读取数据](./demo/data_generator.py)
 * [分类baseline](./baseline/)
+* [预训练模型使用](./baseline/)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
  
  
