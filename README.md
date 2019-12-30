@@ -33,6 +33,7 @@
 * 开源代码: [AI写诗](https://github.com/jinfagang/tensorflow_poems) | 
 
 ## 3.计算机视觉
+* 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | 
 * 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md)
 * 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | [VGGNet](/cv/nets/vgg/) | GoogleNet | ResNet | DenseNet 
