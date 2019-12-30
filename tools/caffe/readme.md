@@ -2,7 +2,7 @@
 
 
 ### 文档资料
-* [编译caffe源码](./docs/ubuntu18 _anaconda3_ py27_cpu_COMPILE_CAFFE.md)
+* [编译caffe源码](./docs/ubuntu18_anaconda3_py27_cpu_COMPILE_CAFFE.md)
 
 
 ### 代码片段
