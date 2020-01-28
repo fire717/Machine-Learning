@@ -12,6 +12,7 @@
 * [kMeans](/mine/kMeans.ipynb) - [PCA](/mine/PCA.ipynb)
 * [ROC曲线&AUC值](/mine/ROC_AUC.ipynb)
 * [Stacking](./mine/Stacking.py)（[demo](/mine/tryStacking.ipynb)）
+* [计算IOU](./mine/IOU.py)
 
 > 参考：《机器学习》周志华  《统计学习方法》李航
 
