@@ -5,7 +5,7 @@
 
 * Year: 1998
 * Paper: [Gradient-Based Learning Applied to Document Recognition](http://xueshu.baidu.com/usercenter/paper/show?paperid=80fd293244903d8233327d0e5ba6de62&site=xueshu_se)
-* Code: [keras_alexnet](keras_lenet5.py)
+* Code: [keras_lenet](keras_lenet5.py)
 * Info: 32 * 32 * 1的输入，10的输出，参数量为6万。
 
 ![net](./lenet5.jpg)
