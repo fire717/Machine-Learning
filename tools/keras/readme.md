@@ -26,20 +26,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 ~~~
 
-* #### 转tflite
 
-```
-from keras.models import load_model,save_model
-my_model = load_model('model.h5', compile=False)
-my_model.save('model2.h5')
-```
-then
-
-```
-converter =  tf.lite.TocoConverter.from_keras_model_file("model2.h5")
-tflite_quantized_model=converter.convert()
-open("quantized_model.tflite", "wb").write(tflite_quantized_model)
-```
 
 
 ### Note
@@ -59,6 +46,7 @@ open("quantized_model.tflite", "wb").write(tflite_quantized_model)
 * [分类baseline](./baseline/)
 * [预训练模型使用](./demo/pretrain.py)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
+* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py)
  
  
 ### Project
