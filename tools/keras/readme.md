@@ -46,7 +46,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 * [分类baseline](./baseline/)
 * [预训练模型使用](./demo/pretrain.py)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
-* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py)
+* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861)
  
  
 ### Project
