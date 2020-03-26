@@ -4,3 +4,4 @@
 
 ### 实践
 * [word2vec训练中文模型](https://www.zybuluo.com/hanxiaoyang/note/472184) （ [将XML的wiki数据转text](./process_wiki_data.py) [jieba完成分词](../jieba/read_save.ipynb) [用word2vec工具训练](./train_word2vec_model.py) [测试模型效果](./test_word2vec.ipynb) ）
+* [加载腾讯开源的中文word2vec词向量语料库](./load_w2v_ch.py)
