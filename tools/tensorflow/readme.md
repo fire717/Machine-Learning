@@ -21,6 +21,7 @@ for node in input_graph_def.node:
 * [pb转tflite](./basic/pb2tflite.py)
 * [pb模型测试](./basic/tf_pb_pre.py)
 * [tflite模型测试](./basic/tflite_pre.py)
+* [TFLiteModelMaker轻松利用预训练模型训练tflite(支持efficientnetlite等)](./basic/TFLiteModelMaker)
 
 ### Demo
 
