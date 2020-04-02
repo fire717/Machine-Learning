@@ -47,7 +47,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 * [预训练模型使用](./demo/pretrain.py)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
 * [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861)
- 
+* [训练模型清洗数据（半监督、主动学习）](./demo/clearData.py) 
  
 ### Project
 * [双色球预测](./project/Caipiao_nn.ipynb)
