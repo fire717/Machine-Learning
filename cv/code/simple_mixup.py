@@ -1,6 +1,23 @@
 import numpy as np
 import cv2
 
+"""
+说明：
+这里是前期看到公式后一个粗略的实现
+参考了更多资料后其实有些地方还是有点问题
+
+比如weight应该是一个beta分布而不是均匀分布，如
+weight = np.random.beta(alpha,alpha)
+    
+然后是输入每个batch的x，y即可，统一和一个从数据集中随机选取的图片做mixup
+
+最后，最关键的是，最后计算loss并不是修改标签y，
+而是如下计算loss：
+loss = weight * criterion(outputs, targets_a) + (1 - weight) * criterion(outputs, targets_b)；
+
+下一次用到mixup的时候修改了再更新到这里吧。
+"""
+
 def mixup_batch(x1,y1,x2,y2):
     """
     get batch data
