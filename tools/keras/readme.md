@@ -31,7 +31,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 os.environ['TF_ENABLE_AUTO_MIXED_PRECISION'] = '1'
 opt = Adam()
 opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
-
+# 要把所有模型定义用到的keras全换成tf.keras
 ```
 
 
