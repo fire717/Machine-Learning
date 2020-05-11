@@ -1,5 +1,6 @@
 ## 基于keras的一些东西
 
+### Common
 
 * #### one-hot
 >把数值类标签转为10维向量，标签对应位为1其余为0:
@@ -64,6 +65,7 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 * [车牌颜色分类](./project/plate_color.ipynb)
 
 ### Resource
+* [EfficientNet](https://github.com/titu1994/keras-efficientnets)
 * [mobilenet_v2预训练模型](https://github.com/JonathanCMitchell/mobilenet_v2_keras/releases)
 * [Center loss](https://github.com/shamangary/Keras-MNIST-center-loss-with-visualization/blob/master/TYY_mnist.py)
     ```
