@@ -59,6 +59,7 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 * [训练模型清洗数据（半监督、主动学习）](./demo/clearData.py) 
 * [可视化检查自带的数据增强效果](./demo/show_keras_data.py)
 * [多输出模型设置class_weight](./demo/multi_output_class_weight.py)
+* [用于分类任务的focal loss](./demo/classify_focal_loss.py)
  
 ### Project
 * [双色球预测](./project/Caipiao_nn.ipynb)
