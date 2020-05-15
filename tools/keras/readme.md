@@ -75,3 +75,4 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
     l2_loss = Lambda(lambda x: K.prod(K.concatenate([K.sum(K.square(x[0]-x[1][:,0]),axis=1,keepdims=True),x[2]], axis=1), axis=1, keepdims=True),name='l2_loss')([features,centers,input_target])
     ```
 * [CV注意力机制CBAM](https://github.com/kobiso/CBAM-keras)
+* [优化器lookahead](https://github.com/bojone/keras_lookahead)
