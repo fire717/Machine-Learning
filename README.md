@@ -20,7 +20,7 @@
 
   工具   |     书籍      |    课程     |    比赛 |   框架
 ---------|---------------|-------------|-------- |---------
- [Scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/challenge/kaggle) | [Keras ★](/tools/keras)
+ [Scikit-learn](/tools/scikit-learn)| [机器学习实战](/ML_in_action)  | [机器学习/Andrew Ng](/coursera_ML)      | [Kaggle](/challenge/kaggle) | [Keras ✪](/tools/keras)
   [XGBoost](/tools/xgboost)  | [集体智慧编程](/JTZHBC)     | [Deep Learning/Andrew Ng](/DL_AndrewNg) | [天池](/challenge/tianchi) | [Tensorflow](/tools/tensorflow)
  [LightGBM](/tools/lightgbm) |      |      | [Biendata](/challenge/biendata) |  [PyTorch](/tools/pytorch)
 [Spark](/tools/spark)|  |  | [AI challenge](/challenge/AIchallenge) |[Mxnet](/tools/mxnet)
