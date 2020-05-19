@@ -86,6 +86,12 @@ def mymodel_xception(num_classes=47):
     outputs = Dense(num_classes, activation='softmax')(outputs)
     #outputs = Dropout(0.5)(outputs)
     model = MD(inputs=res.input, outputs=outputs)
+    
+    #冻结部分层，跳过bn ： https://github.com/keras-team/keras/issues/9522
+    for layer in model.layers[:3]:
+        if not isinstance(layer, BatchNormalization):
+            layer.trainable = False
+        
     return model
 
 
