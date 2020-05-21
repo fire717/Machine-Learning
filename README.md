@@ -37,7 +37,7 @@
 * 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | 
 * 课程: [CS231n/Feifei Li](/cs231n) 
 * 笔记: [chinese-ocr项目](/cv/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./cv/note/DCNN_book_note.md) | [手写汉字识别调研](/cv/note/handwrite_ocr_note.md)
-* 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | [VGGNet](/cv/nets/vgg/) | GoogleNet | ResNet | DenseNet | Xception | EfficientNet
+* 经典分类网络： [LeNet-5](/cv/nets/lenet5/) | [AlexNet](/cv/nets/alexnet/) | [VGGNet](/cv/nets/vgg/) | GoogleNet | ResNet | DenseNet | Xception | [EfficientNet](https://github.com/titu1994/keras-efficientnets)
 * 经典检测网络： SSD | FasterRCNN | Yolo | CornerNet | CenterNet | [EfficientDet](https://github.com/xuannianz/EfficientDet)
 * 经典分割网络：Unet | DeepLab
 * 代码：[NMS](/cv/code/nms.py) | [Mixup](/cv/code/simple_mixup.py) | [label_smoothing](/cv/code/label_smoothing.py)
