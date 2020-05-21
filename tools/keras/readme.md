@@ -67,6 +67,7 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 * [车牌颜色分类](./project/plate_color.ipynb)
 
 ### Resource
+* [Classification models Zoo](https://github.com/qubvel/classification_models/)
 * [EfficientNet](https://github.com/titu1994/keras-efficientnets)
 * [mobilenet_v2预训练模型](https://github.com/JonathanCMitchell/mobilenet_v2_keras/releases)
 * [Center loss](https://github.com/shamangary/Keras-MNIST-center-loss-with-visualization/blob/master/TYY_mnist.py)
