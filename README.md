@@ -39,12 +39,12 @@
 
 ## 3.计算机视觉
 * 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | 
+* 代码：[NMS](/cv/codes/nms.py) | [Mixup](/cv/codes/simple_mixup.py) | [label_smoothing](/cv/codes/label_smoothing.py)
 * 课程: [CS231n/Feifei Li](/Base/courses/cs231n) 
 * 笔记: [chinese-ocr项目](/CV/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./CV/note/DCNN_book_note.md) | [手写汉字识别调研](/CV/note/handwrite_ocr_note.md)
 * 经典分类网络： [LeNet-5](/CV/nets/lenet5/) | [AlexNet](/CV/nets/alexnet/) | [VGGNet](/CV/nets/vgg/) | GoogleNet | ResNet | DenseNet | Xception | [EfficientNet](https://github.com/titu1994/keras-efficientnets)
 * 经典检测网络： SSD | FasterRCNN | Yolo | CornerNet | CenterNet | [EfficientDet](https://github.com/xuannianz/EfficientDet)
 * 经典分割网络：Unet | DeepLab
-* 代码：[NMS](/CV/codes/nms.py) | [Mixup](/CV/codes/simple_mixup.py) | [label_smoothing](/CV/codes/label_smoothing.py)
 * 经典项目(已验证跑通)： [HyperLPR车牌识别](https://github.com/zeusees/HyperLPR) | [中文OCR1（YOLOv3+CRNN）](https://github.com/chineseocr/chineseocr)、 [中文OCR2（CTPN + DenseNet）](https://github.com/YCG09/chinese_ocr) | [RFBNet(ECCV2018快速目标检测)](https://github.com/ruinmessi/RFBNet) | [AlphaPose(人体姿态估计)](https://github.com/MVIG-SJTU/AlphaPose) | [libface快速人脸检测](https://github.com/ShiqiYu/libfacedetection) | [轻量级性别年龄分类模型](https://github.com/deepinsight/insightface/tree/master/gender-age) | [图像风格迁移](https://github.com/wenqiwenqi1/neural-style) | [超分辨率](https://github.com/titu1994/Image-Super-Resolution) | [人脸比对DeepID](https://github.com/shen1994/DeepID) | [Mask_RCNN人体关键点、分割](https://github.com/Superlee506/Mask_RCNN_Humanpose) | [人像卡通化](https://github.com/minivision-ai/photo2cartoon)
 
 
