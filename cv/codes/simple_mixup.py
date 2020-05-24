@@ -16,9 +16,10 @@ weight = np.random.beta(alpha,alpha)
 loss = weight * criterion(outputs, targets_a) + (1 - weight) * criterion(outputs, targets_b)；
 
 下一次用到mixup的时候修改了再更新到这里吧。
+5.24： 已更新beta分布
 """
 
-def mixup_batch(x1,y1,x2,y2):
+def mixup_batch(x1,y1,x2,y2,alpha=0.4):
     """
     get batch data
     :param x: two training imgs (same shape)   ndarry
@@ -26,7 +27,8 @@ def mixup_batch(x1,y1,x2,y2):
     :param alpha: hyper-parameter α, default as 0.2
     :return: new_x,new_y
     """
-    weight = np.random.choice([0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9])
+    #weight = np.random.choice([0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9])
+    weight = np.random.beta(alpha, alpha)
     print(weight)
     new_x = x1*weight+x2*(1-weight)
     new_y = y1*weight+y2*(1-weight)
