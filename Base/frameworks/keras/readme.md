@@ -74,3 +74,4 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
     ```
 * [CV注意力机制CBAM](https://github.com/kobiso/CBAM-keras)
 * [优化器lookahead](https://github.com/bojone/keras_lookahead)
+* [学习率 SGDR](https://github.com/gunchagarg/learning-rate-techniques-keras)
