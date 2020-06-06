@@ -38,8 +38,13 @@
 
 
 ## 3.计算机视觉
-* 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | VOC数据集相关([生成目录结构](./cv/codes/makeVOCDirs.py) [标签转xml写入](./cv/codes/flickr_to_voc.py) [可视化标签框](./cv/codes/show_voc_box.py) [更新训练验证txt图片名](./cv/codes/updateTXT.py) )|
-* 常用：[NMS](/cv/codes/nms.py) | [Mixup](/cv/codes/simple_mixup.py) | [label_smoothing](/cv/codes/label_smoothing.py) | [Weighted-Boxes-Fusion(NMS,WBF..)](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)
+#### 常用代码
+* 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | 
+
+* VOC数据集相关：[生成目录结构](./cv/codes/makeVOCDirs.py) | [标签转xml写入](./cv/codes/flickr_to_voc.py) | [可视化标签框](./cv/codes/show_voc_box.py) | [更新训练验证txt图片名](./cv/codes/updateTXT.py) )| [VOC转csv格式](./cv/codes/pascalVOC2csv.py) | [计算csv格式数据合适的anchor](https://github.com/martinzlocha/anchor-optimization/)
+
+* 常用算法：[NMS](/cv/codes/nms.py) | [Mixup](/cv/codes/simple_mixup.py) | [label_smoothing](/cv/codes/label_smoothing.py) | [Weighted-Boxes-Fusion(NMS,WBF..)](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)
+#### 其他
 * 课程: [CS231n/Feifei Li](/Base/courses/cs231n) 
 * 笔记: [chinese-ocr项目](/CV/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./CV/note/DCNN_book_note.md) | [手写汉字识别调研](/CV/note/handwrite_ocr_note.md)
 * 经典分类网络： [LeNet-5](/CV/nets/lenet5/) | [AlexNet](/CV/nets/alexnet/) | [VGGNet](/CV/nets/vgg/) | GoogleNet | ResNet | DenseNet | Xception | [EfficientNet](https://github.com/titu1994/keras-efficientnets)
