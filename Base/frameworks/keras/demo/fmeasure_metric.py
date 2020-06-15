@@ -38,7 +38,7 @@ def fmeasure(y_true, y_pred):
     # Calculates the f-measure, the harmonic mean of precision and recall.
     return fbeta_score(y_true, y_pred, beta=1)
     
-    
+earlystop = EarlyStopping(monitor='val_fmeasure', patience=4, verbose=0, mode='max')   
     
 model.compile(optimizer = 'adam',
               loss='binary_crossentropy',
