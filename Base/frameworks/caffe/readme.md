@@ -2,6 +2,7 @@
 
 
 ### 文档资料
+* [ssd版caffe](https://github.com/weiliu89/caffe/tree/ssd)
 * [编译caffe源码](./docs/ubuntu18_anaconda3_py27_cpu_COMPILE_CAFFE.md)
 
 
