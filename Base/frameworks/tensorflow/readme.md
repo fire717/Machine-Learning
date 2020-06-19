@@ -12,7 +12,7 @@ for node in input_graph_def.node:
 #### tensorboard
 > tensorboard --logdir=/Users/fire/A
 
-### 基础
+### Basic
 
 * [TensorFlow Example](./basic/TensorFlowExample.ipynb)
 * [graph/ placeholder/ TensorBoard](./basic/Learn_tf.ipynb)
@@ -32,3 +32,5 @@ for node in input_graph_def.node:
 * [10人版人脸识别](./demo/ten_people_face_reconize)
 
 
+### Resource
+* [TensorRT安装及使用教程](https://blog.csdn.net/zong596568821xp/article/details/86077553)
