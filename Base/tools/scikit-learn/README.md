@@ -14,7 +14,7 @@ model = grid_search.GridSearchCV(estimator=rfr, param_grid=param_grid, n_jobs=1,
 model.fit(X_train, y_train)
 ```
 * LabelEncoder
-```
+```python
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 le.fit([1,5,67,100])
@@ -23,7 +23,7 @@ le.transform([1,1,100,67,5])
 #可通过le.inverse_transform(x)转换回去
 ```
 * sklearn.utils.shuffle(多个数组按同样顺序打乱)
-```
+```python
 def fill_feed_dict(data_X, data_Y, batch_size):
     """Generator datasets to yield batches"""
     # Shuffle data first.
