@@ -22,6 +22,17 @@ le.transform([1,1,100,67,5])
 #输出： array([0,0,3,2,1])
 #可通过le.inverse_transform(x)转换回去
 ```
+* sklearn.utils.shuffle(多个数组按同样顺序打乱)
+```
+def fill_feed_dict(data_X, data_Y, batch_size):
+    """Generator datasets to yield batches"""
+    # Shuffle data first.
+    shuffled_X, shuffled_Y = shuffle(data_X, data_Y)
+    for idx in range(data_X.shape[0] // batch_size):
+        x_batch = shuffled_X[batch_size * idx: batch_size * (idx + 1)]
+        y_batch = shuffled_Y[batch_size * idx: batch_size * (idx + 1)]
+        yield x_batch, y_batch
+```
 
 ### 算法
 * [GBDT（MART）迭代决策树入门教程 | 简介](http://blog.csdn.net/suranxu007/article/details/49910323)
