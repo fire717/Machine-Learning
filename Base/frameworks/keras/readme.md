@@ -41,7 +41,7 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 * [keras多GPU训练](./note/keras_multiGPU.md)
 
 ### Demo
-
+* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861) | [h5转pb](./demo/h5_to_pb.py)
 * [Keras Example](./keras_example.ipynb)
 * [读取本地mnist数据集_CNN](./demo/keras_mnist.ipynb)
 * [RNN分类示例](./demo/RNN_classify.ipynb) | [Keras实现LSTM](./demo/lstm_word_embedding.ipynb) | [LSTM文本生成](./demo/Word_Language_Modelling_LSTM.ipynb)
@@ -51,7 +51,6 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 * [迭代器读取数据](./demo/data_generator.py)
 * [分类baseline](./baseline/) | [预训练模型使用](./demo/pretrain.py) | [预训练模型库](./demo/keras_net.py)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
-* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861)
 * [带自定义激活函数的h5模型转tflite（比如mobilenetv3的relu6 hard_swish）](./demo/h5_customer_to_tflite.py)
 * [训练模型清洗数据（半监督、主动学习）](./demo/clearData.py) 
 * [可视化检查自带的数据增强效果](./demo/show_keras_data.py)
