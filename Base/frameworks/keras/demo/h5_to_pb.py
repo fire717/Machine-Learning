@@ -15,6 +15,8 @@ from keras.preprocessing import image
 from keras.applications.mobilenetv2 import preprocess_input, decode_predictions
 from keras.applications.inception_resnet_v2 import InceptionResNetV2
 
+from keras import backend as K
+K.set_learning_phase(0)
 
 def h5_to_pb(h5_model, output_dir, model_name, out_prefix="output_", log_tensorboard=True):
     """.h5模型文件转换成pb模型文件
@@ -37,7 +39,8 @@ def h5_to_pb(h5_model, output_dir, model_name, out_prefix="output_", log_tensorb
     out_nodes = []
     for i in range(len(h5_model.outputs)):
         out_nodes.append(out_prefix + str(i + 1))
-        tf.identity(h5_model.output[i], out_prefix + str(i + 1))
+        #tf.identity(h5_model.output[i], out_prefix + str(i + 1))
+        tf.identity(h5_model.outputs[i],out_prefix + str(i + 1))
     sess = backend.get_session()
 
     from tensorflow.python.framework import graph_util, graph_io
@@ -46,9 +49,9 @@ def h5_to_pb(h5_model, output_dir, model_name, out_prefix="output_", log_tensorb
     main_graph = graph_util.convert_variables_to_constants(sess, init_graph, out_nodes)
     graph_io.write_graph(main_graph, output_dir, name=model_name, as_text=False)
     # 输出日志文件
-    if log_tensorboard:
-        from tensorflow.python.tools import import_pb_to_tensorboard
-        import_pb_to_tensorboard.import_to_tensorboard(os.path.join(output_dir, model_name), output_dir)
+    # if log_tensorboard:
+    #     from tensorflow.python.tools import import_pb_to_tensorboard
+    #     import_pb_to_tensorboard.import_to_tensorboard(os.path.join(output_dir, model_name), output_dir)
 
 
 if __name__ == '__main__':
@@ -69,7 +72,7 @@ if __name__ == '__main__':
     # h5_model = MobileNetV2(input_tensor=input_tensor, alpha=1.0, include_top=False,weights=input_path+weight_file)
     h5_model = load_model('224_1.0_epoch1_1.0.h5', compile=False)
     output_dir = "./"
-    output_graph_path = "224_1.0_epoch1_1.0.pb"
+    output_graph_path = "224_1.0_epoch1_1.0_new.pb"
 
     #h5_model.summary()
     h5_to_pb(h5_model, output_dir=output_dir, model_name=output_graph_path)
