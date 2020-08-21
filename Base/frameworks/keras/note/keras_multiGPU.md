@@ -41,6 +41,12 @@ config = tf.ConfigProto(allow_soft_placement=True)
 set_session(tf.Session(config=config))
 ```
 
+另外如果遇到如下报错：
+```shell
+AttributeError: '_TfDeviceCaptureOp' object has no attribute '_set_device_from_string'
+```
+是由于keras2.2+tensorflow1.14+的一个bug，升级keras到2.3或者降级tensorflow到1.13可以解决。
+
 P.S.网上还有很多人遇到Modelcheckpoint callback报错的问题，我没遇到过，贴一个供参考:
 
 [Keras 多GPU下模型和参数保存Modelcheckpoint callback报错](https://blog.csdn.net/Umi_you/article/details/81301002)
