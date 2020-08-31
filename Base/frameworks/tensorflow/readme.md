@@ -9,8 +9,13 @@ for node in input_graph_def.node:
     print(node.name)
 ~~~
 
-#### tensorboard
+#### Tensorboard
 > tensorboard --logdir=/Users/fire/A
+
+#### 剪枝
+* [官方示例](https://tensorflow.google.cn/model_optimization/guide/pruning/pruning_with_keras)
+* [博客示例](https://www.cnblogs.com/purple5252/p/11812207.html)
+* [我的示例(基于mobilenetv2)](./basic/pruned_demo.py)
 
 ### Basic
 
