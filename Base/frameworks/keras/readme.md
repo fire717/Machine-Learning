@@ -3,23 +3,29 @@
 ### Common
 
 * #### one-hot
->把数值类标签转为10维向量，标签对应位为1其余为0:
->y_train = keras.utils.np_utils.to_categorical(y_train, 10)
+```
+把数值类标签转为10维向量，标签对应位为1其余为0:
+y_train = keras.utils.np_utils.to_categorical(y_train, 10)
+```
 
 * #### [生成pb](https://www.e-learn.cn/content/wangluowenzhang/193206)
->First, add after your Keras code model.fit(...) and train your model:
 ```pyhton
+#>First, add after your Keras code model.fit(...) and train your model:
+
 from keras import backend as K
 import tensorflow as tf
 print(model.output.op.name)
 saver = tf.train.Saver()
 saver.save(K.get_session(), '/tmp/keras_model.ckpt')
-```
+
+"""
 Then cd to your TensorFlow root directory, run:
 
 python freeze_graph.py --input_meta_graph=./tmp/model0.ckpt.meta --input_checkpoint=./tmp/model0.ckpt --output_graph=./tmp/model0.pb --output_node_names="act_6/truediv" --input_binary=true
 
 >路径：~\anaconda\Lib\site-packages\tensorflow\python\tools
+"""
+```
 
 * #### 指定GPU
 ```pyhton
@@ -33,8 +39,16 @@ os.environ['TF_ENABLE_AUTO_MIXED_PRECISION'] = '1'
 opt = Adam()
 opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 # 要把所有模型定义用到的keras全换成tf.keras
+# GeForce GTX系列貌似不支持混合精度
 ```
 
+* #### 剪枝
+```
+keras官方貌似是没有剪枝工具的，网上开源第三方实现比较有名的应该是[keras-surgeon](https://github.com/BenWhetton/keras-surgeon)
+试了下不支持ReLU和DepthWiseConV
+最后的可行方案是把keras换成tf.keras，然后使用tf官方的剪枝工具，可参考我的tensorflow[readme](https://github.com/fire717/Machine-Learning/tree/master/Base/frameworks/tensorflow)中的剪枝部分。
+
+```
 
 
 ### Note
