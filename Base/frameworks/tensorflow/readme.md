@@ -22,10 +22,8 @@ for node in input_graph_def.node:
 * [TensorFlow Example](./basic/TensorFlowExample.ipynb)
 * [graph/ placeholder/ TensorBoard](./basic/Learn_tf.ipynb)
 * [模型保存读取](./basic/tf_save_load.ipynb)
-* [ckpt转pb](./basic/ckpt2pb.py)
-* [tf加载pb模型](./basic/read_pb.py)
-* [pb转tflite](./basic/pb2tflite.py)
-* [pb模型测试](./basic/tf_pb_pre.py)
+* [ckpt转pb](./basic/ckpt2pb.py) | [ckpt模型加载预测](./basic/ckpt_pre.py)
+* [pb转tflite](./basic/pb2tflite.py)| [pb模型测试](./basic/tf_pb_pre.py) |  [tf加载pb模型](./basic/read_pb.py)
 * [tflite模型测试](./basic/tflite_pre.py)
 * [TFLiteModelMaker轻松利用预训练模型训练tflite(支持efficientnetlite等)](./basic/TFLiteModelMaker)
 
