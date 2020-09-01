@@ -55,7 +55,7 @@ keras官方貌似是没有剪枝工具的，网上开源第三方实现比较有
 * [keras多GPU训练](./note/keras_multiGPU.md)
 
 ### Demo
-* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861) | [h5转pb](./demo/h5_to_pb.py)
+* [h5模型转tflite](./demo/h5_to_tflite.py) | [测试tflite模型结果](./demo/tflite_pre.py) | [有自定义层或函数](https://blog.csdn.net/killfunst/article/details/94295861) | [h5转pb](./demo/h5_to_pb.py) | [h5转ckpt](./demo/h5_to_ckpt.py)
 * [Keras Example](./keras_example.ipynb)
 * [读取本地mnist数据集_CNN](./demo/keras_mnist.ipynb)
 * [RNN分类示例](./demo/RNN_classify.ipynb) | [Keras实现LSTM](./demo/lstm_word_embedding.ipynb) | [LSTM文本生成](./demo/Word_Language_Modelling_LSTM.ipynb)
