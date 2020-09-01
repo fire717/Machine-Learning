@@ -10,6 +10,8 @@ y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 
 * #### [生成pb](https://www.e-learn.cn/content/wangluowenzhang/193206)
 ```pyhton
+#这里是先转ckpt再转pb，实测在pb转tnn的时候有点问题，而用下面demo栏的h5转pb就正常
+
 #>First, add after your Keras code model.fit(...) and train your model:
 
 from keras import backend as K
