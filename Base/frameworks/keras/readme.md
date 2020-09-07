@@ -65,7 +65,7 @@ keras官方貌似是没有剪枝工具的，网上开源第三方实现比较有
 * [读取本地cifar10数据集_CNN](./demo/keras_cifar10.ipynb)
 * [数据增强](./demo/data_aug.py)
 * [迭代器读取数据](./demo/data_generator.py)
-* [分类baseline](./baseline/) | [预训练模型使用](./demo/pretrain.py) | [预训练模型库](./demo/keras_net.py)
+* [分类baseline](./baseline/) | [预训练模型使用](./demo/pretrain.py) | [预训练模型库](./demo/keras_net.py) | [冻结层](./demo/layer_trainable.py)
 * [cnn热力图可视化](./demo/cam_heatmap.py)
 * [带自定义激活函数的h5模型转tflite（比如mobilenetv3的relu6 hard_swish）](./demo/h5_customer_to_tflite.py)
 * [训练模型清洗数据（半监督、主动学习）](./demo/clearData.py) 
