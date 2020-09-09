@@ -92,3 +92,4 @@ keras官方貌似是没有剪枝工具的，网上开源第三方实现比较有
 * [优化器lookahead](https://github.com/bojone/keras_lookahead)
 * [学习率 SGDR](https://github.com/gunchagarg/learning-rate-techniques-keras)
 * [优化器AdaBound](https://github.com/titu1994/keras-adabound)
+* [正则化](https://blog.csdn.net/xovee/article/details/92794763)
