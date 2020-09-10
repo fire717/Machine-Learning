@@ -14,6 +14,7 @@
 * [NN example](./practice/pytorch_example.ipynb)
 * [LSTM词性标注简单示例](./practice/pytorch_lstm.ipynb)
 * [GAN示例？](./practice/gan_pytorch.py)
+* [mnist demo](./practice/mnist_demo.py)
 
 ### Resource
 * [官网](http://pytorch.org/)
