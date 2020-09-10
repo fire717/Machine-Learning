@@ -20,4 +20,5 @@
 * [官网](http://pytorch.org/)
 * [官网教程](http://pytorch.org/tutorials/)
 * [PyTorch Handbook](https://github.com/zergtant/pytorch-handbook)
-* [Model zoo](https://github.com/rwightman/pytorch-image-models)
+* Model zoo:[pretrained-models.pytorch](https://github.com/Cadene/pretrained-models.pytorch) | [
+pytorch-image-models](https://github.com/rwightman/pytorch-image-models) 
