@@ -16,6 +16,9 @@
 * [GAN示例？](./practice/gan_pytorch.py)
 * [mnist demo](./practice/mnist_demo.py)
 
+### Demo
+* [可视化增强图片结果](./demo/show_pth_data.py)
+
 ### Resource
 * [官网](http://pytorch.org/)
 * [官网教程](http://pytorch.org/tutorials/)
