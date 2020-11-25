@@ -36,9 +36,21 @@ class LabelSmoothLoss(nn.Module):
 ### Demo
 * [可视化增强图片结果](./demo/show_pth_data.py)
 
+### Toolkit
+* [Focal-Los](https://github.com/yatengLG/Focal-Loss-Pytorch)
+* [Ranger](https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer)
+* [warmup-lr](https://github.com/ildoonet/pytorch-gradual-warmup-lr)
+* [fast-autoaugment](https://github.com/kakaobrain/fast-autoaugment)
+
 ### Resource
 * [官网](http://pytorch.org/)
 * [官网教程](http://pytorch.org/tutorials/)
 * [PyTorch Handbook](https://github.com/zergtant/pytorch-handbook)
-* Model zoo:[pretrained-models.pytorch](https://github.com/Cadene/pretrained-models.pytorch) | [
-pytorch-image-models](https://github.com/rwightman/pytorch-image-models) 
+* [pytorch_classification](https://github.com/lxztju/pytorch_classification)
+* Model zoo:
+	* [pretrained-models.pytorch](https://github.com/Cadene/pretrained-models.pytorch) 
+	* [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) 
+	* [mobilenet-v3](https://github.com/kuan-wang/pytorch-mobilenet-v3) 
+	* [WSL-Images](https://github.com/facebookresearch/WSL-Images)
+	
+	
