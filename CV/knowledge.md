@@ -73,6 +73,7 @@
 * 思考：
     * 引申：DropConnect
 
+#### Attention
 
 ### 1.2 激活函数
 #### Sigmoid
@@ -93,6 +94,36 @@
 
 ### 1.4 损失函数
 
+#### 1.4.1 L1 loss (MAE)
+* loss = |f(x) - Y|, 导数为 正负f'(x)
+* 缺点：L1 对 x 的导数为常数。这就导致训练后期，预测值与 ground truth 差异很小时， L1 损失对预测值的导数的绝对值仍然为 1，而 learning rate 如果不变，损失函数将在稳定值附近波动，难以继续收敛以达到更高精度。相比L2对异常点没那么敏感。
+
+#### 1.4.2 L2 loss (MSE)
+* loss = |f(x) - Y|^2, 导数为 2(f(x)-Y)f'(x)
+* 缺点：当 x 增大时 L2 损失对 x 的导数也增大。这就导致训练初期，预测值与 groud truth 差异过于大时，损失函数对预测值的梯度十分大，训练不稳定。从下面的形式 L2 Loss的梯度包含 (f(x) - Y)，当预测值 f(x) 与目标值 Y 相差很大时（此时可能是离群点、异常值(outliers)），容易产生梯度爆炸
+
+#### 1.4.3 Smooth L1 Loss (Huber Loss)
+* loss = 0.5x^2  if |x|<1, |x|-0.5   otherwise, 导数分别为x和1
+* 优点：smooth L1 在x较小时，对x的梯度也会变小，而在x很大时，对x的梯度的绝对值达到上限 1，也不会太大以至于破坏网络参数。smooth L1 loss在 |x| >1的部分采用了 L1 loss，当预测值和目标值差值很大时, 原先L2梯度里的 (f(x) - Y) 被替换成了 ±1,，这样就避免了梯度爆炸, 也就是它更加健壮。完美地避开了 L1 和 L2 损失的缺陷。
+* 之所以称为光滑L1函数，是因为此函数处处可导，而原L1函数在x=0处是不可导的。
+* 参考
+    * [1] [为什么Faster-rcnn、SSD中使用Smooth L1 Loss 而不用Smooth L2 Loss](https://blog.csdn.net/ytusdc/article/details/86659696)
+
+
+#### CrossEntoryLoss
+* loss = -求和(y' x log(y))
+* 为什么分类人物使用CE不用MSE
+    * 如果用 MSE 计算 loss，输出的曲线是波动的，有很多局部的极值点。即，非凸优化问题 (non-convex)cross entropy 计算 loss，则依旧是一个凸优化问题[1]
+    * 分类标签可以看做是概率分布（由one-hot变换而来），神经网络输出（经过softmax加工）也是一个概率分布，现在想衡量二者的差异（即损失），自然用交叉熵最好了[2]
+    * 平均总比有倾向性要好，但这有悖我们的常识;类错误，但偏导为0，权重不会更新，这显然不对——分类越错误越需要对权重进行更新[3]
+* 参考
+    * [1] [分类模型的 Loss 为什么使用 cross entropy](https://jackon.me/posts/why-use-cross-entropy-error-for-loss-function/)
+    * [2] [训练分类器为什么要用交叉熵损失函数而不能用MSE）](https://blog.csdn.net/yhily2008/article/details/80261953)
+    * [3] [直观理解为什么分类问题用交叉熵损失而不用均方误差损失?](https://www.cnblogs.com/shine-lee/p/12032066.html)
+
+#### BCE los
+
+#### focal-loss
 #### CTC-Loss
 
 
@@ -137,14 +168,23 @@
 
 ### 2.2 检测
 
-#### 2.2.1 SSD
+#### 2.2.1 FastRCNN
+RCNN, FAST-RCNN, FASTER-RCNN的发展历史
+* 损失函数
+    * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
+
+#### 2.2.2 SSD
 
 * 特征层
 * 损失函数
+    * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
+    *  One-stage目标检测算法需要同时处理定位和识别的任务，即多任务，其损失函数通常是定位损失和分类损失的加权和
 
-#### 2.2.2 Yolo
+#### 2.2.3 Yolo
+* 损失函数
+    * 回归边框使用MSE
 
-#### 2.2.3 FastRCNN
+
 
 ## 四、优化
 
