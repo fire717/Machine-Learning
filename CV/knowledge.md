@@ -100,12 +100,40 @@
 
 ### 2.1 分类
 #### 2.1.1 MobileNet
-* v1
-* v2
-* v3
-* 深度可分离卷积
+* v1: 
+    * 基本单元是深度可分离卷积（depthwise separable convolution）,基本结构是3x3 depthwise Conv - BN - Relu - 1x1 conv - BN -Relu
+    * 网络结构首先是一个3x3的标准卷积，然后后面就是堆积depthwise separable convolution，并且可以看到其中的部分depthwise convolution会通过strides=2进行down sampling。然后采用average pooling将feature变成1x1，根据预测类别大小加上全连接层，最后是一个softmax层；
+    * 整个计算量基本集中在1x1卷积上，如果你熟悉卷积底层实现的话，你应该知道卷积一般通过一种im2col方式实现，其需要内存重组，但是当卷积核为1x1时，其实就不需要这种操作了，底层可以有更快的实现。对于参数也主要集中在1x1卷积，除此之外还有就是全连接层占了一部分参数。
+    * 引入了两个模型超参数：width multiplier和resolution multiplier。第一个参数width multiplier主要是按比例减少通道数，其取值范围为(0,1]。第二个参数resolution multiplier主要是按比例降低特征图的大小，resolution multiplier仅仅影响计算量，但是不改变参数量。
 
-#### 
+
+* v2:
+    * 改进1：Inverted residuals，通常的residuals block是先经过一个1 * 1的Conv layer，把feature map的通道数“压”下来，再经过3 * 3 Conv layer，最后经过一个1 * 1 的Conv layer，将feature map 通道数再“扩张”回去。即先“压缩”，最后“扩张”回去。 而inverted residuals就是先“扩张”，最后“压缩”。因为若是采用以往的residual block，先“压缩”，再卷积提特征，那么DWConv layer可提取得特征就太少了，因此一开始不“压缩”，MobileNetV2反其道而行，一开始先“扩张”，本文实验“扩张”倍数为6。
+    * 改进2：Linear bottlenecks，为了避免Relu对特征的破坏，在residual block的Eltwise sum之前的那个 1 * 1 Conv 不再采用Relu。因为当采用“扩张”→“卷积提特征”→ “压缩”时，在“压缩”之后Relu对于负的输入，输出全为零，会破坏特征；而本来特征就已经被“压缩”，再经过Relu的话，又要“损失”一部分特征，因此这里不采用Relu。
+    * 基本组件bottleneck：1×1 conv - BN - Relu6 - 3x3 dwConv - BN - Relu6 - 1x1 conv
+    * 除了最后的avgpool，整个网络并没有采用pooling进行下采样，而是利用stride=2来下采样，此法已经成为主流，不知道是否pooling层对速度有影响，因此舍弃pooling层?
+    * 相比v1准确率提升，参数量减少，推理耗时减少。
+
+* v3
+    * 没有引入新的 Block，使用神经架构搜索来搜索结构
+    * 搜索结果使用了MnasNet 模型引入的基于squeeze and excitation结构的轻量级注意力模型
+    * 在网络结构搜索中，作者结合两种技术：资源受限的NAS（platform-aware NAS）与NetAdapt，前者用于在计算和参数量受限的前提下搜索网络的各个模块，所以称之为模块级的搜索（Block-wise Search） ，后者用于对各个模块确定之后网络层的微调。
+    * 使用激活函数h-swish，作为swish的数值近似（swish计算量较大），h-swish(X) = X x Relu6(X+3)/6
+    * 作者们发现MobileNetV2 网络端部最后阶段的计算量很大，重新设计了这一部分
+    * mobilenetv3-small相比v2准确率提升，参数量减少，推理耗时减少。
+
+* 深度可分离卷积:
+    * 传统卷积： 输入(224,224,3) ，使用(3x3x3)的卷积核5个, 输出为(224,224,5) （假设padding），计算量为3x3x3x5x224x224 = 6773760
+    * 深度可分离卷积: 输入(224,224,3) ，DepthwiseConv使用(3x3)的卷积核3个,得到(224,224,3), 然后PointwiseConv使用(1x1)的卷积核5个，得到(224,224,5)，计算量为3x3x3x224x224+1x1x3x5x224x224 = 2107392，缩小比例为 (3x3x3x5x224x224)/(3x3x3x224x224+1x1x3x5x224x224) = (3x3x5)/(3x3+5) = 3.2倍, 取决于原始卷积核的大小和输出的通道数
+
+* 参考：
+    * [1] [【深度学习MobileNet】——深刻解读MobileNet网络结构](https://blog.csdn.net/c20081052/article/details/80703896)
+    * [2] [轻量化网络：MobileNet-V2](https://blog.csdn.net/u011995719/article/details/79135818)
+    * [3] [重磅！MobileNetV3 来了！](https://www.jiqizhixin.com/articles/2019-05-09-2)
+
+#### VGG
+
+#### ResNet
 
 ### 2.2 检测
 
@@ -118,7 +146,13 @@
 
 #### 2.2.3 FastRCNN
 
-## 四、应用
+## 四、优化
+
+卷积一般通过一种im2col方式实现
+
+wingrad卷积
+
+## 五、应用
 
 ### 4.1 OCR
 #### 4.1.1 CRNN
