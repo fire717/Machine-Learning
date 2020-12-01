@@ -29,7 +29,7 @@
     * 允许网络使用饱和性激活函数（例如sigmoid，tanh等），缓解梯度消失问题[5]
     * 具有一定的正则化效果，由于我们使用mini-batch的均值与方差作为对整体训练样本均值与方差的估计，尽管每一个batch中的数据都是从总体样本中抽样得到，但不同mini-batch的均值与方差会有所不同，这就为网络的学习过程中增加了随机噪音，与Dropout通过关闭神经元给网络训练带来噪音类似，在一定程度上对模型起到了正则化的效果[5],增加泛化能力
     
-* 一些思考：
+* 思考：
     * 对于CNN，BN的操作是在各个特征维度之间单独进行，也就是说各个通道是分别进行Batch Normalization操作的。
     * 为什么需要乘以gamma加上beta：
         * 说法一：不同层的值域是可能不一样的，而BN让使输出变大变小这个重要工作更容易做到[3],;
@@ -37,6 +37,7 @@
         * 说法三：这两个参数的引入是为了恢复数据本身的表达能力(直接归一化会导致网络表达能力下降)，对规范化后的数据进行线性变换，通过自适应学习让数据保留更多的原始信息[5]
     * 为什么要在激活函数前：原始论文BN是在激活函数前的，一种解释是对于输入100和1000，经过激活函数后的值，比如sigmoid（1/(1+np.exp(-x))）后都为1了，再规范化已经没有意义。但是又有人发现实际中放在后面更好[7].
     * 缺点：依赖于batch的大小，当batch值很小时，计算的均值和方差不稳定。研究表明对于ResNet类模型在ImageNet数据集上，batch从16降低到8时开始有非常明显的性能下降
+    * 引申：BN、LN、IN、GN和SN [9]
 
 * 参考：
     * [1] [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
@@ -47,17 +48,48 @@
     * [6] [深度学习中 Batch Normalization为什么效果好？](https://www.zhihu.com/question/38102762/answer/607815171)
     * [7] [Batch-normalized 应该放在非线性激活层的前面还是后面？](https://www.zhihu.com/question/283715823/answer/438882036) 
     * [8] [论文|How Does Batch Normalizetion Help Optimization](https://zhuanlan.zhihu.com/p/66683061)
+    * [9] [深度学习中的五种归一化（BN、LN、IN、GN和SN）方法简介](https://blog.csdn.net/u013289254/article/details/99690730)
 
 
 
 #### 1.1.2 Dropout
+* 是什么：Dropout是一种在深度学习环境中应用的正则化手段（一般作为一个网络层），为了缓解模型过拟合的问题
+* 实现
+    * 训练时：每个神经单元以概率p被保留(dropout丢弃率为1-p)，丢失的即直接对神经元输出乘以0
+    * 测试时：权重参数w要乘以p，输出是：pw，相当于把输出缩放到同一范围
+    * 反向Dropout(Inverted Dropout)：在训练阶段缩放激活函数1/p，从而使得其测试阶段保持不变。更常用
 
+* 为什么有效
+    * 引入随机噪声
+    * 丢失神经元强制模型学习更多特征
+    * 类似bagging的模型融合[3]
+    * 减少神经元之间复杂的共适应关系[2]
 
+* 参考：
+    * [1] [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+    * [2] [Dropout原理与实现](https://www.cnblogs.com/zingp/p/11631913.html)
+    * [3] [bagging与dropout的异同](https://blog.csdn.net/daizongxue/article/details/79123134)
+
+* 思考：
+    * 引申：DropConnect
 
 
 ### 1.2 激活函数
+#### Sigmoid
+
+#### Tanh
+
+#### Relu
+
+#### Softmax
 
 ### 1.3 优化器
+
+#### SGD
+
+#### Adam
+
+#### Ranger
 
 ### 1.4 损失函数
 
