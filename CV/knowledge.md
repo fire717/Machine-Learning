@@ -102,7 +102,11 @@
 * loss = |f(x) - Y|^2, 导数为 2(f(x)-Y)f'(x)
 * 缺点：当 x 增大时 L2 损失对 x 的导数也增大。这就导致训练初期，预测值与 groud truth 差异过于大时，损失函数对预测值的梯度十分大，训练不稳定。从下面的形式 L2 Loss的梯度包含 (f(x) - Y)，当预测值 f(x) 与目标值 Y 相差很大时（此时可能是离群点、异常值(outliers)），容易产生梯度爆炸
 
-#### 1.4.3 Smooth L1 Loss (Huber Loss)
+#### 1.4.3 SSE
+* loss = sum|f(x) - Y|^2
+* 和方误差，本质同MSE
+
+#### 1.4.4 Smooth L1 Loss (Huber Loss)
 * loss = 0.5x^2  if |x|<1, |x|-0.5   otherwise, 导数分别为x和1
 * 优点：smooth L1 在x较小时，对x的梯度也会变小，而在x很大时，对x的梯度的绝对值达到上限 1，也不会太大以至于破坏网络参数。smooth L1 loss在 |x| >1的部分采用了 L1 loss，当预测值和目标值差值很大时, 原先L2梯度里的 (f(x) - Y) 被替换成了 ±1,，这样就避免了梯度爆炸, 也就是它更加健壮。完美地避开了 L1 和 L2 损失的缺陷。
 * 之所以称为光滑L1函数，是因为此函数处处可导，而原L1函数在x=0处是不可导的。
@@ -110,7 +114,7 @@
     * [1] [为什么Faster-rcnn、SSD中使用Smooth L1 Loss 而不用Smooth L2 Loss](https://blog.csdn.net/ytusdc/article/details/86659696)
 
 
-#### CrossEntoryLoss
+#### 1.4.5 CrossEntoryLoss
 * loss = -求和(y' x log(y))
 * 为什么分类人物使用CE不用MSE
     * 如果用 MSE 计算 loss，输出的曲线是波动的，有很多局部的极值点。即，非凸优化问题 (non-convex)cross entropy 计算 loss，则依旧是一个凸优化问题[1]
@@ -121,7 +125,7 @@
     * [2] [训练分类器为什么要用交叉熵损失函数而不能用MSE）](https://blog.csdn.net/yhily2008/article/details/80261953)
     * [3] [直观理解为什么分类问题用交叉熵损失而不用均方误差损失?](https://www.cnblogs.com/shine-lee/p/12032066.html)
 
-#### BCE los
+#### 1.4.6 BCE loss
 
 #### focal-loss
 #### CTC-Loss
@@ -161,32 +165,130 @@
     * [1] [【深度学习MobileNet】——深刻解读MobileNet网络结构](https://blog.csdn.net/c20081052/article/details/80703896)
     * [2] [轻量化网络：MobileNet-V2](https://blog.csdn.net/u011995719/article/details/79135818)
     * [3] [重磅！MobileNetV3 来了！](https://www.jiqizhixin.com/articles/2019-05-09-2)
+    * [4] [arxiv:Searching for MobileNetV3](https://arxiv.org/abs/1905.02244?context=cs)
 
-#### VGG
+#### 2.1.2 VGG
 
-#### ResNet
+
+#### 2.1.3 ResNet
+
+* 引入：VGG网络达到19层后再增加层数就开始导致分类性能的下降，为了解决深层神经网络的难以训练、收敛等问题，提出了残差学习
+* 网络结构：ResNet网络是参考了VGG19网络，在其基础上进行了修改，并通过短路机制加入了残差单元
+* 残差学习：
+    * 普通结构： X -> H(X)，X代表输入，H代表网络层参数计算， H(x)代表学习到的特征
+    * 残差结构： F(X) -> H(X)-X，希望其可以学习到残差F(x),这样其实原始的学习特征是H(X)+X,之所以这样是因为残差学习相比原始特征直接学习更容易。 当残差为0时，此时堆积层仅仅做了恒等映射，至少网络性能不会下降，实际上残差不会为0，这也会使得堆积层在输入特征基础上学习到新的特征，从而拥有更好的性能。这有点类似与电路中的“短路”，所以是一种短路连接（shortcut connection）。
+
+* 连接方式: 当输入、输出通道数相同时，我们自然可以如此直接使用X进行直接相加。而当它们之间的通道数目不同时，我们就需要考虑建立一种有效的identity mapping函数从而可以使得处理后的输入X与输出Y的通道数目相同即Y = F(X, Wi) + WsxX。当X与Y通道数目不同时，作者尝试了两种方式，一种即简单地将X相对Y缺失的通道直接补零从而使其能够相对齐的方式，另一种则是通过使用1x1的conv来表示Ws映射从而使得最终输入与输出的通道达到一致的方式。the size of the volume does not change within a block[2].
+* bottleneck构建模块: 作者提出了一种bottleneck的结构块来代替常规的Resedual block，它像Inception网络那样通过使用1x1 conv来巧妙地缩减或扩张feature map维度从而使得我们的3x3 conv的filters数目不受外界即上一层输入的影响。不过它纯是为了节省计算时间进而缩小整个模型训练所需的时间而设计的，对最终的模型精度并无影响。
+* 思考：
+    * 为什么残差学习相对更容易：从直观上看残差学习需要学习的内容少，因为残差一般会比较小，学习难度小点。 残差单元的梯度为1+原始梯度，1表明短路机制可以无损地传播梯度，而另外一项残差梯度则需要经过带有weights的层，梯度不是直接传递过来的。残差梯度不会那么巧全为-1，而且就算其比较小，有1的存在也不会导致梯度消失。所以残差学习会更容易。
+
+* 参考：
+    * [1] [你必须要知道CNN模型：ResNet](https://zhuanlan.zhihu.com/p/31852747)
+    * [2] [Understanding and visualizing ResNets](https://towardsdatascience.com/understanding-and-visualizing-resnets-442284831be8)
+
+#### 2.1.4 Densenet
+* 引入：它的基本思路与ResNet一致，但是它建立的是前面所有层与后面层的密集连接（dense connection），它的名称也是由此而来。 DenseNet提出了一个更激进的密集连接机制：即互相连接所有的层，具体来说就是每个层都会接受其前面所有层作为其额外的输入。
+* 连接方式：在DenseNet中，每个层都会与前面所有层在channel维度上连接（concat）在一起（这里各个层的特征图大小是相同的，后面会有说明），并作为下一层的输入。而resnet是元素级相加）。通过特征在channel上的连接来实现特征重用。这些特点让DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能，这一特点是DenseNet与ResNet最主要的区别。
+* 特征图保持一致：CNN网络一般要经过Pooling或者stride>1的Conv来降低特征图的大小，而DenseNet的密集连接方式需要特征图大小保持一致。为了解决这个问题，DenseNet网络中使用DenseBlock+Transition的结构，其中DenseBlock是包含很多层的模块，每个层的特征图大小相同，层与层之间采用密集连接方式。而Transition模块是连接两个相邻的DenseBlock，并且通过Pooling使特征图大小降低。图4给出了DenseNet的网路结构，它共包含4个DenseBlock，各个DenseBlock之间通过Transition连接在一起。
+* 非线性组合函数：DenseBlock中的非线性组合函数 采用的是 BN+ReLU+3x3 Conv的结构；由于后面层的输入会非常大，DenseBlock内部可以采用bottleneck层来减少计算量，主要是原有的结构中增加1x1 Conv，如图7所示，即BN+ReLU+1x1 Conv+BN+ReLU+3x3 Conv，称为DenseNet-B结构。其中1x1 Conv得到 [公式] 个特征图它起到的作用是降低特征数量，从而提升计算效率。
+
+* 思路：
+    * 由于密集连接方式，DenseNet提升了梯度的反向传播，使得网络更容易训练。需要明确一点，dense connectivity 仅仅是在一个dense block里的，不同dense block 之间是没有dense connectivity的
+* 参考：
+    * [1] [DenseNet：比ResNet更优的CNN模型](https://zhuanlan.zhihu.com/p/37189203)
+
+
+
+
 
 ### 2.2 检测
 
-#### 2.2.1 FastRCNN
-RCNN, FAST-RCNN, FASTER-RCNN的发展历史
-* 损失函数
-    * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
+#### 2.2.1 RCNN
+
+* RCNN
+    * 流程：
+        1. 给定一张输入图片，从图片中提取 2000 个类别独立的候选区域（包含重叠区域）。
+        2. 对于每个区域利用 CNN 抽取一个固定长度的特征向量。
+        3. 再对每个区域利用 SVM 进行目标分类。
+    * 候选区域：Selective Search 算法[2]
+    * 特征提取：resize到227，使用Alexnet提取特征得到4096维的向量
+    * 后处理：针对每个类，通过计算IoU指标，采取非极大性抑制，以最高分的区域为基础，剔除掉那些重叠位置的区域。
+    * 损失函数：回归使用MSE(L2 loss),使原始框转换到预测框的变换值 和 原始框转换到真实框的变换值 尽可能一样;分类使用交叉熵；两者是独立的
+    * 缺点：
+        1. 一张图像上有大量的重叠框，所以这些候选框送入神经网络时候，提取特征会有冗余
+        2. 训练的空间需求大。因为RCNN中，独立的分类器和回归器需要很多的特征作为训练。RCNN中提取候选框，提取特征和分类回归是分开的，可独立。
+
+* FAST-RCNN
+    
+    * 特征提取：将整张图片归一化送入神经网络，在最后一层再加入候选框信息（这些候选框还是经过 Selective Search提取，再经过一个ROI层统一映射到最后一层特征图上,而RCNN是通过拉伸来归一化尺寸
+    * 损失函数：损失函数使用了多任务损失函数(multi-task loss)，将边框回归直接加入到CNN网络中训练，两者一起训练。回归使用Smooth L1 loss，分类交叉熵。
+    * ROI pooling: ROI Pooling 就是将大小不同的feature map 池化成大小相同的feature map，利于输出到下一层网络中。具体是根据输入image，将ROI映射到feature map（ROI）对应位置；将映射后的区域划分为相同大小的sections（sections数量与输出的维度相同）；对每个sections进行max pooling操作；
+    * 为什么L1替换L2：L1是最小绝对值偏差，是鲁棒的，是因为它能处理数据中的异常值。如果需要考虑任一或全部的异常值，那么最小绝对值偏差是更好的选择。L2范数将误差平方化（如果误差大于1，则误差会放大很多），模型的误差会比L1范数来得大，因此模型会对这个样本更加敏感，这就需要调整模型来最小化误差。如果这个样本是一个异常值，模型就需要调整以适应单个的异常值，这会牺牲许多其它正常的样本，因为这些正常样本的误差比这单个的异常值的误差小。L2是平方差，L1是绝对差，如果有异常点，前者相当于放大了这种误差，而绝对差没有放大。
+
+* FASTER-RCNN
+    * faster对fast进行了改进，由于fast rcnn在一张原图上用select search找出2000个候选区域比较耗时，用cpu约耗时2s，为了解决这个问题作者自己设计了一个RPN网络(region proposal network, 10ms每张图像)代替select search。如果把RPN看作一个黑盒子，faster-rnn与fast-rcnn的结构相差不大，只是RPN代替了select search算法，而且select search的位置是在原图中进行的，RPN是在特征图上进行的[6]。
+    * RPN网络(region proposal network): RPN网络用于生成region proposals。该层通过softmax判断anchors属于positive或者negative，再利用bounding box regression修正anchors获得精确的proposals。(网络最后再进行多分类和回归更精确的框)
+
+* 参考：
+    * [1] [【深度学习】R-CNN 论文解读及个人理解](https://blog.csdn.net/briblue/article/details/82012575)
+    * [2] [目标检测（1）-Selective Search](https://zhuanlan.zhihu.com/p/27467369)
+    * [3] [目标检测1: rcnn流程梳理及边框损失函数loss分析](https://blog.csdn.net/u010397980/article/details/85010554)
+    * [4] [Fast_RCNN解读](https://zhuanlan.zhihu.com/p/61611588)
+    * [5] [ROI Pooling原理及实现](https://blog.csdn.net/u011436429/article/details/80279536)
+    * [6] [目标检测2: faster rcnn对比fast rcnn，训练流程分析，边框损失函数loss分析](https://blog.csdn.net/u010397980/article/details/85055840)
 
 #### 2.2.2 SSD
 
 * 特征层
 * 损失函数
     * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
-    *  One-stage目标检测算法需要同时处理定位和识别的任务，即多任务，其损失函数通常是定位损失和分类损失的加权和
+    * One-stage目标检测算法需要同时处理定位和识别的任务，即多任务，其损失函数通常是定位损失和分类损失的加权和
 
 #### 2.2.3 Yolo
-* 损失函数
-    * 回归边框使用MSE
+* v1
+    * 引入：YOLO的核心思想就是利用整张图作为网络的输入，直接在输出层回归bounding box的位置和bounding box所属的类别。没记错的话faster RCNN中也直接用整张图作为输入，但是faster-RCNN整体还是采用了RCNN那种 proposal+classifier的思想，只不过是将提取proposal的步骤放在CNN中实现了。
+    * 实现：
+        1. 将一幅图像分成SxS个网格(grid cell)，如果某个object的中心 落在这个网格中，则这个网格就负责预测这个object。
+        2. 每个网格要预测B个bounding box(论文中B=2，对应不同的aspect ratio)，每个bounding box除了要回归自身的位置之外，还要附带预测一个confidence值。 这个confidence代表了所预测的box中含有object的置信度和这个box预测的有多准两重信息，其值=Pr(object)xIOU, 其中如果有object落在一个grid cell里，第一项取1，否则取0。 第二项是预测的bounding box和实际的groundtruth之间的IoU值。
+        3. 每个bounding box要预测(x, y, w, h)和confidence共5个值，每个网格还要预测一个类别信息，记为C类。则SxS个网格，每个网格要预测B个bounding box还要预测C个categories。输出就是S x S x (5xB+C)的一个tensor。 注意：class信息是针对每个网格的，confidence信息是针对每个bounding box的。
+    * Loss：yolov1的损失函数全是和方误差SSE，需要理解的是其含义。包含
+        * 位置损失：容易理解，负责检测的才有位置损失，其他的都不需回传损失，也就不需要计算，此外小目标对于预测wh的误差更敏感，用先开根再相减的方法缓解。，相当于强化了小目标的wh的损失。
+        * confidence损失：负责检测的box的label是在线计算的IOU，不负责和无目标的都为0
+        * 类别损失：容易理解，含有目标的网格才有类别损失，其他都不需要回传损失，也就不需要计算。默认网格只出现一种类别，这当然是有缺陷的。yolov1对于一些聚集的目标，检测效果会不好。其实聚集目标本身也算很难检测的情况吧。
+        * YOLO并没有使用深度学习常用的均方误差（MSE）而是使用和方误差（SSE）作为损失函数，作者的解释是SSE更好优化。但是SSE作为损失函数时会使模型更倾向于优化输出向量长度更长的任务（也就是分类任务）。为了提升bounding box边界预测的优先级，该任务被赋予了一个超参数coord在论文中=5。
+    * 为了解决前、背景样本的样本不平衡的问题，作者给非样本区域的分类任务一个更小的权值noobj在论文中=0.5
+
+* v2
+    * 加入BN: YOLOv2网络通过在每一个卷积层后添加batch normalization，极大的改善了收敛速度同时减少了对其它regularization方法的依赖（舍弃了dropout优化后依然没有过拟合），使得mAP获得了2%的提升。
+    * 提高分辨率：YOLO(v1)先以分辨率224x224训练分类网络，然后需要增加分辨率到448x448，这样做不仅切换为检测算法也改变了分辨率。YOLOv2首先修改预训练分类网络的分辨率为448x448，在ImageNet数据集上训练10轮,然后fine tune为检测网络。mAP获得了4%的提升。
+    * anchor bnox: YOLO(v1)使用全连接层数据进行bounding box预测（要把1470x1的全链接层reshape为7x7x30的最终特征），这会丢失较多的空间信息定位不准。YOLOv2借鉴了Faster R-CNN中的anchor思想： 简单理解为卷积特征图上进行滑窗采样，每个中心预测9种不同大小和比例的建议框。由于都是卷积不需要reshape，很好的保留的空间信息，最终特征图的每个特征点和原图的每个cell一一对应。而且用预测相对偏移（offset）取代直接预测坐标简化了问题，方便网络学习。由anchor box同时预测类别和坐标。
+    * K-means聚类: 通过对数据集中的ground true box做聚类，找到ground true box的统计规律。以聚类个数k为anchor boxs个数，以k个聚类中心box的宽高维度为anchor box的维度。通过1-IOU值来度量距离而不是欧式距离，避免大box产生更多loss。
+    * passthrough layer： YOLOv2简单添加一个passthrough layer，把浅层特征图（分辨率为26 * 26）连接到深层特征图。passthrough layer把高低分辨率的特征图做连结，叠加相邻特征到不同通道（而非空间位置）类似于Resnet中的identity mappings。这个方法把26x26x512的特征图叠加成13x13x2048的特征图，与原生的深层特征图相连接。本质其实就是特征重排，26x26x512的feature map分别按行和列隔点采样，可以得到4幅13x13x512的特征，把这4张特征按channel串联起来，就是最后的13x13x2048的feature map.还有就是，passthrough layer本身是不学习参数的，直接用前面的层的特征重排后拼接到后面的层，越在网络前面的层，感受野越小，有利于小目标的检测[7]。
+    * 多尺度训练：原始YOLO网络使用固定的448x448的图片作为输入，加入anchor boxes后输入变成416x416，由于网络只用到了卷积层和池化层，就可以进行动态调整（检测任意大小图片）。为了让YOLOv2对不同尺寸图片的具有鲁棒性，在训练的时候也考虑了这一点。不同于固定网络输入图片尺寸的方法，每经过10批训练（10 batches）就会随机选择新的图片尺寸。网络使用的降采样参数为32，于是使用32的倍数{320,352，…，608}，最小的尺寸为320x320，最大的尺寸为608x608。 调整网络到相应维度然后继续进行训练。这种机制使得网络可以更好地预测不同尺寸的图片，同一个网络可以进行不同分辨率的检测任务，在小尺寸图片上YOLOv2运行更快，在速度和精度上达到了平衡。
 
 
+* v3
 
-## 四、优化
+    * 损失函数
+        * 分类使用sigmoid和多个logistic
+        * 回归边框使用MSE
+
+* 参考：
+    * [1] [Yolov1论文](https://arxiv.org/abs/1506.02640)
+    * [2] [yolov1 一个cell生成2个bounding box, bounding box 是如何生成的](https://blog.csdn.net/tycoer/article/details/106927119)
+    * [3] [【深度学习YOLO V1】深刻解读YOLO V1（图解）](https://blog.csdn.net/c20081052/article/details/80236015)
+    * [4] [YOLO v1的详解与复现](https://www.cnblogs.com/xiongzihua/p/9315183.html)
+    * [5] [物体检测之YOLO](https://zhuanlan.zhihu.com/p/42772125?from=groupmessage)
+    * [6] [YOLO2](https://zhuanlan.zhihu.com/p/25167153)
+    * [7] [如何理解YOLOv2中的passthrough layer？](https://www.zhihu.com/question/58903330)
+    * [8] [Yolov2论文](https://arxiv.org/abs/1612.08242)
+    * [9] [YOLO v2 详解](https://www.pianshen.com/article/7293987192/#passthrough__126)
+
+### 2.3 分割
+#### 2.3.1 U-net
+
+## 四、优化、实现
 
 卷积一般通过一种im2col方式实现
 
@@ -198,3 +300,11 @@ wingrad卷积
 #### 4.1.1 CRNN
 
 #### 4.1.2 CPTN
+
+## 六、其他
+
+#### 6.1 特征图直接elementwise相加和concat有什么区别
+elementwise相加相当于人工提取特征，而且可能丢失信息；concat让模型去学习特征。但是concate带来的计算量较大，在明确原始特征的关系可以使用add操作融合的话，使用add操作可以节省计算代价。
+* 参考：
+    * [1] [神经网络中通过add和concate（cat）的方式融合特征的不同](https://blog.csdn.net/weixin_42926076/article/details/100660188)
+    * [2] [如何理解神经网络中通过add的方式融合特征？](https://www.zhihu.com/question/306213462/answer/562776112)
