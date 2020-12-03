@@ -248,31 +248,49 @@
 #### 2.2.3 Yolo
 * v1
     * 引入：YOLO的核心思想就是利用整张图作为网络的输入，直接在输出层回归bounding box的位置和bounding box所属的类别。没记错的话faster RCNN中也直接用整张图作为输入，但是faster-RCNN整体还是采用了RCNN那种 proposal+classifier的思想，只不过是将提取proposal的步骤放在CNN中实现了。
+    * backbone:由GoogLeNet启发而来,有24个卷积层,最后接2个全连接层
     * 实现：
         1. 将一幅图像分成SxS个网格(grid cell)，如果某个object的中心 落在这个网格中，则这个网格就负责预测这个object。
         2. 每个网格要预测B个bounding box(论文中B=2，对应不同的aspect ratio)，每个bounding box除了要回归自身的位置之外，还要附带预测一个confidence值。 这个confidence代表了所预测的box中含有object的置信度和这个box预测的有多准两重信息，其值=Pr(object)xIOU, 其中如果有object落在一个grid cell里，第一项取1，否则取0。 第二项是预测的bounding box和实际的groundtruth之间的IoU值。
         3. 每个bounding box要预测(x, y, w, h)和confidence共5个值，每个网格还要预测一个类别信息，记为C类。则SxS个网格，每个网格要预测B个bounding box还要预测C个categories。输出就是S x S x (5xB+C)的一个tensor。 注意：class信息是针对每个网格的，confidence信息是针对每个bounding box的。
     * Loss：yolov1的损失函数全是和方误差SSE，需要理解的是其含义。包含
-        * 位置损失：容易理解，负责检测的才有位置损失，其他的都不需回传损失，也就不需要计算，此外小目标对于预测wh的误差更敏感，用先开根再相减的方法缓解。，相当于强化了小目标的wh的损失。
+        * 位置损失：容易理解，负责检测的才有位置损失，其他的都不需回传损失，也就不需要计算，此外小目标对于预测wh的误差更敏感，用先开根再相减的方法缓解。相当于强化了小目标的wh的损失。包括框中心位置x,y损失 + 框宽高w,h损失 
         * confidence损失：负责检测的box的label是在线计算的IOU，不负责和无目标的都为0
         * 类别损失：容易理解，含有目标的网格才有类别损失，其他都不需要回传损失，也就不需要计算。默认网格只出现一种类别，这当然是有缺陷的。yolov1对于一些聚集的目标，检测效果会不好。其实聚集目标本身也算很难检测的情况吧。
         * YOLO并没有使用深度学习常用的均方误差（MSE）而是使用和方误差（SSE）作为损失函数，作者的解释是SSE更好优化。但是SSE作为损失函数时会使模型更倾向于优化输出向量长度更长的任务（也就是分类任务）。为了提升bounding box边界预测的优先级，该任务被赋予了一个超参数coord在论文中=5。
     * 为了解决前、背景样本的样本不平衡的问题，作者给非样本区域的分类任务一个更小的权值noobj在论文中=0.5
 
 * v2
+    * backbone:darknet-19(类似vgg)
     * 加入BN: YOLOv2网络通过在每一个卷积层后添加batch normalization，极大的改善了收敛速度同时减少了对其它regularization方法的依赖（舍弃了dropout优化后依然没有过拟合），使得mAP获得了2%的提升。
-    * 提高分辨率：YOLO(v1)先以分辨率224x224训练分类网络，然后需要增加分辨率到448x448，这样做不仅切换为检测算法也改变了分辨率。YOLOv2首先修改预训练分类网络的分辨率为448x448，在ImageNet数据集上训练10轮,然后fine tune为检测网络。mAP获得了4%的提升。
+    * 提高分辨率：YOLO(v1)先以分辨率224x224训练分类网络，然后需要增加分辨率到448x448，这样做不仅切换为检测算法也改变了分辨率。YOLOv2首先修改预训练分类网络的分辨率为448x448，在ImageNet数据集上训练10轮,然后fine tune为检测网络。mAP获得了4%的提升。(说明全卷积支持任意输入，但不一定效果好。)
     * anchor bnox: YOLO(v1)使用全连接层数据进行bounding box预测（要把1470x1的全链接层reshape为7x7x30的最终特征），这会丢失较多的空间信息定位不准。YOLOv2借鉴了Faster R-CNN中的anchor思想： 简单理解为卷积特征图上进行滑窗采样，每个中心预测9种不同大小和比例的建议框。由于都是卷积不需要reshape，很好的保留的空间信息，最终特征图的每个特征点和原图的每个cell一一对应。而且用预测相对偏移（offset）取代直接预测坐标简化了问题，方便网络学习。由anchor box同时预测类别和坐标。
     * K-means聚类: 通过对数据集中的ground true box做聚类，找到ground true box的统计规律。以聚类个数k为anchor boxs个数，以k个聚类中心box的宽高维度为anchor box的维度。通过1-IOU值来度量距离而不是欧式距离，避免大box产生更多loss。
     * passthrough layer： YOLOv2简单添加一个passthrough layer，把浅层特征图（分辨率为26 * 26）连接到深层特征图。passthrough layer把高低分辨率的特征图做连结，叠加相邻特征到不同通道（而非空间位置）类似于Resnet中的identity mappings。这个方法把26x26x512的特征图叠加成13x13x2048的特征图，与原生的深层特征图相连接。本质其实就是特征重排，26x26x512的feature map分别按行和列隔点采样，可以得到4幅13x13x512的特征，把这4张特征按channel串联起来，就是最后的13x13x2048的feature map.还有就是，passthrough layer本身是不学习参数的，直接用前面的层的特征重排后拼接到后面的层，越在网络前面的层，感受野越小，有利于小目标的检测[7]。
     * 多尺度训练：原始YOLO网络使用固定的448x448的图片作为输入，加入anchor boxes后输入变成416x416，由于网络只用到了卷积层和池化层，就可以进行动态调整（检测任意大小图片）。为了让YOLOv2对不同尺寸图片的具有鲁棒性，在训练的时候也考虑了这一点。不同于固定网络输入图片尺寸的方法，每经过10批训练（10 batches）就会随机选择新的图片尺寸。网络使用的降采样参数为32，于是使用32的倍数{320,352，…，608}，最小的尺寸为320x320，最大的尺寸为608x608。 调整网络到相应维度然后继续进行训练。这种机制使得网络可以更好地预测不同尺寸的图片，同一个网络可以进行不同分辨率的检测任务，在小尺寸图片上YOLOv2运行更快，在速度和精度上达到了平衡。
+    * 预测的是预测框中心相对于网格单元的偏移量，使用logistic将预测值限制到0-1范围内，这样框偏移就不会超过1个网络（RPN预测anchor box和预测框bbox的偏移量，有可能偏移量很大，导致模型不稳定）
+    * YOLO2提出一种联合训练机制，混合来自检测和分类数据集的图像进行训练。当网络看到标记为检测的图像时，基于完整的yolov2损失函数进行反向传播。当它看到一个分类图像时，只从特定于分类的部分反向传播损失[12]。
+    * 损失函数同yolo1
 
 
 * v3
-
+    * backbone: darknet-53 = DarkNet19 + ResNet
+    * 网络结构：
+        * 结合残差思想，提取更深层次的语义信息。
+        * 仍然使用连续的3×3和1×1的卷积层。
+        * 通过上采样对三个不同尺度做预测。这样可以预测出更小的物体。
+        * 采用了步长为2的卷积层代替pooling层，因为池化层会丢失信息。
+        * 整个v3结构里面，是没有池化层和全连接层的。前向传播过程中，张量的尺寸变换是通过改变卷积核的步长来实现的
+    * 多标签分类：使用sigmoid和多个logistic,每个框中可能有多个类别物体，而softmax只能用于单分类，因此换成sigmoid，sigmoid可以做多标签分类。
+    * 结合不同层特征：类似ssd，这次用了3个特征图，而且在3个特征图上分别预测。同样anchor的大小、比例是根据聚类来获取。大尺度特征图上用小anchor，小尺度特征图上用大anchor。这样可以预测更细粒度的目标。张量拼接将darknet中间层和后面的某一层的上采样进行拼接。拼接的操作和残差层add的操作是不一样的，拼接会扩充张量的维度，而add只是直接相加不会导致张量维度的改变。你说“作者并没有像SSD那样直接采用backbone中间层的处理结果作为feature map的输出，而是和后面网络层的上采样结果进行一个拼接之后的处理结果作为feature map。为什么这么做呢？ 我感觉是有点玄学在里面，一方面避免和其他算法做法重合，另一方面这也许是试验之后并且结果证明更好的选择，再者有可能就是因为这么做比较节省模型size的。这点的数学原理不用去管，知道作者是这么做的就对了” 这个是为了实现小对象检测，因为不同水平的特征图倾向于检测的对象尺寸不同，再者，shallow layer有更详细的定位，而higher layer有更强的判别性特征(分类)，所以作者才这么做的。
+    * 采用"leaky ReLU"作为激活函数。基本组件：conv+bn+leakyrelu
     * 损失函数
-        * 分类使用sigmoid和多个logistic
-        * 回归边框使用MSE
+        * 分类: 对应sigmoid二分类交叉熵BCE loss
+        * 回归: 使用MSE
+        * 除了w,h的损失函数依然采用总方误差之外，其他部分的损失函数用的是二值交叉熵。最后加到一起
+
+* v4
+    * backbone:CSPDarknet53
 
 * 参考：
     * [1] [Yolov1论文](https://arxiv.org/abs/1506.02640)
@@ -284,6 +302,10 @@
     * [7] [如何理解YOLOv2中的passthrough layer？](https://www.zhihu.com/question/58903330)
     * [8] [Yolov2论文](https://arxiv.org/abs/1612.08242)
     * [9] [YOLO v2 详解](https://www.pianshen.com/article/7293987192/#passthrough__126)
+    * [10] [YOLO1-5的BackBone和Neck](https://blog.csdn.net/qq_35447659/article/details/108121631)
+    * [11] [yolo系列之yolo v3【深度解析】](https://blog.csdn.net/leviopku/article/details/82660381)
+    * [12] [YOLO1、YOLO2、YOLO3对比](https://blog.csdn.net/qq_32172681/article/details/100104494)
+    * [13] [目标检测算法之YOLOv2损失函数详解](https://zhuanlan.zhihu.com/p/93632171)
 
 ### 2.3 分割
 #### 2.3.1 U-net
