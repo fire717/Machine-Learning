@@ -2,13 +2,15 @@
 
 ### Common
 
-* #### one-hot
+* one-hot
+
 ```
 把数值类标签转为10维向量，标签对应位为1其余为0:
 y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 ```
 
-* #### [生成pb](https://www.e-learn.cn/content/wangluowenzhang/193206)
+* [生成pb](https://www.e-learn.cn/content/wangluowenzhang/193206)
+
 ```pyhton
 #这里是先转ckpt再转pb，实测在pb转tnn的时候有点问题，而用下面demo栏的h5转pb就正常
 
@@ -29,13 +31,15 @@ python freeze_graph.py --input_meta_graph=./tmp/model0.ckpt.meta --input_checkpo
 """
 ```
 
-* #### 指定GPU
+* 指定GPU
+
 ```pyhton
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 ```
 
-* #### 混合精度训练
+* 混合精度训练
+
 ```pyhton
 os.environ['TF_ENABLE_AUTO_MIXED_PRECISION'] = '1'
 opt = Adam()
@@ -44,12 +48,32 @@ opt = tf.train.experimental.enable_mixed_precision_graph_rewrite(opt)
 # GeForce GTX系列貌似不支持混合精度
 ```
 
-* #### 剪枝
+* 剪枝
+
 ```
 keras官方貌似是没有剪枝工具的，网上开源第三方实现比较有名的应该是[keras-surgeon](https://github.com/BenWhetton/keras-surgeon)
 试了下不支持ReLU和DepthWiseConV
 最后的可行方案是把keras换成tf.keras，然后使用tf官方的剪枝工具，可参考我的tensorflow[readme](https://github.com/fire717/Machine-Learning/tree/master/Base/frameworks/tensorflow)中的剪枝部分。
 
+```
+
+* 计算class_weights
+
+```
+#ref:https://www.tensorflow.org/tutorials/structured_data/imbalanced_data
+
+neg = 123099
+pos = 222467
+total = neg+pos
+# Scaling by total/2 helps keep the loss to a similar magnitude.
+# The sum of the weights of all examples stays the same.
+weight_for_0 = (1 / neg)*(total)/2.0 
+weight_for_1 = (1 / pos)*(total)/2.0
+
+class_weight = {0: weight_for_0, 1: weight_for_1}
+
+print('Weight for class 0: {:.2f}'.format(weight_for_0))
+print('Weight for class 1: {:.2f}'.format(weight_for_1))
 ```
 
 
