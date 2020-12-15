@@ -1,6 +1,14 @@
 
-## CV知识点
+# CV知识点
 
+
+## 目录
+* 一、基础 
+* 二、数据
+* 三、网络 
+* 四、优化实现
+* 五、应用
+* 六、其他
 
 ## 一、基础
 
@@ -131,10 +139,29 @@
 #### CTC-Loss
 
 
+## 二、数据
+
+### 2.1 数据增强
+
+#### 2.1.1 MixUp
+* 实现：
+    1. 根据参数alpha的值，得到Beta分布的随机值gamma
+    2. 设原始输入数据batch和标签label（需要为one-hot）
+    3. mixed_batch1 = batch，label1 = label
+    4. mixed_batch2 = shuffle(batch)，label2 = label对应shuffle后的标签
+    5. input_batch = gamma * mixed_batch1 + (1-gamma) * mixed_batch2
+    6. input_label = gamma * label1 + (1-gamma) * label2
+    7. new_loss = loss_function(input_batch, input_label)
+* 原始论文是对两个不同batch进行融合，这里举的例是一般在代码实现过程中，两个batch图片是同一批样本，唯一不同的是，batch1是原始batch图片样本，而b atch2是对batch1在batch size维度进行shuffle后得到的[1]
+* 参考
+    * [1] [数据增强之mixup算法详解](https://blog.csdn.net/sinat_36618660/article/details/101633504)
+    * [2] [mixup: BEYOND EMPIRICAL RISK MINIMIZATION](https://arxiv.org/pdf/1710.09412.pdf)
+
+
 ## 三、网络
 
-### 2.1 分类
-#### 2.1.1 MobileNet
+### 3.1 分类
+#### 3.1.1 MobileNet
 * v1: 
     * 基本单元是深度可分离卷积（depthwise separable convolution）,基本结构是3x3 depthwise Conv - BN - Relu - 1x1 conv - BN -Relu
     * 网络结构首先是一个3x3的标准卷积，然后后面就是堆积depthwise separable convolution，并且可以看到其中的部分depthwise convolution会通过strides=2进行down sampling。然后采用average pooling将feature变成1x1，根据预测类别大小加上全连接层，最后是一个softmax层；
@@ -167,10 +194,10 @@
     * [3] [重磅！MobileNetV3 来了！](https://www.jiqizhixin.com/articles/2019-05-09-2)
     * [4] [arxiv:Searching for MobileNetV3](https://arxiv.org/abs/1905.02244?context=cs)
 
-#### 2.1.2 VGG
+#### 3.1.2 VGG
 
 
-#### 2.1.3 ResNet
+#### 3.1.3 ResNet
 
 * 引入：VGG网络达到19层后再增加层数就开始导致分类性能的下降，为了解决深层神经网络的难以训练、收敛等问题，提出了残差学习
 * 网络结构：ResNet网络是参考了VGG19网络，在其基础上进行了修改，并通过短路机制加入了残差单元
@@ -187,7 +214,7 @@
     * [1] [你必须要知道CNN模型：ResNet](https://zhuanlan.zhihu.com/p/31852747)
     * [2] [Understanding and visualizing ResNets](https://towardsdatascience.com/understanding-and-visualizing-resnets-442284831be8)
 
-#### 2.1.4 Densenet
+#### 3.1.4 Densenet
 * 引入：它的基本思路与ResNet一致，但是它建立的是前面所有层与后面层的密集连接（dense connection），它的名称也是由此而来。 DenseNet提出了一个更激进的密集连接机制：即互相连接所有的层，具体来说就是每个层都会接受其前面所有层作为其额外的输入。
 * 连接方式：在DenseNet中，每个层都会与前面所有层在channel维度上连接（concat）在一起（这里各个层的特征图大小是相同的，后面会有说明），并作为下一层的输入。而resnet是元素级相加）。通过特征在channel上的连接来实现特征重用。这些特点让DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能，这一特点是DenseNet与ResNet最主要的区别。
 * 特征图保持一致：CNN网络一般要经过Pooling或者stride>1的Conv来降低特征图的大小，而DenseNet的密集连接方式需要特征图大小保持一致。为了解决这个问题，DenseNet网络中使用DenseBlock+Transition的结构，其中DenseBlock是包含很多层的模块，每个层的特征图大小相同，层与层之间采用密集连接方式。而Transition模块是连接两个相邻的DenseBlock，并且通过Pooling使特征图大小降低。图4给出了DenseNet的网路结构，它共包含4个DenseBlock，各个DenseBlock之间通过Transition连接在一起。
@@ -202,9 +229,9 @@
 
 
 
-### 2.2 检测
+### 3.2 检测
 
-#### 2.2.1 RCNN
+#### 3.2.1 RCNN
 
 * RCNN
     * 流程：
@@ -238,14 +265,14 @@
     * [5] [ROI Pooling原理及实现](https://blog.csdn.net/u011436429/article/details/80279536)
     * [6] [目标检测2: faster rcnn对比fast rcnn，训练流程分析，边框损失函数loss分析](https://blog.csdn.net/u010397980/article/details/85055840)
 
-#### 2.2.2 SSD
+#### 3.2.2 SSD
 
 * 特征层
 * 损失函数
     * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
     * One-stage目标检测算法需要同时处理定位和识别的任务，即多任务，其损失函数通常是定位损失和分类损失的加权和
 
-#### 2.2.3 Yolo
+#### 3.2.3 Yolo
 * v1
     * 引入：YOLO的核心思想就是利用整张图作为网络的输入，直接在输出层回归bounding box的位置和bounding box所属的类别。没记错的话faster RCNN中也直接用整张图作为输入，但是faster-RCNN整体还是采用了RCNN那种 proposal+classifier的思想，只不过是将提取proposal的步骤放在CNN中实现了。
     * backbone:由GoogLeNet启发而来,有24个卷积层,最后接2个全连接层
@@ -307,8 +334,8 @@
     * [12] [YOLO1、YOLO2、YOLO3对比](https://blog.csdn.net/qq_32172681/article/details/100104494)
     * [13] [目标检测算法之YOLOv2损失函数详解](https://zhuanlan.zhihu.com/p/93632171)
 
-### 2.3 分割
-#### 2.3.1 U-net
+### 3.3 分割
+#### 3.3.1 U-net
 
 ## 四、优化、实现
 
