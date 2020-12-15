@@ -144,7 +144,14 @@
 ### 2.1 数据增强
 
 #### 2.1.1 MixUp
-* 实现：
+* 实现1：
+    1. 根据参数alpha的值，得到Beta分布的随机值gamma
+    2. 设原始输入数据batch和标签label（类别值，不需要为one-hot）
+    3. mixed_batch1 = batch，label1 = label
+    4. mixed_batch2 = shuffle(batch)，label2 = label对应shuffle后的标签
+    5. input_batch = gamma * mixed_batch1 + (1-gamma) * mixed_batch2
+    6. new_loss = gamma * loss_function(input_batch, label1) + (1 - gamma) * loss_function(input_batch, label2)
+* 实现2：
     1. 根据参数alpha的值，得到Beta分布的随机值gamma
     2. 设原始输入数据batch和标签label（需要为one-hot）
     3. mixed_batch1 = batch，label1 = label
@@ -152,10 +159,13 @@
     5. input_batch = gamma * mixed_batch1 + (1-gamma) * mixed_batch2
     6. input_label = gamma * label1 + (1-gamma) * label2
     7. new_loss = loss_function(input_batch, input_label)
-* 原始论文是对两个不同batch进行融合，这里举的例是一般在代码实现过程中，两个batch图片是同一批样本，唯一不同的是，batch1是原始batch图片样本，而b atch2是对batch1在batch size维度进行shuffle后得到的[1]
+* 原始论文是对两个不同batch进行融合，一般在代码实现过程中，两个batch图片是同一批样本，唯一不同的是，batch1是原始batch图片样本，而b atch2是对batch1在batch size维度进行shuffle后得到的[1]
+* 思考:
+    实现1是论文中的提到的开源代码的实现方式，实现2是论文中示例代码的实现。经过大致演算推导，可以从2推到1，两者应该是一样的。但是在我自己的二分类任务训练过程中train-loss，val-loss不是完全一样的，实现2的train-loss更低，且训练完实现2的val-acc更高，而test集上两者acc一样，实现1的F1值稍高。
 * 参考
     * [1] [数据增强之mixup算法详解](https://blog.csdn.net/sinat_36618660/article/details/101633504)
     * [2] [mixup: BEYOND EMPIRICAL RISK MINIMIZATION](https://arxiv.org/pdf/1710.09412.pdf)
+    * [3] [facebookresearch/mixup-cifar10](https://github.com/facebookresearch/mixup-cifar10/blob/master/train.py)
 
 
 ## 三、网络
