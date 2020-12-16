@@ -347,6 +347,14 @@
 ### 3.3 分割
 #### 3.3.1 U-net
 
+
+### 3.4 识别
+#### 3.4.1 FaceNet
+* CNN提取特征，L2归一化到128维向量，然后通过三元组损失优化（没有使用softmax），使用这种方式学到的图像表示非常紧致，使用128位足矣。元组的选择非常重要，选的好可以很快的收敛。
+* Triplet Loss：三元组就是三个样例，如(anchor, pos, neg)，其中，x和p是同一类，x和n是不同类。那么学习的过程就是学到一种表示，对于尽可能多的三元组，使得anchor和pos的距离，小于anchor和neg的距离
+* 参考:
+    * [1] [FaceNet--Google的人脸识别](https://blog.csdn.net/stdcoutzyx/article/details/46687471)
+
 ## 四、优化、实现
 
 卷积一般通过一种im2col方式实现
