@@ -175,7 +175,7 @@
 * v1: 
     * 基本单元是深度可分离卷积（depthwise separable convolution）,基本结构是3x3 depthwise Conv - BN - Relu - 1x1 conv - BN -Relu
     * 网络结构首先是一个3x3的标准卷积，然后后面就是堆积depthwise separable convolution，并且可以看到其中的部分depthwise convolution会通过strides=2进行down sampling。然后采用average pooling将feature变成1x1，根据预测类别大小加上全连接层，最后是一个softmax层；
-    * 整个计算量基本集中在1x1卷积上，如果你熟悉卷积底层实现的话，你应该知道卷积一般通过一种im2col方式实现，其需要内存重组，但是当卷积核为1x1时，其实就不需要这种操作了，底层可以有更快的实现。对于参数也主要集中在1x1卷积，除此之外还有就是全连接层占了一部分参数。
+    * 整个计算量基本集中在1x1卷积上，如果你熟悉卷积底层实现的话，你应该知道卷积一般通过一种im2col方式实现，其需要内存重组，但是当卷积核为1x1时，其实就不需要这种操作了，底层可以有更快的实现（How？暂时没查到）。对于参数也主要集中在1x1卷积，除此之外还有就是全连接层占了一部分参数。
     * 引入了两个模型超参数：width multiplier和resolution multiplier。第一个参数width multiplier主要是按比例减少通道数，其取值范围为(0,1]。第二个参数resolution multiplier主要是按比例降低特征图的大小，resolution multiplier仅仅影响计算量，但是不改变参数量。
 
 
@@ -357,9 +357,18 @@
 
 ## 四、优化、实现
 
-卷积一般通过一种im2col方式实现
+#### 4.1 im2col
+* 卷积一般通过一种im2col方式实现。熟悉卷积都知道，感受野区域是个二维的区域，这二维的区域从存储上不是连续的，这样就不便于计算。im2col算法完成的就是通过矩阵乘法来完成卷积核和感受野的对应相乘，这样计算起来就方便多了。
+* 实现：
+    * 单通道图像，单通道卷积核为例
+    * 图像：卷积核对应的一个取样区域被转换为一个行向量row；从左到右从上到下有M个取样区域，则图像转化为[M, len(row)]大小的矩阵；
+    * 卷积核：单通道的卷积核被拉伸为一个列向量col，大小为[len(col), 1]；len(row)=len(col)；
+    * 输出：[M, 1]
+* 参考:
+    * [1] [卷积详解之im2col算法](https://august-us.blog.csdn.net/article/details/104709433)
+    * [2] [im2col卷积运算实现](https://zhuanlan.zhihu.com/p/297796588)
 
-wingrad卷积
+#### 4.2 wingrad卷积
 
 ## 五、应用
 
