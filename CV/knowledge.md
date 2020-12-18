@@ -148,6 +148,13 @@
     * [1] [Focal Loss理解](https://www.cnblogs.com/king-lps/p/9497836.html)
 
 #### 1.4.8 Center-loss
+* Center-loss搭配交叉熵使用，在结合使用这两种损失函数时，可以认为softmax交叉熵负责增加类间距离，center-loss负责减小类内距离，这样学习到的特征判别度会更高。
+* 实现：
+    * 当前数据减去该batch的中心数据特征的二范求和
+    * 没法直接获得c,所以将其放到网络里自己生成,在每一个batch里更新center.即随机初始化center,而后每一个batch里计算当前数据与center的距离,而后将这个梯度形式的距离加到center上.类似于参数修正.同样的类似于梯度下降法,这里再增加一个scale度量a,使得center不会抖动.
+* 参考：
+    * [1] [Center-Loss](https://blog.csdn.net/wxb1553725576/article/details/80602786)
+    * [2] [中心损失 Center Loss 解释](https://www.cnblogs.com/carlber/p/10811396.html)
 
 #### CTC-Loss
 
