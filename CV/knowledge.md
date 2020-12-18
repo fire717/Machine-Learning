@@ -6,7 +6,7 @@
 * 一、基础 
 * 二、数据
 * 三、网络 
-* 四、优化实现
+* 四、实现
 * 五、应用
 * 六、其他
 
@@ -156,6 +156,8 @@
     * [1] [Center-Loss](https://blog.csdn.net/wxb1553725576/article/details/80602786)
     * [2] [中心损失 Center Loss 解释](https://www.cnblogs.com/carlber/p/10811396.html)
 
+#### KL散度
+
 #### CTC-Loss
 
 
@@ -225,7 +227,17 @@
     * [4] [arxiv:Searching for MobileNetV3](https://arxiv.org/abs/1905.02244?context=cs)
 
 #### 3.1.2 VGG
+* 将5x5和7x7这样的卷积分解为多个3x3的卷积的堆叠
+* 以VGG16为例，输入(224,224,3),包含5个block，最后接3个全连接层(4096-4096-1000)
+    * block1: conv(3x3)x64-conv(3x3)x64-maxpool , 输出112x112x64
+    * block2: conv(3x3)x128-conv(3x3)x128-maxpool , 输出56x56x128
+    * block3: conv(3x3)x256-conv(3x3)x256-conv(1x1)x256-maxpool , 输出28x28x256
+    * block4: conv(3x3)x512-conv(3x3)x512-conv(1x1)x512-maxpool , 输出14x14x512
+    * block5: conv(3x3)x512-conv(3x3)x512-conv(1x1)x512-maxpool , 输出7x7x512
 
+* 参考：
+    * [1] [卷积神经网络VGG16详解](https://baijiahao.baidu.com/s?id=1667221544796169037&wfr=spider&for=pc)
+    * [2] [vgg16介绍](https://blog.csdn.net/how0723/article/details/83059277)
 
 #### 3.1.3 ResNet
 
@@ -276,14 +288,14 @@
         1. 一张图像上有大量的重叠框，所以这些候选框送入神经网络时候，提取特征会有冗余
         2. 训练的空间需求大。因为RCNN中，独立的分类器和回归器需要很多的特征作为训练。RCNN中提取候选框，提取特征和分类回归是分开的，可独立。
 
-* FAST-RCNN
+* Fast-RCNN
     
     * 特征提取：将整张图片归一化送入神经网络，在最后一层再加入候选框信息（这些候选框还是经过 Selective Search提取，再经过一个ROI层统一映射到最后一层特征图上,而RCNN是通过拉伸来归一化尺寸
     * 损失函数：损失函数使用了多任务损失函数(multi-task loss)，将边框回归直接加入到CNN网络中训练，两者一起训练。回归使用Smooth L1 loss，分类交叉熵。
     * ROI pooling: ROI Pooling 就是将大小不同的feature map 池化成大小相同的feature map，利于输出到下一层网络中。具体是根据输入image，将ROI映射到feature map（ROI）对应位置；将映射后的区域划分为相同大小的sections（sections数量与输出的维度相同）；对每个sections进行max pooling操作；
     * 为什么L1替换L2：L1是最小绝对值偏差，是鲁棒的，是因为它能处理数据中的异常值。如果需要考虑任一或全部的异常值，那么最小绝对值偏差是更好的选择。L2范数将误差平方化（如果误差大于1，则误差会放大很多），模型的误差会比L1范数来得大，因此模型会对这个样本更加敏感，这就需要调整模型来最小化误差。如果这个样本是一个异常值，模型就需要调整以适应单个的异常值，这会牺牲许多其它正常的样本，因为这些正常样本的误差比这单个的异常值的误差小。L2是平方差，L1是绝对差，如果有异常点，前者相当于放大了这种误差，而绝对差没有放大。
 
-* FASTER-RCNN
+* Faster-RCNN
     * faster对fast进行了改进，由于fast rcnn在一张原图上用select search找出2000个候选区域比较耗时，用cpu约耗时2s，为了解决这个问题作者自己设计了一个RPN网络(region proposal network, 10ms每张图像)代替select search。如果把RPN看作一个黑盒子，faster-rnn与fast-rcnn的结构相差不大，只是RPN代替了select search算法，而且select search的位置是在原图中进行的，RPN是在特征图上进行的[6]。
     * RPN网络(region proposal network): RPN网络用于生成region proposals。该层通过softmax判断anchors属于positive或者negative，再利用bounding box regression修正anchors获得精确的proposals。(网络最后再进行多分类和回归更精确的框)
 
@@ -305,6 +317,19 @@
     * SSD提取了不同尺度的多个特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体
     * 采用了不同尺度和长宽比的先验框（Prior boxes, Default boxes，在Faster R-CNN中叫做锚，Anchors）。在Yolo中，每个单元预测多个边界框，但是其都是相对这个单元本身（正方块），但是真实目标的形状是多变的，Yolo需要在训练过程中自适应目标的形状。而SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。一般情况下，每个单元会设置多个先验框，其尺度和长宽比存在差异
     * 值得注意的是SSD将背景也当做了一个特殊的类别，如果检测目标共有c 个类别，SSD其实需要预测c+1个置信度值，其中第一个置信度指的是不含目标或者属于背景的评分。后面当我们说c个类别置信度时，请记住里面包含背景那个特殊的类别，即真实的检测类别只有c-1个。
+* 基于VGG具体改动:
+    * VGG16基本结构见[3.1.2]
+    * 修改VGG结构，然后提取了6个特征图：
+        1. VGG16的第三个block输出(224对应28，SSD300输入对应输出就是38x38x512)
+        2. 把最后一个pool的步长2改为3（猜想是不想reduce特征图大小），为了配合这种变化，采用了一种Atrous Algorithm，其实就是conv6采用扩展卷积或带孔卷积（Dilation Conv），其在不增加参数与模型复杂度的条件下指数级扩大卷积的视野。 然后去掉1000的全连接，两个4096的分别改为conv(3x3x1024)和conv(1x1x1024),对应输出是19x19x1024
+        3. 在2之后添加两个卷积层conv(1x1x256)、conv(3x3x512),对应输出是10x10x512
+        4. 在3之后添加两个卷积层conv(1x1x128)、conv(3x3x256),对应输出是5x5x256
+        5. 在4之后添加两个卷积层conv(1x1x128)、conv(3x3x256),对应输出是3x3x256
+        6. 在5之后添加两个卷积层conv(1x1x128)、conv(3x3x256),对应输出是1x1x256
+    * 其中VGG16中的Conv4_3层将作为用于检测的第一个特征图。conv4_3层特征图大小是38x38 ，但是该层比较靠前，其norm较大，所以在其后面增加了一个L2 Normalization层，以保证和后面的检测层差异不是很大，这个和Batch Normalization层不太一样，其仅仅是对每个像素点在channle维度做归一化，而Batch Normalization层是在[batch_size, width, height]三个维度上做归一化。归一化后一般设置一个可训练的放缩变量gamma。
+    * 每个特征图先验框不同，最后一共可以预测8732个边界框。38x38x4+19x19x6+10x10x6+5x5x6+3x3x4+1x1x4=8732，这是一个相当庞大的数字，所以说SSD本质上是密集采样。
+* 训练过程
+    * 先验框匹配：在训练过程中，首先要确定训练图片中的ground truth（真实目标）与哪个先验框来进行匹配，与之匹配的先验框所对应的边界框将负责预测它。在Yolo中，ground truth的中心落在哪个单元格，该单元格中与其IOU最大的边界框负责预测它。但是在SSD中却完全不一样，SSD的先验框与ground truth的匹配原则主要有两点。首先，对于图片中每个ground truth，找到与其IOU最大的先验框，该先验框与其匹配，这样，可以保证每个ground truth一定与某个先验框匹配。通常称与ground truth匹配的先验框为正样本（其实应该是先验框对应的预测box，不过由于是一一对应的就这样称呼了），反之，若一个先验框没有与任何ground truth进行匹配，那么该先验框只能与背景匹配，就是负样本。一个图片中ground truth是非常少的， 而先验框却很多，如果仅按第一个原则匹配，很多先验框会是负样本，正负样本极其不平衡，所以需要第二个原则。第二个原则是：对于剩余的未匹配先验框，若某个ground truth的IOU大于某个阈值（一般是0.5），那么该先验框也与这个ground truth进行匹配。这意味着某个ground truth可能与多个先验框匹配，这是可以的。但是反过来却不可以，因为一个先验框只能匹配一个ground truth，如果多个ground truth与某个先验框IOU大于阈值，那么先验框只与IOU最大的那个先验框进行匹配。第二个原则一定在第一个原则之后进行，仔细考虑一下这种情况，如果某个ground truth所对应最大IOU小于阈值，并且所匹配的先验框却与另外一个ground truth的IOU 大于阈值，那么该先验框应该匹配谁，答案应该是前者，首先要确保某个ground truth一定有一个先验框与之匹配。[3]
 * 损失函数
     * 回归使用Smooth L1：当预测框与 ground truth 差别过大时，梯度值不至于过大；当预测框与 ground truth 差别很小时，梯度值足够小。
     * One-stage目标检测算法需要同时处理定位和识别的任务，即多任务，其损失函数通常是定位损失和分类损失的加权和
@@ -312,6 +337,8 @@
 * 参考：
     * [1] [目标检测之SSD](https://blog.csdn.net/thisiszdy/article/details/89576389)
     * [2] [目标检测|SSD原理与实现](https://zhuanlan.zhihu.com/p/33544892)
+    * [3] [SSD算法思想和结构详解](https://www.cnblogs.com/cecilia-2019/p/11342791.html)
+
 
 #### 3.2.3 Yolo
 * v1
