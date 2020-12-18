@@ -156,9 +156,15 @@
     * [1] [Center-Loss](https://blog.csdn.net/wxb1553725576/article/details/80602786)
     * [2] [中心损失 Center Loss 解释](https://www.cnblogs.com/carlber/p/10811396.html)
 
-#### KL散度
+#### 1.4.9 Contrastive Loss
+* 输入是一个数据对x1,x2和标签y,y=1代表相似，0代表不相似
+* 当y=1时，loss相当于L2 loss，y=0时，对L2设置了一个阈值ｍargin，表示我们只考虑不相似特征欧式距离在０～ｍargin之间的，当距离超过ｍargin的，则把其loss看做为０
+* 参考：
+    * [1] [孪生神经网络(Siamese Network)详解](https://blog.csdn.net/weixin_45250844/article/details/102765678)
 
-#### CTC-Loss
+#### 1.4.10 KL散度
+
+#### 1.4.11 CTC-Loss
 
 
 ## 二、数据
