@@ -24,7 +24,7 @@
 ---------|---------------|-------------|-------- |---------
  [Scikit-learn](/Base/tools/scikit-learn)| [机器学习实战](/Base/books/ML_in_action)  | [机器学习/Andrew Ng](/Base/courses/coursera_ML)      | [Kaggle](/Base/challenge/kaggle) | [Keras ★](/Base/frameworks/keras)
   [XGBoost](/Base/tools/xgboost)  | [集体智慧编程](/Base/books/JTZHBC)     | [Deep Learning/Andrew Ng](/Base/courses/DL_AndrewNg) | [天池](/Base/challenge/tianchi) | [Tensorflow](/Base/frameworks/tensorflow)
- [LightGBM](/Base/tools/lightgbm) |      |      | [Biendata](/Base/challenge/biendata) |  [PyTorch](/Base/frameworks/pytorch)
+ [LightGBM](/Base/tools/lightgbm) |      |      | [Biendata](/Base/challenge/biendata) |  [PyTorch ★](/Base/frameworks/pytorch)
 [Spark](/Base/tools/spark)|  |  | [AI challenge](/Base/challenge/AIchallenge) |[Mxnet](/Base/frameworks/mxnet)
 |  |  |  |  [DataFountain](/Base/challenge/DataFountain)  | [Caffe](/Base/frameworks/caffe)
 
