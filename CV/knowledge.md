@@ -81,6 +81,21 @@
 * 思考：
     * 引申：DropConnect
 
+#### 1.1.3 Spatial Pyramid Pooling
+* 原理：
+    具体地,在一个CNN里,把最以后一次池化层去掉,换成一个SPP去做最大池化操作(max pooling).如果最后一次卷积得到了k个feature map,也就是有k个filter,SPP有M个bin,那经过SPP得到的是一个kM维的向量.我的理解是,比如上图中第一个feature map有16个bin,一共有256个feature map,每一个经过16个bin的max pooling得到16个数,那256个feature map就是16x256的向量了.SPP的bin大小可以选择多个,所以经过SPP还能产生4x256,1x256维的向量.假设原图输入是224x224，对于conv5出来后的输出是13x13x256的，可以理解成有256个这样的filter，每个filter对应一张13x13的reponse map。如果像上图那样将reponse map分成1x1(金字塔底座)，2x2(金字塔中间)，4x4（金字塔顶座）三张子图，分别做max pooling后，出来的特征就是(16+4+1)x256 维度。如果原图的输入不是224x224，出来的特征依然是(16+4+1)x256维度。这样就实现了不管图像尺寸如何 池化n 的输出永远是 （16+4+1）x256 维度。实际运用中只需要根据全连接层的输入维度要求设计好空间金字塔即可。
+* 思考：
+    * 卷积神经网络中，当输入不是固定size时，如何解决
+        * 方案1：对输入进行resize，统一到同一大小。
+        * 方案2：取消全连接层，对最后的卷积层global average polling（GAP。
+        * 方案3：在第一个全连接层前，加入SPP layer。本文要介绍的。
+        * p.s.以上方案还要实测，具体哪种方案比较好，强烈推荐方案2，3。
+
+* 参考：
+    * [1] [Spatial Pyramid Pooling讲解](https://zhuanlan.zhihu.com/p/34788333?utm_source=ZHShareTargetIDMore)
+    * [2] [Spatial Pyramid Pooling 详解](https://www.jianshu.com/p/e36aef9b7a8a)
+
+
 #### Attention
 
 ### 1.2 激活函数
@@ -155,6 +170,7 @@
 * 参考：
     * [1] [Center-Loss](https://blog.csdn.net/wxb1553725576/article/details/80602786)
     * [2] [中心损失 Center Loss 解释](https://www.cnblogs.com/carlber/p/10811396.html)
+    * [3] [github一个pytorch实现](https://github.com/egcode/facerec/blob/master/losses/CenterLoss.py)
 
 #### 1.4.9 Contrastive Loss
 * 输入是一个数据对x1,x2和标签y,y=1代表相似，0代表不相似
