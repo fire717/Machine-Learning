@@ -18,6 +18,22 @@ class LabelSmoothLoss(nn.Module):
         return loss
 ```
 
+* 梯度裁剪
+```
+def clip_gradient(optimizer, grad_clip=1):
+    """
+    Clips gradients computed during backpropagation to avoid explosion of gradients.
+
+    :param optimizer: optimizer with the gradients to be clipped
+    :param grad_clip: clip value
+    """
+    for group in optimizer.param_groups:
+        for param in group["params"]:
+            if param.grad is not None:
+                param.grad.data.clamp_(-grad_clip, grad_clip)
+```
+
+
 ### Practice
 * Pytorch 入门示例：
 	1. [Pytorch是什么？](./practice/60分钟入门PyTorch-1.PyTorch是什么？.ipynb)
