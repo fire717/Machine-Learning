@@ -143,10 +143,12 @@
     * 如果用 MSE 计算 loss，输出的曲线是波动的，有很多局部的极值点。即，非凸优化问题 (non-convex)cross entropy 计算 loss，则依旧是一个凸优化问题[1]
     * 分类标签可以看做是概率分布（由one-hot变换而来），神经网络输出（经过softmax加工）也是一个概率分布，现在想衡量二者的差异（即损失），自然用交叉熵最好了[2]
     * 平均总比有倾向性要好，但这有悖我们的常识;类错误，但偏导为0，权重不会更新，这显然不对——分类越错误越需要对权重进行更新[3]
+* 与KL散度的联系[4]
 * 参考
     * [1] [分类模型的 Loss 为什么使用 cross entropy](https://jackon.me/posts/why-use-cross-entropy-error-for-loss-function/)
     * [2] [训练分类器为什么要用交叉熵损失函数而不能用MSE）](https://blog.csdn.net/yhily2008/article/details/80261953)
     * [3] [直观理解为什么分类问题用交叉熵损失而不用均方误差损失?](https://www.cnblogs.com/shine-lee/p/12032066.html)
+    * [4] [交叉熵、相对熵（KL散度）、JS散度和Wasserstein距离（推土机距离）](https://zhuanlan.zhihu.com/p/74075915)
 
 #### 1.4.6 BCE loss
 * BCELoss 是CrossEntropyLoss的一个特例，只用于二分类问题，而CrossEntropyLoss可以用于二分类，也可以用于多分类。，在使用nn.BCELoss需要在该层前面加上Sigmoid函数
