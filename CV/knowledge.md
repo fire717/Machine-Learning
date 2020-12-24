@@ -282,15 +282,19 @@
 
 #### 3.1.4 Densenet
 * 引入：它的基本思路与ResNet一致，但是它建立的是前面所有层与后面层的密集连接（dense connection），它的名称也是由此而来。 DenseNet提出了一个更激进的密集连接机制：即互相连接所有的层，具体来说就是每个层都会接受其前面所有层作为其额外的输入。
-* 连接方式：在DenseNet中，每个层都会与前面所有层在channel维度上连接（concat）在一起（这里各个层的特征图大小是相同的，后面会有说明），并作为下一层的输入。而resnet是元素级相加）。通过特征在channel上的连接来实现特征重用。这些特点让DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能，这一特点是DenseNet与ResNet最主要的区别。
+* 连接方式：在DenseNet中，每个层都会与前面所有层在channel维度上连接（concat）在一起（这里各个层的特征图大小是相同的，后面会有说明），并作为下一层的输入。而resnet是元素级相加。通过特征在channel上的连接来实现特征重用。这些特点让DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能，这一特点是DenseNet与ResNet最主要的区别。
 * 特征图保持一致：CNN网络一般要经过Pooling或者stride>1的Conv来降低特征图的大小，而DenseNet的密集连接方式需要特征图大小保持一致。为了解决这个问题，DenseNet网络中使用DenseBlock+Transition的结构，其中DenseBlock是包含很多层的模块，每个层的特征图大小相同，层与层之间采用密集连接方式。而Transition模块是连接两个相邻的DenseBlock，并且通过Pooling使特征图大小降低。图4给出了DenseNet的网路结构，它共包含4个DenseBlock，各个DenseBlock之间通过Transition连接在一起。
 * 非线性组合函数：DenseBlock中的非线性组合函数 采用的是 BN+ReLU+3x3 Conv的结构；由于后面层的输入会非常大，DenseBlock内部可以采用bottleneck层来减少计算量，主要是原有的结构中增加1x1 Conv，如图7所示，即BN+ReLU+1x1 Conv+BN+ReLU+3x3 Conv，称为DenseNet-B结构。其中1x1 Conv得到 [公式] 个特征图它起到的作用是降低特征数量，从而提升计算效率。
 
-* 思路：
-    * 由于密集连接方式，DenseNet提升了梯度的反向传播，使得网络更容易训练。需要明确一点，dense connectivity 仅仅是在一个dense block里的，不同dense block 之间是没有dense connectivity的
+* 思考：
+    * 由于密集连接方式，DenseNet提升了梯度的反向传播，使得网络更容易训练。需要明确一点，dense connectivity仅仅是在一个dense block里的，不同dense block 之间是没有dense connectivity的
+    * 特征图直接elementwise相加和concat有什么区别
+        elementwise相加相当于人工提取特征，而且可能丢失信息；concat让模型去学习特征。但是concate带来的计算量较大，在明确原始特征的关系可以使用add操作融合的话，使用add操作可以节省计算代价。
+
 * 参考：
     * [1] [DenseNet：比ResNet更优的CNN模型](https://zhuanlan.zhihu.com/p/37189203)
-
+    * [2] [神经网络中通过add和concate（cat）的方式融合特征的不同](https://blog.csdn.net/weixin_42926076/article/details/100660188)
+    * [3] [如何理解神经网络中通过add的方式融合特征？](https://www.zhihu.com/question/306213462/answer/562776112)
 
 
 
@@ -461,8 +465,18 @@
 
 ## 六、其他
 
-#### 6.1 特征图直接elementwise相加和concat有什么区别
-elementwise相加相当于人工提取特征，而且可能丢失信息；concat让模型去学习特征。但是concate带来的计算量较大，在明确原始特征的关系可以使用add操作融合的话，使用add操作可以节省计算代价。
-* 参考：
-    * [1] [神经网络中通过add和concate（cat）的方式融合特征的不同](https://blog.csdn.net/weixin_42926076/article/details/100660188)
-    * [2] [如何理解神经网络中通过add的方式融合特征？](https://www.zhihu.com/question/306213462/answer/562776112)
+### 6.1 网络架构
+
+#### 6.1.1 Siamese Network
+* 一般用于比较两个输入是否近似
+* 参考:
+    * [1] [孪生网络（Siamese Network）](https://blog.csdn.net/weixin_45657358/article/details/108707358)
+    * [2] [【深度学习】Siamese Network](https://blog.csdn.net/qq_34106574/article/details/84028665)
+    * [3] [Facial Similarity with Siamese Networks in Pytorch](https://github.com/harveyslash/Facial-Similarity-with-Siamese-Networks-in-Pytorch)
+
+#### 6.1.2 Triplet Network
+* 基于6.1.1的改进
+* 参考:
+    * [1] [论文笔记：Triplet Network](https://blog.csdn.net/hongbin_xu/article/details/83064290)
+
+#### Seq2Seq
