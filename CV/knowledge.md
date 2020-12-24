@@ -476,7 +476,15 @@
 
 #### 6.1.2 Triplet Network
 * 基于6.1.1的改进
+* 思考：
+    * Triplet Network 、Triplet Loss
+        1. 最早提出triplet loss的想法的是2003年的Learning a distance metric from relative comparisons
+        2. 14年的论文Deep metric learning using Triplet network提出了Triplet network的概念，是针对Siamese Networ改进而来的架构，因此得名
+        3. 15年Facenet论文提出，里面讲到了triplet loss，用于自己的一个深度CNN网络。
+        4. 总结：triple loss可以应用于很多网络、架构和任务，可以理解为一个类似于交叉熵的通用loss，triplet network是单独特指相对于Siamese Network的一种网络架构，只是这种网络架构的loss可以用triple loss也可以不用，比如用MarginRankingLoss。所以网上大部分文章混为一谈了，且正文都是在讲triplet loss。
+
 * 参考:
     * [1] [论文笔记：Triplet Network](https://blog.csdn.net/hongbin_xu/article/details/83064290)
+    * [2] [Wiki:Triplet loss](https://en.wikipedia.org/wiki/Triplet_loss)
 
 #### Seq2Seq
