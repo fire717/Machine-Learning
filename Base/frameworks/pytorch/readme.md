@@ -64,6 +64,7 @@ def test():
 
 ### Demo
 * [可视化增强图片结果](./demo/show_pth_data.py)
+* [onnx predict](./demo/onnx_pre.py)
 
 ### Toolkit
 * [Focal-Los](https://github.com/yatengLG/Focal-Loss-Pytorch)
