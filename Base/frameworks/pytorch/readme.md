@@ -33,6 +33,19 @@ def clip_gradient(optimizer, grad_clip=1):
                 param.grad.data.clamp_(-grad_clip, grad_clip)
 ```
 
+* 导出onnx
+```
+def test():
+    model = SiameseNetworkOutput()
+    pthfile = os.path.join(Config.save_dir,'3e47_loss0.23540_acc0.96000.pth')
+    model.load_state_dict(torch.load(pthfile, map_location='cpu'), strict=True)
+    #data type nchw
+    dummy_input1 = torch.randn(1, 3, 100, 100)
+    input_names = [ "input1"] #自己命名
+    output_names = [ "output1" ]
+    # torch.onnx.export(model, (dummy_input1, dummy_input2, dummy_input3), "C3AE.onnx", verbose=True, input_names=input_names, output_names=output_names)
+    torch.onnx.export(model, dummy_input1, "output/mymodel.onnx", verbose=True, input_names=input_names, output_names=output_names)
+```
 
 ### Practice
 * Pytorch 入门示例：
