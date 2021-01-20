@@ -217,22 +217,22 @@
 ## 三、网络
 
 ### 3.1 分类
-#### 3.1.1 MobileNet
-* v1: 
+#### 3.1.1 MobileNet 
+* v1 (2017)
     * 基本单元是深度可分离卷积（depthwise separable convolution）,基本结构是3x3 depthwise Conv - BN - Relu - 1x1 conv - BN -Relu
     * 网络结构首先是一个3x3的标准卷积，然后后面就是堆积depthwise separable convolution，并且可以看到其中的部分depthwise convolution会通过strides=2进行down sampling。然后采用average pooling将feature变成1x1，根据预测类别大小加上全连接层，最后是一个softmax层；
     * 整个计算量基本集中在1x1卷积上，如果你熟悉卷积底层实现的话，你应该知道卷积一般通过一种im2col方式实现，其需要内存重组，但是当卷积核为1x1时，其实就不需要这种操作了，底层可以有更快的实现（How？暂时没查到）。对于参数也主要集中在1x1卷积，除此之外还有就是全连接层占了一部分参数。
     * 引入了两个模型超参数：width multiplier和resolution multiplier。第一个参数width multiplier主要是按比例减少通道数，其取值范围为(0,1]。第二个参数resolution multiplier主要是按比例降低特征图的大小，resolution multiplier仅仅影响计算量，但是不改变参数量。
 
 
-* v2:
+* v2 (2018)
     * 改进1：Inverted residuals，通常的residuals block是先经过一个1 * 1的Conv layer，把feature map的通道数“压”下来，再经过3 * 3 Conv layer，最后经过一个1 * 1 的Conv layer，将feature map 通道数再“扩张”回去。即先“压缩”，最后“扩张”回去。 而inverted residuals就是先“扩张”，最后“压缩”。因为若是采用以往的residual block，先“压缩”，再卷积提特征，那么DWConv layer可提取得特征就太少了，因此一开始不“压缩”，MobileNetV2反其道而行，一开始先“扩张”，本文实验“扩张”倍数为6。
     * 改进2：Linear bottlenecks，为了避免Relu对特征的破坏，在residual block的Eltwise sum之前的那个 1 * 1 Conv 不再采用Relu。因为当采用“扩张”→“卷积提特征”→ “压缩”时，在“压缩”之后Relu对于负的输入，输出全为零，会破坏特征；而本来特征就已经被“压缩”，再经过Relu的话，又要“损失”一部分特征，因此这里不采用Relu。
     * 基本组件bottleneck：1×1 conv - BN - Relu6 - 3x3 dwConv - BN - Relu6 - 1x1 conv
     * 除了最后的avgpool，整个网络并没有采用pooling进行下采样，而是利用stride=2来下采样，此法已经成为主流，不知道是否pooling层对速度有影响，因此舍弃pooling层?
     * 相比v1准确率提升，参数量减少，推理耗时减少。
 
-* v3
+* v3 (2019)
     * 没有引入新的 Block，使用神经架构搜索来搜索结构
     * 搜索结果使用了MnasNet 模型引入的基于squeeze and excitation结构的轻量级注意力模型
     * 在网络结构搜索中，作者结合两种技术：资源受限的NAS（platform-aware NAS）与NetAdapt，前者用于在计算和参数量受限的前提下搜索网络的各个模块，所以称之为模块级的搜索（Block-wise Search） ，后者用于对各个模块确定之后网络层的微调。
@@ -250,7 +250,7 @@
     * [3] [重磅！MobileNetV3 来了！](https://www.jiqizhixin.com/articles/2019-05-09-2)
     * [4] [arxiv:Searching for MobileNetV3](https://arxiv.org/abs/1905.02244?context=cs)
 
-#### 3.1.2 VGG
+#### 3.1.2 VGG (2014)
 * 将5x5和7x7这样的卷积分解为多个3x3的卷积的堆叠
 * 以VGG16为例，输入(224,224,3),包含5个block，最后接3个全连接层(4096-4096-1000)
     * block1: conv(3x3)x64-conv(3x3)x64-maxpool , 输出112x112x64
@@ -265,7 +265,7 @@
 
 #### 3.1.3 GoogLeNet(Inception)
 
-* GoogLeNet原始版本
+* GoogLeNet原始版本 (2014)
     * GoogLeNet相比于之前的卷积神经网络的最大改进是设计了一个稀疏参数的网络结构，但是能够产生稠密的数据，既能增加神经网络表现，又能保证计算资源的使用效率。
     * 网络结构：
         * 基本结构：对前一层，并行拼接[1x1conv,3x3conv,5x5conv,3x3maxpool]
@@ -274,7 +274,7 @@
             3. 文章说很多地方都表明pooling挺有效，所以Inception里面也嵌入了
             4. 网络越到后面，特征越抽象，而且每个特征所涉及的感受野也更大了，因此随着层数的增加，3x3和5x5卷积的比例也要增加
 
-* Inception V1(2014)
+* Inception V1 (2014)
     * 一般来说，提升网络性能最直接的办法就是增加网络深度和宽度，这也就意味着巨量的参数，容易产生过拟合也会大大增加计算量。解决上述两个缺点的根本方法是将全连接甚至一般的卷积都转化为稀疏连接。一方面现实生物神经系统的连接也是稀疏的，另一方面有文献表明：对于大规模稀疏的神经网络，可以通过分析激活值的统计特性和对高度相关的输出进行聚类来逐层构建出一个最优网络。这点表明臃肿的稀疏网络可能被不失性能地简化。 早些的时候，为了打破网络对称性和提高学习能力，传统的网络都使用了随机稀疏连接。但是，计算机软硬件对非均匀稀疏数据的计算效率很差，所以在AlexNet中又重新启用了全连接层，目的是为了更好地优化并行运算。为了既能保持网络结构的稀疏性，又能利用密集矩阵的高计算性能。大量的文献表明可以将稀疏矩阵聚类为较为密集的子矩阵来提高计算性能，据此论文提出了名为Inception 的结构来实现此目的。
     * Inception 结构的主要思路是怎样用密集成分来近似最优的局部稀疏结构。
     * 网络结构：
@@ -284,7 +284,7 @@
         * 为了避免梯度消失，网络额外增加了2个辅助的softmax用于向前传导梯度。文章中说这两个辅助的分类器的loss应该加一个衰减系数，但看caffe中的model也没有加任何衰减。此外，实际测试的时候，这两个额外的softmax会被去掉。
         * GoogleNet的caffemodel大小约50M
     * GoogLeNet V1出现的同期，性能与之接近的大概只有VGGNet了，并且二者在图像分类之外的很多领域都得到了成功的应用。但是相比之下，GoogLeNet的计算效率明显高于VGGNet，大约只有500万参数，只相当于Alexnet的1/12(GoogLeNet的caffemodel大约50M，VGGNet的caffemodel则要超过600M)。
-* Inception V2
+* Inception V2 (2015)
     * 通过简单地放大Inception结构来构建更大的网络，则会立即提高计算消耗。文章中作者首先给出了一些已经被证明有效的用于放大网络的通用准则和优化方法。这些准则和方法适用但不局限于Inception结构（这些并不能直接用来提高网络质量，而仅用来在大环境下作指导。）：
         1. 避免表达瓶颈，特别是在网络靠前的地方。 信息流前向传播过程中显然不能经过高度压缩的层，即表达瓶颈。从input到output，feature map的宽和高基本都会逐渐变小，但是不能一下子就变得很小。比如你上来就来个kernel = 7, stride = 5 ,这样显然不合适。 
         2. 高维特征更易处理。 高维特征更易区分，会加快训练。
@@ -292,14 +292,14 @@
         4. 平衡网络的宽度与深度。
     * 大尺寸的卷积核可以带来更大的感受野，但也意味着更多的参数，比如5x5卷积核参数是3x3卷积核的25/9=2.78倍。为此，作者提出可以用2个连续的3x3卷积层(stride=1)组成的小网络来代替单个的5x5卷积层，(保持感受野范围的同时又减少了参数量)【原来这里提出的】。这种替代不会造成表达缺失，3x3卷积之后还要再加激活吗？实验表明添加非线性激活会提高性能。
     * 大卷积核完全可以由一系列的3x3卷积核来替代，那能不能分解的更小一点呢。文章考虑了 nx1 卷积核。任意nxn的卷积都可以通过1xn卷积后接nx1卷积来替代。实际上，作者发现在网络的前期使用这种分解效果并不好，还有在中度大小的feature map上使用效果才会更好。（对于mxm大小的feature map,建议m在12到20之间）。该结构被正式用在GoogLeNet V2中，即把3x3变成1x3和3x1的两层。另外输出的维度channel，一般来说会逐渐增多(每层的num_output)，否则网络会很难训练。（特征维度并不代表信息的多少，只是作为一种估计的手段）
-* Inception V3
+* Inception V3 (2015)
     * Inception Net v3 整合了前面 Inception v2 中提到的所有升级，还使用了：
         * RMSProp 优化器；
         * Factorized 7x7 卷积；
         * 辅助分类器使用了 BatchNorm；
         * 标签平滑
     * Inception V3一个最重要的改进是卷积分解（Factorization），将7x7卷积分解成两个一维的卷积串联（1x7和7x1），3x3卷积分解为两个一维的卷积串联（1x3和3x1），这样既可以加速计算，又可使网络深度进一步增加，增加了网络的非线性（每增加一层都要进行ReLU）。
-* Inception V4
+* Inception V4 (2016)
     * Inception v4 和 Inception -ResNet 在同一篇论文《Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning》中介绍。
     * inception v4把原来的inception结构中加入了ResNet中的Residual Blocks结构，把一些层的输出加上前几层的输出，这样中间这几层学习的实际上是残差。论文说引入ResNet中的Residual Blocks结构不是用来提高准确度，只是用来提高模型训练收敛速度。
     * 另外就是V4把一个先1x1卷积再3x3卷积换成了先3x3卷积再1x1卷积。
@@ -312,7 +312,7 @@
     * [3] [GoogLeNet和Inception v1、v2、v3、v4网络介绍](https://blog.csdn.net/zgcr654321/article/details/90264871)
 
 
-#### 3.1.4 ResNet
+#### 3.1.4 ResNet (2016)
 
 * 引入：VGG网络达到19层后再增加层数就开始导致分类性能的下降，为了解决深层神经网络的难以训练、收敛等问题，提出了残差学习
 * 网络结构：ResNet网络是参考了VGG19网络，在其基础上进行了修改，并通过短路机制加入了残差单元
@@ -329,7 +329,7 @@
     * [1] [你必须要知道CNN模型：ResNet](https://zhuanlan.zhihu.com/p/31852747)
     * [2] [Understanding and visualizing ResNets](https://towardsdatascience.com/understanding-and-visualizing-resnets-442284831be8)
 
-#### 3.1.5 Densenet
+#### 3.1.5 Densenet (2017)
 * 引入：它的基本思路与ResNet一致，但是它建立的是前面所有层与后面层的密集连接（dense connection），它的名称也是由此而来。 DenseNet提出了一个更激进的密集连接机制：即互相连接所有的层，具体来说就是每个层都会接受其前面所有层作为其额外的输入。
 * 连接方式：在DenseNet中，每个层都会与前面所有层在channel维度上连接（concat）在一起（这里各个层的特征图大小是相同的，后面会有说明），并作为下一层的输入。而resnet是元素级相加。通过特征在channel上的连接来实现特征重用。这些特点让DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能，这一特点是DenseNet与ResNet最主要的区别。
 * 特征图保持一致：CNN网络一般要经过Pooling或者stride>1的Conv来降低特征图的大小，而DenseNet的密集连接方式需要特征图大小保持一致。为了解决这个问题，DenseNet网络中使用DenseBlock+Transition的结构，其中DenseBlock是包含很多层的模块，每个层的特征图大小相同，层与层之间采用密集连接方式。而Transition模块是连接两个相邻的DenseBlock，并且通过Pooling使特征图大小降低。图4给出了DenseNet的网路结构，它共包含4个DenseBlock，各个DenseBlock之间通过Transition连接在一起。
@@ -478,6 +478,22 @@
     * [11] [yolo系列之yolo v3【深度解析】](https://blog.csdn.net/leviopku/article/details/82660381)
     * [12] [YOLO1、YOLO2、YOLO3对比](https://blog.csdn.net/qq_32172681/article/details/100104494)
     * [13] [目标检测算法之YOLOv2损失函数详解](https://zhuanlan.zhihu.com/p/93632171)
+
+
+#### 3.2.4 EfficientDet
+
+* 主要贡献点是 BiFPN，Compound Scaling 两部分
+* BiFPN: 
+    * PANet 只有从底向上连，自顶向下两条路径，作者认为这种连法可以作为一个基础层，重复多次。这样就得到了下图的结果（看中间的 BiFPN Layer 部分）。如何确定重复几次呢，这是一个速度和精度之间的权衡，会在下面的Compound Scaling 部分介绍
+    * Cross-Scale Connections: 作者提出之前从FPN 开始普遍采用的，一个特征先 Resize ，再和另一层的特征相加的方式不合理。因为这样假设这两层的特征有了相同的权重。从更复杂的建模角度出发，应该每一个 feature 在相加的时候都要乘一个自己的权重。这样 weighted 的方式能涨 0.4
+    * weighted 的时候，权重理论上要用 softmax 归一化到和为1，但由于 softmax 的指数运算开销比较大，作者简化为一个快速的方式 (Fast normalized fusion)，其实就是去掉了 softmax 的指数运算，在 GPU 上能快 30%，性能微微掉一点
+    * 总结一下 BiFPN部分，是在PANet的基础上，根据一些主观的假设，做了针对性的化简，得到了参数量更少，效果更好的连接方式。
+* Compound Scaling:
+    * EfficientNet 在 Model Scaling 的时候考虑了网络的 width, depth, and resolution 三要素。而 EfficientDet 进一步扩展，把 EfficientNet 拿来做 backbone，这样从 EfficientNet B0 ~ B6，就可以控制 Backbone 的规模；neck 部分，BiFPN 的 channel 数量、重复的 layer 数量也可以控制；此外还有 head 部分的层数，以及 输入图片的分辨率，这些组成了 EfficientDet 的 scaling config 。
+
+* 参考：
+    * [1] [EfficientDet 算法解读](https://zhuanlan.zhihu.com/p/93241232)
+
 
 ### 3.3 分割
 #### 3.3.1 U-net
