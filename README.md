@@ -60,12 +60,12 @@
 	* [中文OCR2（CTPN + DenseNet）](https://github.com/YCG09/chinese_ocr)
 	* [RFBNet(ECCV2018快速目标检测)](https://github.com/ruinmessi/RFBNet)  
 	* [AlphaPose(人体姿态估计)](https://github.com/MVIG-SJTU/AlphaPose) 
-	* [libface快速人脸检测](https://github.com/ShiqiYu/libfacedetection) 
 	* [轻量级性别年龄分类模型](https://github.com/deepinsight/insightface/tree/master/gender-age) 
 	* [图像风格迁移](https://github.com/wenqiwenqi1/neural-style) 
 	* [超分辨率](https://github.com/titu1994/Image-Super-Resolution) 
 	* [Mask_RCNN人体关键点、分割](https://github.com/Superlee506/Mask_RCNN_Humanpose) 
 	* [人像卡通化](https://github.com/minivision-ai/photo2cartoon) 
+	* [移动端人脸检测1：libface](https://github.com/ShiqiYu/libfacedetection) | [移动端人脸检测2：Ultra Face](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB/blob/master/README_CN.md)
 	* [人脸识别](https://github.com/davidsandberg/facenet)
 
 * [CV知识点整理>>](/CV/knowledge.md)
