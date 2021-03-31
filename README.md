@@ -52,7 +52,7 @@
 * 课程: [CS231n/Feifei Li](/Base/courses/cs231n) 
 * 笔记: [chinese-ocr项目](/CV/note/chineseocr-ctpn-densenet.md) | [《深度卷积网络：原理与实践》读书笔记](./CV/note/DCNN_book_note.md) | [手写汉字识别调研](/CV/note/handwrite_ocr_note.md)
 * 经典分类网络： [LeNet-5](/CV/nets/lenet5/) | [AlexNet](./cv/nets/alexnet) | [VGGNet](/CV/nets/vgg/) | GoogleNet | ResNet | DenseNet | Xception | [EfficientNet](https://github.com/titu1994/keras-efficientnets)
-* 经典检测网络： [SSD](https://github.com/pierluigiferrari/ssd_keras) | FasterRCNN | Yolo | CornerNet | CenterNet | [EfficientDet](https://github.com/xuannianz/EfficientDet)
+* 经典检测网络： [SSD（自己实现）](/CV/nets/SSD/)| FasterRCNN | Yolo | CornerNet | CenterNet | [EfficientDet](https://github.com/xuannianz/EfficientDet)
 * 经典分割网络：Unet | DeepLab | [谷歌bodypix（走通了tfjs转onnx转tnn安卓部署的流程，但是实时精度不高）](https://github.com/google-coral/project-bodypix)
 * 经典项目： 
 	* [HyperLPR车牌识别](https://github.com/zeusees/HyperLPR) 
