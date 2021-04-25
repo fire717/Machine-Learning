@@ -38,7 +38,8 @@
     * 具有一定的正则化效果，由于我们使用mini-batch的均值与方差作为对整体训练样本均值与方差的估计，尽管每一个batch中的数据都是从总体样本中抽样得到，但不同mini-batch的均值与方差会有所不同，这就为网络的学习过程中增加了随机噪音，与Dropout通过关闭神经元给网络训练带来噪音类似，在一定程度上对模型起到了正则化的效果[5],增加泛化能力
     
 * 思考：
-    * 对于CNN，BN的操作是在各个特征维度之间单独进行，也就是说各个通道是分别进行Batch Normalization操作的。BN是对每个batch中的每个channel中的所有值进行单独处理，最终可以得到C个mean与C个var的值，在训练的过程中，BN是首先计算当前channel中所有值得均值与方差，然后对其进行归一化
+    * 对于CNN，BN的操作是在各个特征维度之间单独进行，也就是说各个通道是分别进行Batch Normalization操作的。对每个batch中的每个channel中的所有值进行单独处理，最终可以得到C个mean与C个var的值，在训练的过程中，BN是首先计算当前channel中所有值得均值与方差，然后对其进行归一化。为什么？我觉得可以这么理解：首先bn是跟在cnn之后的，拿到的就是ncwh的数据维度，而这个c就是对应不同的c个卷积核，对应于全连接层的每一个神经元，然后对每一个卷积核（神经元），求nhw维度（对全连接就是n）的归一化。对于不同图片、同一图片的不同位置，生成一个channel的卷积核是同一个，所以针对非channel其他维度做归一化,从而保证每一个卷积核提取特征的输出数值稳定性。
+    * 我们在一些源码中，可以看到带有BN的卷积层，bias设置为False，就是因为即便卷积之后加上了Bias，在BN中也是要减去的，所以加Bias带来的非线性就被BN一定程度上抵消了。需要补偿。
     * 为什么需要乘以gamma加上beta：
         * 说法一：不同层的值域是可能不一样的，而BN让使输出变大变小这个重要工作更容易做到[3],;
         * 说法二：这是为了让神经网络自己去学着使用和修改这个扩展参数 gamma, 和 平移参数 β, 这样神经网络就能自己慢慢琢磨出前面的 normalization 操作到底有没有起到优化的作用, 如果没有起到作用, 我就使用 gamma 和 belt 来抵消一些 normalization 的操作[4]
@@ -57,7 +58,7 @@
     * [7] [Batch-normalized 应该放在非线性激活层的前面还是后面？](https://www.zhihu.com/question/283715823/answer/438882036) 
     * [8] [论文|How Does Batch Normalizetion Help Optimization](https://zhuanlan.zhihu.com/p/66683061)
     * [9] [深度学习中的五种归一化（BN、LN、IN、GN和SN）方法简介](https://blog.csdn.net/u013289254/article/details/99690730)
-
+    * [10] [BatchNorm的个人解读和Pytorch中BN的源码解析](https://blog.csdn.net/qq_34914551/article/details/102736271)
 
 
 #### 1.1.2 Dropout
