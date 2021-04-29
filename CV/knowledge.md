@@ -224,9 +224,9 @@
     * 网络结构首先是一个3x3的标准卷积，然后后面就是堆积depthwise separable convolution，并且可以看到其中的部分depthwise convolution会通过strides=2进行down sampling。然后采用average pooling将feature变成1x1，根据预测类别大小加上全连接层，最后是一个softmax层；整个网络共28层，特征图宽度逐渐降低，深度逐渐变深。
     * 整个计算量基本集中在1x1卷积上，如果你熟悉卷积底层实现的话，你应该知道卷积一般通过GEMM实现，底层是im2col方式实现，其需要内存重组（内存不连续需要多次访问内存），但是当卷积核为1x1时，其实就不需要这种操作了（内存连续），底层可以有更快的实现（Caffe 在计算卷积时，首先用 im2col 将输入的三维数据转换成二维矩阵，使得卷积计算可表示成两个二维矩阵相乘，从而充分利用已经优化好的 GEMM 库来为各个平台加速卷积计算）。对于参数也主要集中在1x1卷积，除此之外还有就是全连接层占了一部分参数。
     * 引入了两个模型超参数：width multiplier和resolution multiplier。第一个参数width multiplier主要是按比例减少通道数，其取值范围为(0,1]。第二个参数resolution multiplier主要是按比例降低特征图的大小，resolution multiplier仅仅影响计算量，但是不改变参数量。
-	* 除了最后的avgpool，整个网络并没有采用pooling进行下采样，而是利用stride=2来下采样，此法已经成为主流，不知道是否pooling层对速度有影响，因此舍弃pooling层.
-	*在 MobileNet V1 里面使用 ReLU6，ReLU6 就是普通的ReLU但是限制最大输出值为 6，这是为了在移动端设备 float16/int8 的低精度的时候，也能有很好的数值分辨率，如果对 ReLU 的激活范围不加限制，输出范围为0到正无穷，如果激活值非常大，分布在一个很大的范围内，则低精度的float16/int8无法很好地精确描述如此大范围的数值，带来精度损失。
-	* 缺点：MobileNet V1 的结构其实非常简单，论文里是一个非常复古的直筒结构，类似于VGG一样。这种结构的性价比其实不高，后续一系列的 ResNet, DenseNet 等结构已经证明通过复用图像特征，使用 Concat/Eltwise+ 等操作进行融合，能极大提升网络的性价比
+    * 除了最后的avgpool，整个网络并没有采用pooling进行下采样，而是利用stride=2来下采样，此法已经成为主流，不知道是否pooling层对速度有影响，因此舍弃pooling层.
+    *在 MobileNet V1 里面使用 ReLU6，ReLU6 就是普通的ReLU但是限制最大输出值为 6，这是为了在移动端设备 float16/int8 的低精度的时候，也能有很好的数值分辨率，如果对 ReLU 的激活范围不加限制，输出范围为0到正无穷，如果激活值非常大，分布在一个很大的范围内，则低精度的float16/int8无法很好地精确描述如此大范围的数值，带来精度损失。
+    * 缺点：MobileNet V1 的结构其实非常简单，论文里是一个非常复古的直筒结构，类似于VGG一样。这种结构的性价比其实不高，后续一系列的 ResNet, DenseNet 等结构已经证明通过复用图像特征，使用 Concat/Eltwise+ 等操作进行融合，能极大提升网络的性价比
 
 * v2 (2018)
     * 改进1：基本单元由普通的深度可分离卷积变为Inverted residuals block。首先引入了残差结构，但通常的residuals block是先经过一个1 * 1的Conv layer，把feature map的通道数“压”下来，再经过3 * 3 Conv layer，最后经过一个1 * 1 的Conv layer，将feature map 通道数再“扩张”回去。即先“压缩”，最后“扩张”回去。 而inverted residuals就是先“扩张”，最后“压缩”。因为若是采用以往的residual block，先“压缩”，再卷积提特征，那么DWConv layer可提取得特征就太少了，因此一开始不“压缩”，MobileNetV2反其道而行，一开始先“扩张”，本文实验“扩张”倍数为6。因为引入了残差结构，虽然有扩张，但是提取特征能力更强，可以使用更小的输入、输出维度。
@@ -240,12 +240,12 @@
 		* NetAdapt作用：用户可以自动简化一个预训练的网络以使其达到硬件资源限制，同时最大化精确度。 NetAdapt简介：将 direct metrics（延时，能量，内存占用等等， 等等，或者是这些指标的结合）并入自适应算法，direct metrics 用empirical measurements （实证测量）分析，这样就不用对特殊平台的细节进行了解了（当然将来的改进可以对平台细节进行了解）。在每次迭代中，NetAdapt会差生很多network proposal并将他们在目标平台上测量，以测量结果指导NetAdapt产生下一批network proposal。
 	* 引入了基于squeeze and excitation结构的轻量级注意力模型。SE模块加入再bottleneck的3x3depthwise卷积后的bn和激活函数之间。（SE结构：pool-fc-relu-fc-hsigmoid，且fc深度变为原始的1/4，这样可以提升速度）。对于SE模块，不再使用sigmoid，而是采用ReLU6(x + 3) / 6作为近似（就像h-swish那样）。
     * 使用激活函数h-swish替换relu6，作为swish的数值近似（swish计算量较大），h-swish(X) = X x Relu6(X+3)/6.但是只是高层用了hswish，底层还是relu。
-	* 常规的swish使用的是 x x sigmoid(x)，它可以显著提高神经网络的精度，但是sigmoid的计算实在是太耗时了，所以在这里作者使用了ReLU6作为替代。不过，并非整个模型都使用了h-swish，模型的前一半层使用常规ReLU（第一个conv层之后的除外）。 因为作者发现，h-swish仅在更深层次上有用。 此外，考虑到特征图在较浅的层中往往更大，因此计算其激活成本更高，所以作者选择在这些层上简单地使用ReLU（而非ReLU6），因为它比h-swish省时。具体解释一下如何完成ReLU6(x + 3) / 6的。如图2所示，在Mul层中，做了乘以0.16667的乘法，这就相当于除以6；ReLU6则融合在了卷积层之中；另外，对于x+3，这里的3被加在了卷积层的偏置层中了。这样做也是一种小的优化方式。
+    * 常规的swish使用的是 x x sigmoid(x)，它可以显著提高神经网络的精度，但是sigmoid的计算实在是太耗时了，所以在这里作者使用了ReLU6作为替代。不过，并非整个模型都使用了h-swish，模型的前一半层使用常规ReLU（第一个conv层之后的除外）。 因为作者发现，h-swish仅在更深层次上有用。 此外，考虑到特征图在较浅的层中往往更大，因此计算其激活成本更高，所以作者选择在这些层上简单地使用ReLU（而非ReLU6），因为它比h-swish省时。具体解释一下如何完成ReLU6(x + 3) / 6的。如图2所示，在Mul层中，做了乘以0.16667的乘法，这就相当于除以6；ReLU6则融合在了卷积层之中；另外，对于x+3，这里的3被加在了卷积层的偏置层中了。这样做也是一种小的优化方式。
     * 作者们发现MobileNetV2 网络端部最后阶段的计算量很大，重新设计了这一部分
     * mobilenetv3-small相比v2准确率提升，参数量减少，推理耗时减少。
-	* MobileNet v1和v2都从具有32个滤波器的常规3×3卷积层开始，然而实验表明，这是一个相对耗时的层，只要16个滤波器就足够完成对224 x 224特征图的滤波。虽然这样并没有节省很多参数，但确实可以提高速度。
-	* v3-small的基本结构是一个3x3x16全卷积，然后3个3x3的bneck，使用relu，然后8个5x5的bneck，使用hswish。然后1x1-pool-1x1-1x1  第二个1x1对应mb2中的1280，移到了pool后提速。
-	* v3高层都是5x5conv，且扩张倍数不是6，貌似是搜出来的，理论依据暂没搜到。
+    * MobileNet v1和v2都从具有32个滤波器的常规3×3卷积层开始，然而实验表明，这是一个相对耗时的层，只要16个滤波器就足够完成对224 x 224特征图的滤波。虽然这样并没有节省很多参数，但确实可以提高速度。
+    * v3-small的基本结构是一个3x3x16全卷积，然后3个3x3的bneck，使用relu，然后8个5x5的bneck，使用hswish。然后1x1-pool-1x1-1x1  第二个1x1对应mb2中的1280，移到了pool后提速。
+    * v3高层都是5x5conv，且扩张倍数不是6，貌似是搜出来的，理论依据暂没搜到。
 
 * 深度可分离卷积:
     * 传统卷积： 输入(224,224,3) ，使用(3x3x3)的卷积核5个, 输出为(224,224,5) （假设padding），计算量为3x3x3x5x224x224 = 6773760
@@ -353,6 +353,29 @@
     * [3] [如何理解神经网络中通过add的方式融合特征？](https://www.zhihu.com/question/306213462/answer/562776112)
 
 
+#### 3.1.1 ShuffleNet 
+* v1 (2017)
+    * ShuffleNet的结构基本上和ResNet是一样的，也是分成几个stage（ResNet中有4个stage，这里只有3个），然后在每个stage中用ShuffleNet unit代替原来的Residual block，这也就是ShuffleNet算法的核心。
+    * 基于ResNet残差单元修改，引入channel shuffle、pointwise group convolutions和depthwise separable convolution。
+    * 网络结构首先是一个3x3的标准卷积（s=2），然后是maxpooling（s=2），后面就是3个stage（block），最后一个GAP转全连接输出。
+    * 原始残差：x -> 1x1conv(bn+relu) -> 3x3DWconv(bn+relu) -> 1x1pconv(bn) -> add(x)(relu) 
+    * 改进1: x -> 1x1Gconv(bn+relu) -> channel shuffle -> 3x3DWconv(bn) -> 1x1Gconv(bn) -> add(x)(relu)
+    * 改进2：x -> 1x1Gconv(bn+relu) -> channel shuffle -> 3x3DWconv(bn),s=2 -> 1x1Gconv(bn) -> concat( 3x3AVGpool(x),s=2 )(relu)
+    * 思考
+    	* 核心就是认为1x1卷积计算多，于是引入分组pointwise卷积，而为了解决分组后每个部分关注区域有限的问题，引入了channel shuffle 
+        * 为什么block后面没有relu：同mobilenet2吧，小网络再加就没啥特征了。
+        * 为什么add改为concat: concat相比add可以提升复杂度，add类似于先验知识两个特征图位置对应可以add，而concat则是让模型自己学习，原文说的是很小的计算代价提升模型精度。同时因为有channel shuffle，所以不是一一对应了？所以用concat更好。
+        * 为什么改进2要步长2且引入avg？看三个block的图是先引入avg，然后为了保持一致，所以DWconv 的s设为2，同时为了不丢失太多信息，add改为concat
+
+* v2 (2018)
+    * 改进1：
+
+
+* 参考：
+    * [1] [ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices](https://arxiv.org/abs/1707.01083)
+    * [2] [ShuffleNet算法详解](https://blog.csdn.net/u014380165/article/details/75137111)
+    * [3] [轻量化网络：ShuffleNet](https://blog.csdn.net/u011995719/article/details/78918128)
+    * [4] []()
 
 
 ### 3.2 检测
