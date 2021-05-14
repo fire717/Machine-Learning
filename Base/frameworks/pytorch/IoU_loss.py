@@ -64,11 +64,8 @@ def myIOULoss(self,predicted_locations, gt_locations, labels,
 
         loss = loss.sum()
     else:
-        if iou==0:
-            loss=0
-        else:
-            iou = -torch.log(iou)
-            loss = iou.sum()
+        iou = -torch.log(iou + 1e-16) #防止为0
+        loss = iou.sum()
 
     #print(loss,num_pos)
     # b
