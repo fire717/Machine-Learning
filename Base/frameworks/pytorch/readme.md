@@ -71,7 +71,7 @@ def test():
 * [Ranger](https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer)
 * [warmup-lr](https://github.com/ildoonet/pytorch-gradual-warmup-lr)
 * [fast-autoaugment](https://github.com/kakaobrain/fast-autoaugment)
-* [各种IOUloss的pytorch实现](https://blog.csdn.net/weixin_38241876/article/details/110041645)
+* [各种IOUloss的pytorch实现](toolkit/IoU_loss.py)
 
 ### Resource
 * [官网](http://pytorch.org/)
