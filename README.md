@@ -42,7 +42,7 @@
 
 ## 3.计算机视觉
 #### 常用代码
-* 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | 
+* 常用预处理：[打乱数据集](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/transformation_data.py) | [计算图像均值方差](https://github.com/fire717/Python-Learner/blob/master/tools/numpy/tools/compute_imgs_mean_std.py) |  [分类数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_classify.py) |  [检测数据增强](https://github.com/fire717/Python-Learner/blob/master/tools/OpenCV/dataAugmentation_objectdetect.py) | [mAP计算](https://github.com/Cartucho/mAP)
 
 * VOC数据集相关：[生成目录结构](/CV/codes/makeVOCDirs.py) | [标签转xml写入](/CV/codes/flickr_to_voc.py) | [可视化标签框](/CV/codes/show_voc_box.py) | [更新训练验证txt图片名](/CV/codes/updateTXT.py) )| [VOC转csv格式](/CV/codes/pascalVOC2csv.py) | [计算csv格式数据合适的anchor](https://github.com/martinzlocha/anchor-optimization/)
 
