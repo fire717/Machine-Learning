@@ -72,6 +72,7 @@ def test():
 * [warmup-lr](https://github.com/ildoonet/pytorch-gradual-warmup-lr)
 * [fast-autoaugment](https://github.com/kakaobrain/fast-autoaugment)
 * [各种IOUloss的pytorch实现](IoU_loss.py)
+* [Libra R-CNN:IOU_balanced](IOU_balanced.py)
 
 ### Resource
 * [官网](http://pytorch.org/)
