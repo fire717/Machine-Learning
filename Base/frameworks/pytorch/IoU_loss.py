@@ -47,7 +47,7 @@ def myIOULoss(self,predicted_locations, gt_locations, labels,
             c_area = cw * ch + 1e-16  # convex area
             loss = iou - (c_area - union) / c_area  # GIoU
             loss = 1-loss
-        if DIoU or CIoU:  # Distance or Complete IoU https://arxiv.org/abs/1911.08287v1
+        else:  # Distance or Complete IoU https://arxiv.org/abs/1911.08287v1
             # convex diagonal squared
             c2 = cw ** 2 + ch ** 2 + 1e-16
             # centerpoint distance squared
