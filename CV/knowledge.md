@@ -181,9 +181,14 @@
 * 参考：
     * [1] [孪生神经网络(Siamese Network)详解](https://blog.csdn.net/weixin_45250844/article/details/102765678)
 
-#### 1.4.10 KL散度
+#### 1.4.10 IoU Loss
+* 主要是改进目标检测中边框回归任务的loss，比如ssd用的smooth-l1，但是他们都是把坐标角点单独去优化忽略了相关性，iou-loss就是直接通过iou来计算loss。
+* 参考：
+    * [1] [IOU & GIOU & DIOU 介绍及其代码实现](https://blog.csdn.net/leonardohaig/article/details/103394369)
 
-#### 1.4.11 CTC-Loss
+#### 1.4.11 KL散度
+
+#### 1.4.12 CTC-Loss
 
 
 ## 二、数据
