@@ -165,7 +165,12 @@
 * 参考：
     * [1] [Focal Loss理解](https://www.cnblogs.com/king-lps/p/9497836.html)
 
-#### 1.4.8 Center-loss
+#### 1.4.8 KL散度
+* KL散度=标签的熵+交叉熵，而DL中标签是固定的，所以可以用交叉熵替代KL散度。而在蒸馏等场景中，教师网络和学生网络输出都不固定，所以用KL散度合适。
+* 参考：
+    * [1] [交叉熵、相对熵（KL散度）、JS散度和Wasserstein距离（推土机距离）](https://zhuanlan.zhihu.com/p/74075915)
+
+#### 1.4.9 Center-loss
 * Center-loss搭配交叉熵使用，在结合使用这两种损失函数时，可以认为softmax交叉熵负责增加类间距离，center-loss负责减小类内距离，这样学习到的特征判别度会更高。
 * 实现：
     * 当前数据减去该batch的中心数据特征的二范求和
@@ -175,18 +180,18 @@
     * [2] [中心损失 Center Loss 解释](https://www.cnblogs.com/carlber/p/10811396.html)
     * [3] [github一个pytorch实现](https://github.com/egcode/facerec/blob/master/losses/CenterLoss.py)
 
-#### 1.4.9 Contrastive Loss
+#### 1.4.10 Contrastive Loss
 * 输入是一个数据对x1,x2和标签y,y=1代表相似，0代表不相似
 * 当y=1时，loss相当于L2 loss，y=0时，对L2设置了一个阈值ｍargin，表示我们只考虑不相似特征欧式距离在０～ｍargin之间的，当距离超过ｍargin的，则把其loss看做为０
 * 参考：
     * [1] [孪生神经网络(Siamese Network)详解](https://blog.csdn.net/weixin_45250844/article/details/102765678)
 
-#### 1.4.10 IoU Loss
+#### 1.4.11 IoU Loss
 * 主要是改进目标检测中边框回归任务的loss，比如ssd用的smooth-l1，但是他们都是把坐标角点单独去优化忽略了相关性，iou-loss就是直接通过iou来计算loss。
 * 参考：
     * [1] [IOU & GIOU & DIOU 介绍及其代码实现](https://blog.csdn.net/leonardohaig/article/details/103394369)
 
-#### 1.4.10 Wing Loss
+#### 1.4.12 Wing Loss
 * loss = wln(1+|x|/epsilon)  if |x|<w, |x|-C   otherwise,   (|x|为标签和预测的差异，一般来说就是x_label-x_pre)。论文中实验结果为w=10，epsilon=2时效果最后。
     * w：非线性区域的长度
     * epsilon：非线性区域的曲率（值越大曲线越弯）
@@ -196,7 +201,6 @@
     * [1] [人脸关键点: Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks](https://blog.csdn.net/u011995719/article/details/80150508)
     * [2] [[人脸关键点检测] Wing loss 论文解读](https://blog.csdn.net/john_bh/article/details/106302026)
     
-#### 1.4.12 KL散度
 
 #### 1.4.13 CTC-Loss
 
