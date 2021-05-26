@@ -186,9 +186,18 @@
 * 参考：
     * [1] [IOU & GIOU & DIOU 介绍及其代码实现](https://blog.csdn.net/leonardohaig/article/details/103394369)
 
-#### 1.4.11 KL散度
+#### 1.4.10 Wing Loss
+* loss = wln(1+|x|/epsilon)  if |x|<w, |x|-C   otherwise,   (|x|为标签和预测的差异，一般来说就是x_label-x_pre)。论文中实验结果为w=10，epsilon=2时效果最后。
+    * w：非线性区域的长度
+    * epsilon：非线性区域的曲率（值越大曲线越弯）
+    * C： C = w - wln(1+w/epsilon)（保证连续）
+* 用于人脸关键点回归。回归一般用L1，L2和Smooth L1，但是他们在-1,1这个区域都倾向于被large error主导，而关键点检测任务不像检测框回归，关键点误差很小，所以要更好的关注small error，所以使用ln函数。而为了避免在错误的方向上“走”一大步，因此在small errors 时，需要gradient进行限制，本文就采用两个参数来控制gradient，分别是w和epsilon。
+* 参考：
+    * [1] 人脸关键点: Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks](https://blog.csdn.net/u011995719/article/details/80150508)
+    
+#### 1.4.12 KL散度
 
-#### 1.4.12 CTC-Loss
+#### 1.4.13 CTC-Loss
 
 
 ## 二、数据
