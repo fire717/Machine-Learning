@@ -191,9 +191,10 @@
     * w：非线性区域的长度
     * epsilon：非线性区域的曲率（值越大曲线越弯）
     * C： C = w - wln(1+w/epsilon)（保证连续）
-* 用于人脸关键点回归。回归一般用L1，L2和Smooth L1，但是他们在-1,1这个区域都倾向于被large error主导，而关键点检测任务不像检测框回归，关键点误差很小，所以要更好的关注small error，所以使用ln函数。而为了避免在错误的方向上“走”一大步，因此在small errors 时，需要gradient进行限制，本文就采用两个参数来控制gradient，分别是w和epsilon。
+* 用于人脸关键点回归。回归一般用L1，L2和Smooth L1，但是他们在-1,1这个区域都倾向于被large error主导，而关键点检测任务不像检测框回归，关键点误差很小，所以要更好的关注small error，所以使用ln函数,梯度为1/x，则x越小梯度越大。论文说，在同时组合大量点后，梯度由small error主导，步长由large error主导，刚好可以平衡。这个步长不好理解，论文说L1和L2两个函数的梯度大小分别为1和|x|，对应的优化步长大小为|x|和1，而ln(x)梯度为1/x，步长为x^2,文章[2]说步长是需要优化的次数，那就是|x|/梯度，那不应该叫步长，应该叫迭代次数，步长有误导.而为了避免在错误的方向上“走”一大步，因此在small errors 时，需要gradient进行限制，本文就采用两个参数来控制gradient，分别是w和epsilon。
 * 参考：
-    * [1] 人脸关键点: Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks](https://blog.csdn.net/u011995719/article/details/80150508)
+    * [1] [人脸关键点: Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks](https://blog.csdn.net/u011995719/article/details/80150508)
+    * [2] [[人脸关键点检测] Wing loss 论文解读](https://blog.csdn.net/john_bh/article/details/106302026)
     
 #### 1.4.12 KL散度
 
