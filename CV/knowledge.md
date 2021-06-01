@@ -387,6 +387,11 @@
         * 为什么改进2要步长2且引入avg？看三个block的图是先引入avg，然后为了保持一致，所以DWconv 的s设为2，同时为了不丢失太多信息，add改为concat
 
 * v2 (2018)
+    * 高效网络设计的4条实用准则
+    	* G1 相同通道宽度可以最小化内存访问成本MAC。
+    	* G2 过多的组卷积会增加内存访问成本MAC
+    	* G3 网络内部碎片操作会降低并行度
+    	* G4 Element-wise操作不容忽视
     * 改进1：
 
 
@@ -394,7 +399,7 @@
     * [1] [ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices](https://arxiv.org/abs/1707.01083)
     * [2] [ShuffleNet算法详解](https://blog.csdn.net/u014380165/article/details/75137111)
     * [3] [轻量化网络：ShuffleNet](https://blog.csdn.net/u011995719/article/details/78918128)
-    * [4] []()
+    * [4] [ShufflenetV2_高效网络的4条实用准则](https://zhuanlan.zhihu.com/p/42288448)
 
 
 ### 3.2 检测
