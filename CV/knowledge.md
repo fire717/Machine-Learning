@@ -91,10 +91,12 @@
         * 方案2：取消全连接层，对最后的卷积层global average polling（GAP。
         * 方案3：在第一个全连接层前，加入SPP layer。本文要介绍的。
         * p.s.以上方案还要实测，具体哪种方案比较好，强烈推荐方案2，3。
+        * 方案4：PPM、ASPP[3]
 
 * 参考：
     * [1] [Spatial Pyramid Pooling讲解](https://zhuanlan.zhihu.com/p/34788333?utm_source=ZHShareTargetIDMore)
     * [2] [Spatial Pyramid Pooling 详解](https://www.jianshu.com/p/e36aef9b7a8a)
+    * [3] [SPP，PPM、ASPP和FPN结构理解和总结](https://www.cnblogs.com/hansjorn/p/14295889.html)
 
 
 #### Attention
