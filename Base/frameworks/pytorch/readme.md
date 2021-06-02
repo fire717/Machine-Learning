@@ -90,6 +90,7 @@ def test():
 ### Demo
 * [可视化增强图片结果](./demo/show_pth_data.py)
 * [onnx predict](./demo/onnx_pre.py)
+* [交叉熵loss修改](./demo/CEloss.py)
 
 ### Toolkit
 * [Focal-Loss](https://github.com/yatengLG/Focal-Loss-Pytorch)
