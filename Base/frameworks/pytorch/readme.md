@@ -104,11 +104,11 @@ def test():
 * [官网](http://pytorch.org/)
 * [官网教程](http://pytorch.org/tutorials/)
 * [PyTorch Handbook](https://github.com/zergtant/pytorch-handbook)
+* [Dive-into-DL-PyTorch 动手学深度学习](https://github.com/ShusenTang/Dive-into-DL-PyTorch)
 * [pytorch_classification](https://github.com/lxztju/pytorch_classification)
 * Model zoo:
 	* [pretrained-models.pytorch](https://github.com/Cadene/pretrained-models.pytorch) 
 	* [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) 
 	* [mobilenet-v3](https://github.com/kuan-wang/pytorch-mobilenet-v3) 
 	* [WSL-Images](https://github.com/facebookresearch/WSL-Images)
-	
 	
