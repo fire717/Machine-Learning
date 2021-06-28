@@ -555,9 +555,21 @@
 * 参考：
     * [1] [EfficientDet 算法解读](https://zhuanlan.zhihu.com/p/93241232)
 
+#### 3.2.5 FPN (Feature Pyramid Networks for Object Detection)
+* 主要思想就是把高层特征图上采样后和底层合并（add）
+* 感觉就是改进SSD，计算量增加不多，丰富小目标的信息
+* 参考：
+    * [1] [FPN详解](https://blog.csdn.net/WZZ18191171661/article/details/79494534)
+    * [2] [【论文笔记】FPN —— 特征金字塔](https://zhuanlan.zhihu.com/p/92005927)
+
 
 ### 3.3 分割
 #### 3.3.1 U-net
+
+#### 3.3.2 Fast RCNN
+
+* 参考:
+    * [1] [SegmenTron(Fast RCNN实现跑通可用)](https://github.com/LikeLy-Journey/SegmenTron) 
 
 
 ### 3.4 识别
