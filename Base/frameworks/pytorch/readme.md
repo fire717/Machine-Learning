@@ -99,6 +99,7 @@ def test():
 * [fast-autoaugment](https://github.com/kakaobrain/fast-autoaugment)
 * [各种IOUloss的pytorch实现](IoU_loss.py)
 * [Libra R-CNN:IOU_balanced](IOU_balanced.py)
+* [BN剪枝](https://github.com/Eric-mingjie/network-slimming)
 
 ### Resource
 * [官网](http://pytorch.org/)
