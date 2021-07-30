@@ -30,6 +30,7 @@ https://github.com/onnx/tensorflow-onnx
 * [pb转tflite](./basic/pb2tflite.py)| [pb模型测试](./basic/tf_pb_pre.py) |  [tf加载pb模型](./basic/read_pb.py)
 * [tflite模型测试](./basic/tflite_pre.py) | [转onnx后模型测试](./basic/onnx_pre.py)
 * [TFLiteModelMaker轻松利用预训练模型训练tflite(支持efficientnetlite等)](./basic/TFLiteModelMaker)
+* [TFLite打印中间节点输出](./basic/tflite_show_middle_output.py)
 
 ### Demo
 
