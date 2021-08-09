@@ -72,6 +72,8 @@ def test():
     torch.onnx.export(model, dummy_input1, "output/mymodel.onnx", verbose=True, input_names=input_names, output_names=output_names)
 ```
 
+* 多维数组按指定维度索引列表取值：[numpy多维数组索引](https://github.com/fire717/Python-Learner/tree/master/tools/numpy)
+
 ### Practice
 * Pytorch 入门示例：
 	1. [Pytorch是什么？](./practice/60分钟入门PyTorch-1.PyTorch是什么？.ipynb)
