@@ -6,7 +6,7 @@ def IOU(box1,box2):
     ymin = max(ymin1,ymin2)
     # 求交集部分右下角的点
     xmax = min(xmax1,xmax2)
-    ym=ax = min(ymax1,ymax2)
+    ymax = min(ymax1,ymax2)
     # 计算输入的两个矩形的面积
     s1 = (xmax1-xmin1) * (ymax1 - ymin1)
     s2 = (xmax2-xmin2) * (ymax2 - ymin2)
