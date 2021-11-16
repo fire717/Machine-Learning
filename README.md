@@ -36,7 +36,7 @@
 * 工具：[NLTK](/NLP/tools/nltk) | [jieba](/NLP/tools/jieba) | [gensim](/NLP/tools/gensim) | [NLPIR](/NLP/tools/NLPIR) | [word2vec](/NLP/tools/word2vec) | [LDA](./NLP/tools/lda) | BLEU([介绍](https://blog.csdn.net/qq_31584157/article/details/77709454)、[使用](https://cloud.tencent.com/developer/article/1042161))
 
 * 代码：[社交网络语言re](/NLP/codes/re.ipynb) |
-* 开源代码: [funNLP](https://github.com/fighting41love/funNLP) | [AI写诗](https://github.com/jinfagang/tensorflow_poems) | 
+* 经典项目: [funNLP](https://github.com/fighting41love/funNLP) | [AI写诗](https://github.com/jinfagang/tensorflow_poems) |  [DeepQA](https://github.com/Conchylicultor/DeepQA)
 
 * [NLP知识点整理>>](/NLP/knowledge.md)
 
