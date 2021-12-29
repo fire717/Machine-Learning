@@ -14,7 +14,7 @@ def IOU(box1,box2):
     #计算总面积
     s = s1 + s2 
     # 计算交集
-    inter_area = (xmax - xmin) * (ymax - ymin)
+    inter_area = max(0,(xmax - xmin)) * max(0,(ymax - ymin))
 
     iou = inter_area / (s - inter_area)
     return iou
