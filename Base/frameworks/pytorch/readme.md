@@ -114,4 +114,5 @@ def test():
 	* [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) 
 	* [mobilenet-v3](https://github.com/kuan-wang/pytorch-mobilenet-v3) 
 	* [WSL-Images](https://github.com/facebookresearch/WSL-Images)
+	* [EfficientNet-PyTorch](https://github.com/lukemelas/EfficientNet-PyTorch)
 	
