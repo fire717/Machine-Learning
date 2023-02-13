@@ -69,7 +69,7 @@
 	* [Mask_RCNN人体关键点、分割](https://github.com/Superlee506/Mask_RCNN_Humanpose) 
 	* [人像卡通化](https://github.com/minivision-ai/photo2cartoon) 
 	* [移动端人脸检测1：libface](https://github.com/ShiqiYu/libfacedetection) | [移动端人脸检测2：Ultra Face](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB/blob/master/README_CN.md)
-	* [人脸识别facenet-tf](https://github.com/davidsandberg/facenet) | [人脸识别facenet-pth](https://github.com/timesler/facenet-pytorch) 
+	* [人脸识别facenet-tf(2018)](https://github.com/davidsandberg/facenet) | [人脸识别facenet-pth(2018)](https://github.com/timesler/facenet-pytorch) | [AdaFace(2022)](https://github.com/mk-minchul/AdaFace)
 	* [人脸关键点pth版](https://github.com/610265158/face_landmark_pytorch)
 
 * [CV知识点整理>>](/CV/knowledge.md)
