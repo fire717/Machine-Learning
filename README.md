@@ -49,7 +49,7 @@
 
 * VOC数据集相关：[生成目录结构](/CV/codes/makeVOCDirs.py) | [标签转xml写入](/CV/codes/flickr_to_voc.py) | [coco txt转voc xml](/CV/codes/txt2xml.py) | [可视化标签框](/CV/codes/show_voc_box.py) | [更新训练验证txt图片名](/CV/codes/updateTXT.py) | [VOC转csv格式](/CV/codes/pascalVOC2csv.py) | [计算csv格式数据合适的anchor](https://github.com/martinzlocha/anchor-optimization/)
 
-* 常用算法：[NMS](/CV/codes/nms.py) | [Mixup](/CV/codes/simple_mixup.py) | [label_smoothing](/CV/codes/label_smoothing.py) | [Weighted-Boxes-Fusion(NMS,WBF..)](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)  | [mAP计算](https://github.com/Cartucho/mAP) | [IOU计算](/CV/codes/IOU.py)
+* 常用算法：[NMS](/CV/codes/nms.py) | [Mixup](/CV/codes/simple_mixup.py) | [label_smoothing](/CV/codes/label_smoothing.py) | [Weighted-Boxes-Fusion(NMS,WBF..)](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)  | [mAP计算](https://github.com/Cartucho/mAP) | [IOU计算](/CV/codes/IOU.py) | [YOLO F1](/DIY/yoloF1.py)
 
 #### 其他
 * 课程: [CS231n/Feifei Li](/Base/courses/cs231n) 
